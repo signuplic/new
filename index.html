@@ -25,21 +25,26 @@
   /* Collapsible section */
   .offers-container {
     background:#f8f8f8;
-    margin-top:8px;
-    border-radius:6px;
+    margin:12px;
+    border-radius:8px;
     overflow:hidden;
-    width:100%;
+    border:1px solid #e0e0e0;
   }
   .offers-header {
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:10px 14px;
+    justify-content:center;
+    padding:12px;
     font-weight:bold;
-    cursor:pointer;
+    font-size:14px;
     background:#f3f3f3;
+    cursor:pointer;
+    position:relative;
   }
-  .offers-header span {
+  .offers-header .arrow {
+    position:absolute;
+    left:12px;
+    font-size:18px;
     transition:transform 0.3s;
   }
   .offers-content {
@@ -107,8 +112,8 @@
 <!-- Collapsible Offers -->
 <div class="offers-container">
   <div class="offers-header" id="toggleOffers">
+    <span class="arrow" id="arrow">⌄</span>
     اختر مكافأة ترحيبية
-    <span id="arrow">⌄</span>
   </div>
   <div class="offers-content" id="offersContent">
     <div class="offers">
@@ -123,8 +128,8 @@
         <div class="offer-title">MegaGames + كازينو</div>
         <div class="offer-desc">بكج الترحيب يصل إلى MAD 16950 + 150 FS</div>
       </label>
-      <label class="offer selected">
-        <input type="radio" name="offer" checked>
+      <label class="offer">
+        <input type="radio" name="offer">
         <div class="offer-title">مكافأة المراهنات الرياضية</div>
         <div class="offer-desc">مكافأة ترحيبية مقابل إيداعك تصل إلى</div>
         <div class="offer-price">MAD 2300</div>
@@ -142,9 +147,11 @@
 const toggleBtn = document.getElementById('toggleOffers');
 const offersContent = document.getElementById('offersContent');
 const arrow = document.getElementById('arrow');
+
 toggleBtn.addEventListener('click', () => {
-  offersContent.style.display = offersContent.style.display === 'block' ? 'none' : 'block';
-  arrow.style.transform = offersContent.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0deg)';
+  const isOpen = offersContent.style.display === 'block';
+  offersContent.style.display = isOpen ? 'none' : 'block';
+  arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
 });
 
 document.querySelectorAll('.offer input[type="radio"]').forEach(radio=>{
