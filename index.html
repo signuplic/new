@@ -21,6 +21,7 @@
   .menu { width:24px; height:18px; display:grid; gap:4px; cursor:pointer; }
   .menu span { height:2px; background:#000; }
 
+  /* القسم الترحيبي */
   .hero {
     padding:48px 20px;
     max-width:700px;
@@ -28,62 +29,121 @@
     text-align:center;
     background:#fff;
   }
-  .hero h1 { font-size:32px; font-weight:700; line-height:1.4; margin-bottom:12px; }
-  .hero p { font-size:15px; line-height:1.6; color:#444; margin-bottom:28px; }
+  .hero h1 {
+    font-size:32px;
+    font-weight:700;
+    line-height:1.4;
+    margin-bottom:12px;
+  }
+  .hero p {
+    font-size:15px;
+    line-height:1.6;
+    color:#444;
+    margin-bottom:28px;
+  }
   .cta {
-    background:#0052ff; color:#fff; padding:14px 28px;
-    font-size:16px; border:none; border-radius:999px;
-    font-weight:bold; cursor:pointer; text-decoration:none; display:inline-block;
+    background:#0052ff;
+    color:#fff;
+    padding:14px 28px;
+    font-size:16px;
+    border:none;
+    border-radius:999px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
   }
 
-  .coins-grid {
+  /* شبكة المراهنات */
+  .bets-grid {
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap:16px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap:12px;
     padding:20px;
     max-width:700px;
     margin:auto;
   }
-  .coin-card {
+  .bet-card {
     background:#fff;
     border-radius:12px;
     box-shadow:0 2px 6px rgba(0,0,0,0.08);
-    padding:15px 10px;
+    padding:15px 5px;
     text-align:center;
   }
-  .coin-card img {
-    width:40px; height:40px; margin-bottom:8px;
+  .bet-card img {
+    width:35px;
+    height:35px;
+    margin-bottom:8px;
+    object-fit: contain;
   }
-  .coin-card span {
+  .bet-card span {
     font-weight:bold;
-    font-size:14px;
+    font-size:13px;
     color:#111;
     display:block;
   }
 
+  /* قسم المكافأة */
   .bonus-section {
-    background:#1d1f21; color:#fff;
-    padding:40px 20px; text-align:center;
+    background:#1d1f21;
+    color:#fff;
+    padding:40px 20px;
+    text-align:center;
   }
-  .bonus-section h2 { font-size:28px; font-weight:700; margin-bottom:12px; }
-  .bonus-section p { font-size:15px; color:#ddd; margin-bottom:20px; }
+  .bonus-section h2 {
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:12px;
+  }
+  .bonus-section p {
+    font-size:15px;
+    color:#ddd;
+    margin-bottom:20px;
+  }
   .learn-btn {
-    background:#e9eaeb; color:#000; padding:12px 28px;
-    border-radius:999px; text-decoration:none;
-    font-weight:500; display:inline-block; font-size:15px;
+    background:#e9eaeb;
+    color:#000;
+    padding:12px 28px;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:500;
+    display:inline-block;
+    font-size:15px;
   }
 
+  /* التذييل */
   footer {
-    background:#f6f6f6; padding:30px 20px; font-size:14px; color:#444;
+    background:#f6f6f6;
+    padding:30px 20px;
+    font-size:14px;
+    color:#444;
   }
-  footer h3 { font-size:16px; font-weight:bold; margin-bottom:10px; }
-  footer ul { list-style:none; padding:0; margin:0 0 20px; }
-  footer ul li { margin-bottom:6px; }
-  footer ul li a { text-decoration:none; color:#444; }
-  footer ul li a:hover { color:#0052ff; }
+  footer h3 {
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:10px;
+  }
+  footer ul {
+    list-style:none;
+    padding:0;
+    margin:0 0 20px;
+  }
+  footer ul li {
+    margin-bottom:6px;
+  }
+  footer ul li a {
+    text-decoration:none;
+    color:#444;
+  }
+  footer ul li a:hover {
+    color:#0052ff;
+  }
   .footer-bottom {
-    border-top:1px solid #ddd; padding-top:10px;
-    font-size:13px; text-align:center; color:#777;
+    border-top:1px solid #ddd;
+    padding-top:10px;
+    font-size:13px;
+    text-align:center;
+    color:#777;
   }
 </style>
 </head>
@@ -92,7 +152,9 @@
 <header>
   <div class="logo">coinbase</div>
   <button class="signup">Sign up</button>
-  <div class="menu"><span></span><span></span><span></span></div>
+  <div class="menu">
+    <span></span><span></span><span></span>
+  </div>
 </header>
 
 <section class="hero">
@@ -101,26 +163,17 @@
   <a href="#" class="cta">ابدأ الآن</a>
 </section>
 
-<section class="coins-grid">
-  <div class="coin-card"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=025"><span>Bitcoin</span></div>
-  <div class="coin-card"><img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=025"><span>Ethereum</span></div>
-  <div class="coin-card"><img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=025"><span>XRP</span></div>
-  <div class="coin-card"><img src="https://cryptologos.cc/logos/tether-usdt-logo.svg?v=025"><span>Tether</span></div>
-  <div class="coin-card"><img src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=025"><span>Solana</span></div>
-  <div class="coin-card"><img src="https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=025"><span>USDC</span></div>
-</section>
-
-<section class="coins-grid">
-  <div class="coin-card"><img src="https://i.postimg.cc/1t3bhntk/recharge.jpg"><span>Melbet</span></div>
-  <div class="coin-card"><img src="https://i.postimg.cc/xdy6d0h9/charge.jpg"><span>MegaPari</span></div>
-  <div class="coin-card"><img src="https://i.postimg.cc/yd1z0t7v/linebet.png"><span>LineBet</span></div>
-  <div class="coin-card"><img src="https://i.postimg.cc/7ZT29mnc/recharge.png"><span>1xBet</span></div>
-  <div class="coin-card"><img src="https://i.postimg.cc/J4CVthdk/recharge.jpg"><span>Gooobet</span></div>
-  <div class="coin-card"><img src="https://i.postimg.cc/ZR0TGYSh/mystake.png"><span>MyStake</span></div>
-  <div class="coin-card"><img src="https://i.postimg.cc/yYg2Kmq9/stake.png"><span>Stake</span></div>
-  <div class="coin-card"><img src="https://i.postimg.cc/sXjs74gV/8de62e0d-faf0-4657-aa87-962278a7542e.jpg"><span>RiskoBet</span></div>
-  <div class="coin-card"><img src="https://i.postimg.cc/t4pT7XqR/888star.png"><span>888Star</span></div>
-  <div class="coin-card"><img src="https://i.postimg.cc/9f9S9wQG/mostbet.png"><span>Mostbet</span></div>
+<section class="bets-grid">
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>Melbet</span></div>
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>MegaPari</span></div>
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>LineBet</span></div>
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>1xBet</span></div>
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>Gooobet</span></div>
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>MyStake</span></div>
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>Stake</span></div>
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>RiscoBet</span></div>
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>888starz</span></div>
+  <div class="bet-card"><img src="https://via.placeholder.com/40" alt=""><span>MostBet</span></div>
 </section>
 
 <section class="bonus-section">
@@ -145,7 +198,9 @@
       <li><a href="#">الإبلاغ عن مشكلة</a></li>
     </ul>
   </div>
-  <div class="footer-bottom">© 2025 منصتنا. جميع الحقوق محفوظة.</div>
+  <div class="footer-bottom">
+    © 2025 منصتنا. جميع الحقوق محفوظة.
+  </div>
 </footer>
 
 </body>
