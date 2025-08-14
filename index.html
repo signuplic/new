@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -9,7 +9,6 @@
 <title>Coinbase Style Hero</title>
 <style>
   body { margin:0; font-family: 'Segoe UI', Tahoma, sans-serif; background:#fff; color:#111; }
-  /* Header */
   header {
     display:flex; align-items:center; justify-content:space-between;
     padding:16px; background:#fff; border-bottom:1px solid #ddd;
@@ -21,14 +20,12 @@
   }
   .menu { width:24px; height:18px; display:grid; gap:4px; cursor:pointer; }
   .menu span { height:2px; background:#000; }
-
-  /* Hero section */
   .hero {
     padding:48px 20px;
     max-width:500px;
     margin:auto;
   }
-  .hero .small-link {
+  .small-link {
     color:#0052ff;
     font-weight:500;
     text-decoration:none;
@@ -38,13 +35,13 @@
     margin-bottom:16px;
     font-size:14px;
   }
-  .hero h1 {
+  h1 {
     font-size:38px;
     font-weight:700;
     line-height:1.2;
     margin-bottom:16px;
   }
-  .hero p {
+  p {
     font-size:16px;
     line-height:1.5;
     color:#333;
@@ -75,14 +72,10 @@
     font-weight:bold;
     cursor:pointer;
   }
-  .cta:hover {
-    background:#0040c9;
-  }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header>
   <div class="logo">coinbase</div>
   <button class="signup">Sign up</button>
@@ -91,12 +84,10 @@
   </div>
 </header>
 
-<!-- Hero -->
 <section class="hero">
-  <a href="#" class="small-link">🚀 Jump start your portfolio →</a>
+  <a href="#" class="small-link">Jump start your portfolio →</a>
   <h1>The future of money is here</h1>
   <p>We're the most trusted place for people and businesses to buy, sell, and use crypto.</p>
-  
   <label>Email address</label>
   <input type="email" placeholder="satoshi@nakamoto.com">
   <button class="cta">Get started</button>
