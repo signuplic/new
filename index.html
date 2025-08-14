@@ -4,180 +4,99 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign in to - Mobicash</title>
-
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- أيقونات -->
   <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- الخط والستايل العام المستوحى من Coinbase -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
   <style>
-    :root{
-      --bg:#ffffff;
-      --surface:#f8fafc;
-      --text:#0f172a;
-      --muted:#64748b;
-      --primary:#6da4ff;
-      --primary-hover:#5b8ef0;
-      --border:#e6e9ef;
-      --radius:22px;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
+    select option { color: #000; }
+    @media (prefers-color-scheme: dark) {
+      select option { color: #fff; }
     }
-
-    html,body{font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-
-    /* خلفية الصفحة */
-    body{user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none;
-         background:var(--surface)}
-
-    /* البطاقة */
-    .card{
-      background:var(--bg);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      padding:28px 28px 24px;
+    .fade { transition: all 0.3s ease; opacity: 0; transform: translateY(-5px); }
+    .fade.show { opacity: 1; transform: translateY(0); }
+    #oneClickTab {
+      background-color: #27632a;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 500;
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      color: #ffffff;
+      width: 100%;
+      margin-bottom: 24px;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
-
-    /* مدخلات */
-    .field-label{font-weight:600;font-size:14px;color:var(--text);margin-bottom:8px;display:block}
-    .input{
-      width:100%;height:56px;border:1.5px solid var(--border);outline:0;
-      border-radius:18px;padding:0 16px;font-size:16px;background:#fff;color:var(--text);
-      transition:.2s border,.2s box-shadow
+    #oneClickTab svg { fill: #ffffff; }
+    #oneClickTab:hover, #oneClickTab:active {
+      background-color: #d6eed9;
+      color: #2b2b2b;
     }
-    .input::placeholder{color:#9aa3b2}
-    .input:focus{border-color:#a8c3ff;box-shadow:0 0 0 4px rgba(109,164,255,.2)}
-
-    /* زر أساسي حُبيبي */
-    .btn{
-      width:100%;height:58px;border:0;border-radius:28px;
-      font-weight:700;font-size:16px;cursor:pointer;transition:.2s transform,.2s opacity,.2s background
+    #oneClickTab:hover svg, #oneClickTab:active svg {
+      fill: #2b2b2b;
     }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:var(--primary);color:#fff}
-    .btn-primary:hover{background:var(--primary-hover)}
-
-    /* زر واضح رمادي */
-    .btn-ghost{
-      background:#eef2f7;color:#0f172a;height:60px;border-radius:28px;border:1px solid var(--border);
-      display:flex;align-items:center;justify-content:center;gap:10px
+    body {
+      user-select: none;
+      -webkit-user-drag: none;
+      -webkit-touch-callout: none;
     }
-    .btn-ghost:hover{opacity:.9}
-
-    /* فاصل OR */
-    .hr{display:flex;align-items:center;gap:12px;color:#8b97a8;margin:16px 0}
-    .hr::before,.hr::after{content:"";flex:1;height:1px;background:var(--border)}
-
-    /* قائمة الاختيار المخصصة */
-    #dropdownBtn{
-      height:56px;border:1.5px solid var(--border);border-radius:18px;padding:0 16px;
-      background:#fff;color:var(--text)
-    }
-    #dropdownBtn:focus{outline:none;box-shadow:0 0 0 4px rgba(109,164,255,.2);border-color:#a8c3ff}
-    #dropdownList{
-      border:1px solid var(--border);border-radius:16px;margin-top:6px;overflow:hidden
-    }
-    #dropdownList li{height:48px}
-    #dropdownList li:hover{background:#f3f5f9}
-    .dropdown-item img{display:none} /* تُدار بالـ JS عند الاختيار */
-
-    /* الرسائل والحركة */
-    .fade{transition:all .3s ease;opacity:0;transform:translateY(-5px)}
-    .fade.show{opacity:1;transform:translateY(0)}
-
-    /* زر En un clic بنفس روح التصميم */
-    #oneClickTab{
-      background:#111827;color:#fff;border:none;padding:14px 18px;border-radius:20px;
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      font-weight:600;font-size:15px;width:100%;margin-bottom:18px;transition:.2s opacity
-    }
-    #oneClickTab:hover{opacity:.9}
-    #oneClickTab svg{fill:#fff}
-
-    select option{color:#000}
-    @media (prefers-color-scheme:dark){select option{color:#fff}}
+    .dropdown-item img { display: none; }
   </style>
 </head>
-
-<body class="min-h-screen flex items-center justify-center px-4">
-  <div class="card w-full max-w-md">
-    <h2 class="text-[32px] leading-tight font-bold text-center text-slate-900 mb-2">Sign in to Mobicash</h2>
-    <p class="text-center text-slate-500 mb-5 text-[14px]">Access all that Mobicash offers with a single account</p>
-
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4">
+  <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Sign in to Mobicash</h2>
     <button id="oneClickTab">
       En un clic
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="32" viewBox="0 0 14 16">
         <path d="M10 5.5l-.2-.1H6.6L9.8 1V.8H4.9l-4 7v.3h3l-3 6.3v.3h.4l8.7-9c.1 0 .1-.1 0-.2z"/>
       </svg>
     </button>
-
-    <!-- اختيار المنصة -->
     <div class="mb-4 relative">
-      <label for="platform" class="field-label">اختر المنصة</label>
+      <label for="platform" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">اختر المنصة</label>
       <div id="customSelect" class="relative w-full">
-        <button id="dropdownBtn" class="w-full flex items-center justify-between text-sm">
-          <span id="selectedText" class="text-slate-600">اختر المنصة</span>
-          <svg class="w-4 h-4 ml-2 text-slate-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button id="dropdownBtn" class="w-full flex items-center justify-between px-4 py-2 border rounded-xl bg-white dark:bg-gray-700 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <span id="selectedText">اختر المنصة</span>
+          <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-
-        <ul id="dropdownList" class="absolute z-10 w-full bg-white hidden max-h-60 overflow-y-auto text-sm text-slate-800">
-          <li class="dropdown-item px-4 py-2 cursor-pointer flex items-center justify-between" data-value="Mega pari">
+        <ul id="dropdownList" class="absolute z-10 w-full bg-white dark:bg-gray-700 border rounded-xl mt-1 hidden max-h-60 overflow-y-auto text-sm text-gray-800 dark:text-white">
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Mega pari">
             <span>Mega pari</span> <img src="https://i.postimg.cc/yx8yj8JF/recharge.jpg" class="w-6 h-6 rounded-full" />
           </li>
-          <li class="dropdown-item px-4 py-2 cursor-pointer flex items-center justify-between" data-value="Linbet">
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Linbet">
             <span>Linbet</span> <img src="https://i.postimg.cc/xCgWJjwv/recharge.jpg" class="w-6 h-6 rounded-full" />
           </li>
-          <li class="dropdown-item px-4 py-2 cursor-pointer flex items-center justify-between" data-value="Gooobet">
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Gooobet">
             <span>Gooobet</span> <img src="https://i.postimg.cc/gk4fGxqP/recharge.jpg" class="w-6 h-6 rounded-full" />
           </li>
-          <li class="dropdown-item px-4 py-2 cursor-pointer flex items-center justify-between" data-value="1xbet">
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="1xbet">
             <span>1xbet</span> <img src="https://i.postimg.cc/g277nb7D/recharge.jpg" class="w-6 h-6 rounded-full" />
           </li>
-          <li class="dropdown-item px-4 py-2 cursor-pointer flex items-center justify-between" data-value="Melbet">
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Melbet">
             <span>Melbet</span> <img src="https://i.postimg.cc/0jZWvTm7/recharge.jpg" class="w-6 h-6 rounded-full" />
           </li>
         </ul>
         <input type="hidden" id="platform" name="platform" />
       </div>
     </div>
-
-    <!-- إدخال الـ ID -->
-    <div class="mb-2">
-      <label for="userId" class="field-label">أدخل الـ ID</label>
-      <input type="text" id="userId" maxlength="13" inputmode="numeric" pattern="[0-9]*"
-             placeholder="مثال: 1234567..." class="input"
-             oninput="filterDigits(this); validateId()" onkeydown="return isNumberKey(event)" />
+    <div class="mb-4">
+      <label for="userId" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">أدخل الـ ID</label>
+      <input type="text" id="userId" maxlength="13" inputmode="numeric" pattern="[0-9]*" placeholder="مثال: 1234567..." class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="filterDigits(this); validateId()" onkeydown="return isNumberKey(event)" />
     </div>
-
-    <div id="message" class="fade text-center text-sm mb-3 h-5"></div>
-
-    <!-- زر الدخول -->
-    <button id="submitBtn" onclick="secureLogin()" class="btn btn-primary relative">
+    <div id="message" class="fade text-center text-sm mb-4 h-5"></div>
+    <button id="submitBtn" onclick="secureLogin()" class="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl transition duration-300 flex items-center justify-center gap-2">
       <i data-lucide="log-in" class="w-5 h-5"></i>
       <span class="label">Sign in</span>
-      <svg id="loader" class="hidden absolute w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" style="inset-inline-end:16px">
+      <svg id="loader" class="hidden absolute w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" d="M4 12a8 8 0 018-8v8z" fill="currentColor"></path>
       </svg>
     </button>
-
-    <div class="hr">أو</div>
-
-    <!-- أمثلة لأزرار اجتماعية بنفس الروح (اختياري) -->
-    <button class="btn btn-ghost"><span class="w-5 h-5 rounded-full bg-white border"></span> المتابعة عبر Google</button>
-    <div style="height:10px"></div>
-    <button class="btn btn-ghost"><span class="w-5 h-5 rounded-full bg-black"></span> المتابعة عبر Apple</button>
-
-    <p class="text-[12px] text-slate-500 mt-4 text-center">
-      بتسجيل الدخول فأنت تقر بأنك فوق 18 عامًا وتوافق على
-      <a href="#" class="text-blue-600 hover:underline">سياسة الخصوصية</a>.
-    </p>
   </div>
 
 <script>
@@ -187,7 +106,7 @@
 
   function showMessage(text, type = "error") {
     const msg = document.getElementById("message");
-    msg.className = "fade show text-center text-sm mb-3 h-5";
+    msg.className = "fade show text-center text-sm mb-4 h-5";
     msg.textContent = text;
     msg.style.color = type === "success" ? "green" : "red";
   }
@@ -290,7 +209,7 @@
       platformInput.value = value;
       dropdownList.classList.add("hidden");
       const img = item.querySelector("img").getAttribute("src");
-      selectedText.innerHTML = <span>${value}</span><img src="${img}" class="w-6 h-6 rounded-full ml-2" />;
+      selectedText.innerHTML = `<span>${value}</span><img src="${img}" class="w-6 h-6 rounded-full ml-2" />`;
     });
   });
 
@@ -309,7 +228,7 @@
       if (item) {
         platformInput.value = storedPlatform;
         const img = item.querySelector("img").getAttribute("src");
-        selectedText.innerHTML = <span>${storedPlatform}</span><img src="${img}" class="w-6 h-6 rounded-full ml-2" />;
+        selectedText.innerHTML = `<span>${storedPlatform}</span><img src="${img}" class="w-6 h-6 rounded-full ml-2" />`;
       } else {
         platformInput.value = "";
         selectedText.textContent = "اختر المنصة";
