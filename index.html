@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0052ff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>قسم ترحيبي</title>
+<title>صفحة عروض</title>
 <style>
   body { margin:0; font-family: 'Segoe UI', Tahoma, sans-serif; background:#fff; color:#111; }
   header {
@@ -20,19 +20,22 @@
   }
   .menu { width:24px; height:18px; display:grid; gap:4px; cursor:pointer; }
   .menu span { height:2px; background:#000; }
+
+  /* القسم الترحيبي */
   .hero {
     padding:48px 20px;
     max-width:700px;
     margin:auto;
     text-align:center;
+    background:#fff;
   }
-  h1 {
+  .hero h1 {
     font-size:32px;
     font-weight:700;
     line-height:1.4;
     margin-bottom:12px;
   }
-  p {
+  .hero p {
     font-size:15px;
     line-height:1.6;
     color:#444;
@@ -48,6 +51,33 @@
     font-weight:bold;
     cursor:pointer;
     text-decoration:none;
+    display:inline-block;
+  }
+
+  /* قسم المكافأة */
+  .bonus-section {
+    background:#000;
+    color:#fff;
+    padding:40px 20px;
+    text-align:center;
+  }
+  .bonus-section h2 {
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:12px;
+  }
+  .bonus-section p {
+    font-size:15px;
+    color:#ddd;
+    margin-bottom:20px;
+  }
+  .bonus-section a {
+    background:#00b354;
+    color:#fff;
+    padding:12px 24px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:bold;
     display:inline-block;
   }
 </style>
@@ -66,6 +96,12 @@
   <h1>مكافآت رائعة للمراهنات الرياضية والكازينو</h1>
   <p>احصل على رهانات مجانية رائعة، دورات مجانية، وأموال حقيقية</p>
   <a href="#" class="cta">ابدأ الآن</a>
+</section>
+
+<section class="bonus-section">
+  <h2>مكافأة 100% على إيداعك الأول</h2>
+  <p>سجل واحصل على ما يصل إلى 60,000 فرنك أفريقي لعملية الشحن الأولى الخاصة بك</p>
+  <a href="#">اعلم أكثر</a>
 </section>
 
 </body>
