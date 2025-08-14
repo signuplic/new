@@ -5,76 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sign in</title>
 <style>
-  :root{--blue:#0052ff;--bg:#ffffff;--text:#0f172a;--muted:#6b7280}
+  :root{--blue:#0b63ff;--blue-2:#5a8dff;--text:#0f172a;--muted:#6b7280;--line:#e5e7eb;--field:#f8fafc}
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{font-family:system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}
-
-  /* Splash Screen */
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif;background:#fff;color:var(--text)}
   .splash{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:9999}
-  .dots{display:flex;gap:10px}
-  .dot{width:10px;height:10px;border-radius:50%;background:var(--blue);animation:blink 1.2s infinite ease-in-out}
-  .dot:nth-child(2){animation-delay:.2s}
-  .dot:nth-child(3){animation-delay:.4s}
-  @keyframes blink{0%,80%,100%{opacity:.3;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
-
-  /* Login UI */
-  .container{max-width:380px;margin:auto;padding:20px}
-  .logo{display:block;margin:auto;margin-bottom:30px;width:36px;height:36px}
-  h1{font-size:24px;font-weight:700;margin-bottom:24px}
-  label{font-size:14px;font-weight:500;margin-bottom:6px;display:block}
-  input[type=email]{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:20px}
-  button.primary{width:100%;padding:12px;background:#a5c8ff;color:#fff;border:none;border-radius:8px;font-weight:600;font-size:15px;cursor:pointer}
-  .divider{display:flex;align-items:center;margin:24px 0}
-  .divider::before,.divider::after{content:"";flex:1;height:1px;background:#e5e7eb}
-  .divider span{margin:0 10px;font-size:12px;color:#6b7280}
-  .social-btn{display:flex;align-items:center;gap:8px;justify-content:center;width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;font-weight:500;font-size:14px;cursor:pointer;margin-bottom:12px}
-  .social-btn img{width:18px;height:18px}
-  p.cookies{font-size:12px;color:#6b7280;margin-top:20px;line-height:1.5}
-  p.cookies a{color:var(--blue);text-decoration:none}
-  .top-link{position:absolute;top:20px;right:20px;font-size:14px;color:var(--blue);text-decoration:none;font-weight:500}
+  .dots{display:flex;gap:12px}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--blue);animation:d 1.1s infinite}
+  .dot:nth-child(2){animation-delay:.18s}
+  .dot:nth-child(3){animation-delay:.36s}
+  @keyframes d{0%,80%,100%{opacity:.3;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
+  .wrap{max-width:440px;margin:0 auto;padding:20px 18px 28px}
+  .top{display:flex;align-items:center;justify-content:space-between;margin:6px 0 10px}
+  .cmark{width:36px;height:36px}
+  .su{font-size:15px;color:var(--blue);text-decoration:none;font-weight:600}
+  h1{font-size:28px;line-height:1.3;font-weight:800;margin:18px 0 18px}
+  label{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+  .field{display:block;width:100%;padding:14px 14px;border:1px solid #cfd8e3;border-radius:12px;background:#fff;font-size:15px;outline:none;transition:border .2s,box-shadow .2s}
+  .field::placeholder{color:#9aa3af}
+  .field:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(11,99,255,.12)}
+  .btn{width:100%;border:0;border-radius:20px;padding:14px 18px;font-weight:700;font-size:16px;cursor:pointer;transition:transform .06s ease}
+  .btn:active{transform:scale(.995)}
+  .primary{background:linear-gradient(180deg,var(--blue-2),var(--blue));color:#fff}
+  .primary[disabled]{opacity:.5;cursor:not-allowed}
+  .hr{display:flex;align-items:center;gap:10px;margin:22px 0}
+  .hr::before,.hr::after{content:"";height:1px;background:var(--line);flex:1}
+  .hr span{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.4px}
+  .sbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border:1px solid var(--line);border-radius:12px;background:#f7f8fa;font-weight:600;font-size:15px;margin-bottom:12px}
+  .sbtn svg{width:18px;height:18px}
+  .sbtn:last-child{margin-bottom:0}
+  .cookies{font-size:12px;color:var(--muted);line-height:1.6;margin-top:22px}
+  .cookies a{color:var(--blue);text-decoration:none}
+  @media (min-width:480px){.wrap{padding-top:34px}}
 </style>
 </head>
 <body>
 
-<!-- Splash -->
 <div class="splash" id="splash">
-  <div class="dots">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  </div>
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
 </div>
 
-<!-- Main Login -->
-<div id="app" style="display:none;position:relative;">
-  <a href="#" class="top-link">Sign up</a>
-  <div class="container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Coinbase_Logo_%28Blue%29.svg" class="logo" alt="logo">
+<div id="app" style="display:none">
+  <div class="wrap">
+    <div class="top">
+      <svg class="cmark" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#0b63ff"/><path d="M23.7 20.7a6.4 6.4 0 1 1 0-5.4h3.67a9.99 9.99 0 1 0 0 5.4H23.7z" fill="#fff"/></svg>
+      <a class="su" href="#">Sign up</a>
+    </div>
+
     <h1>Sign in to Coinbase</h1>
+
     <label>Email</label>
-    <input type="email" placeholder="Your email address">
-    <button class="primary">Continue</button>
+    <input id="email" type="email" class="field" placeholder="Your email address" autocomplete="email" inputmode="email">
+    <button id="continueBtn" class="btn primary" disabled>Continue</button>
 
-    <div class="divider"><span>OR</span></div>
+    <div class="hr"><span>OR</span></div>
 
-    <button class="social-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Person_icon_%28black%29.svg"> Sign in with Passkey</button>
-    <button class="social-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Google_icon.svg"> Sign in with Google</button>
-    <button class="social-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"> Sign in with Apple</button>
+    <button class="sbtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3a6 6 0 0 0-6 6v2H4v7h16v-7h-2V9a6 6 0 0 0-6-6Z" stroke-width="1.5"/><path d="M9 18v-4a3 3 0 1 1 6 0v4" stroke-width="1.5"/></svg>
+      Sign in with Passkey
+    </button>
 
-    <p class="cookies">
-      We use strictly necessary cookies to enable essential functions, such as security and authentication. For more information, see our <a href="#">Cookie Policy</a> and <a href="#">Privacy Policy</a>.
-    </p>
+    <button class="sbtn" type="button">
+      <svg viewBox="0 0 48 48"><path d="M43.6 20H24v8h11.3C33.8 32.7 29.4 36 24 36a12 12 0 1 1 0-24c3 0 5.8 1.1 7.9 3l5.7-5.7A20 20 0 1 0 24 44c10.2 0 19-7.4 19.6-20Z" fill="#4285F4"/><path d="M6.3 14.7l6.6 4.8A12 12 0 0 1 24 12c3 0 5.8 1.1 7.9 3l5.7-5.7A20 20 0 0 0 6.3 14.7Z" fill="#EA4335"/><path d="M24 44c5.2 0 10-2 13.4-5.2l-6.2-5a12 12 0 0 1-18-4.8l-6.7 5.1A20 20 0 0 0 24 44Z" fill="#34A853"/><path d="M43.6 20H24v8h11.3A12 12 0 0 1 24 36v8c10.2 0 19-7.4 19.6-20Z" fill="#4285F4"/><path d="M6.3 33.2 13 28a12 12 0 0 1 0-8l-6.7-5.2A20 20 0 0 0 4 24c0 3.4.8 6.6 2.3 9.2Z" fill="#FBBC05"/></svg>
+      Sign in with Google
+    </button>
+
+    <button class="sbtn" type="button">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 12.8c-.02-2.1 1.7-3.1 1.8-3.2-1-1.5-2.7-1.7-3.3-1.8-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.7-1.5.02-2.8.9-3.5 2.2-1.5 2.7-.4 6.6 1.1 8.7.7 1 1.5 2.1 2.6 2 .1 0 .6-.1 1-.4.7-.5 1.4-.5 1.5-.5.2 0 .8.1 1.5.5.4.2.8.4 1.1.4 1.1-.02 1.8-1 2.5-2 0 0 0 0 0 0 1-1.4 1.4-2.8 1.4-2.9-.02 0-2.7-1-2.7-3.1Z"/></svg>
+      Sign in with Apple
+    </button>
+
+    <p class="cookies">We use strictly necessary cookies to enable essential functions, such as security and authentication. For more information, see our <a href="#">Cookie Policy</a> and <a href="#">Privacy Policy</a>.</p>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded',function(){
-    const splash=document.getElementById('splash');
-    const app=document.getElementById('app');
-    setTimeout(function(){
-      splash.style.display='none';
-      app.style.display='block';
-    },1500);
-  });
+  const splash=document.getElementById('splash');const app=document.getElementById('app');
+  const email=document.getElementById('email');const btn=document.getElementById('continueBtn');
+  const show=()=>{splash.style.display='none';app.style.display='block'};
+  if(document.readyState==='complete'){setTimeout(show,900)}else{window.addEventListener('load',()=>setTimeout(show,900))}
+  email.addEventListener('input',()=>{btn.disabled=!email.value.trim()})
 </script>
 
 </body>
