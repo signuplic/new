@@ -20,13 +20,6 @@
   }
   .menu { width:24px; height:18px; display:grid; gap:4px; cursor:pointer; }
   .menu span { height:2px; background:#000; }
-  .colors {
-    position:fixed; bottom:20px; right:20px; display:flex; gap:8px;
-    background:#fff; padding:8px; border-radius:20px; box-shadow:0 4px 8px rgba(0,0,0,0.1);
-  }
-  .color-btn {
-    width:24px; height:24px; border-radius:50%; border:none; cursor:pointer;
-  }
 </style>
 </head>
 <body>
@@ -38,24 +31,6 @@
     <span></span><span></span><span></span>
   </div>
 </header>
-
-<div class="colors">
-  <button class="color-btn" style="background:#0052ff" data-color="#0052ff"></button>
-  <button class="color-btn" style="background:#111" data-color="#111"></button>
-  <button class="color-btn" style="background:#16a34a" data-color="#16a34a"></button>
-  <button class="color-btn" style="background:#e11d48" data-color="#e11d48"></button>
-</div>
-
-<script>
-document.querySelectorAll('.color-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    let color = btn.getAttribute('data-color');
-    document.getElementById('themeColor').setAttribute('content', color);
-    document.querySelector('.signup').style.background = color;
-    document.querySelector('.logo').style.color = color;
-  });
-});
-</script>
 
 </body>
 </html>
