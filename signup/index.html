@@ -1,83 +1,81 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0052ff">
-<title>واجهة</title>
+<title>Sign in</title>
 <style>
-  :root{--blue:#0b63ff;--text:#0f172a;--bg:#ffffff;--muted:#6b7280}
-  *{box-sizing:border-box}
+  :root{--blue:#0052ff;--bg:#ffffff;--text:#0f172a;--muted:#6b7280}
+  *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif}
+  body{font-family:system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}
 
-  .splash{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:9999;transition:opacity .4s ease}
-  .splash.hide{opacity:0;pointer-events:none}
-  .dots{display:flex;gap:18px}
-  .dot{width:14px;height:14px;border-radius:50%;background:var(--blue);animation:blink 1.2s infinite cubic-bezier(.25,.1,.25,1)}
-  .dot:nth-child(2){animation-delay:.15s}
-  .dot:nth-child(3){animation-delay:.3s}
-  @keyframes blink{0%,80%,100%{transform:scale(.6);opacity:.35}40%{transform:scale(1);opacity:1}}
+  /* Splash Screen */
+  .splash{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:9999}
+  .dots{display:flex;gap:10px}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--blue);animation:blink 1.2s infinite ease-in-out}
+  .dot:nth-child(2){animation-delay:.2s}
+  .dot:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,80%,100%{opacity:.3;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
 
-  header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #ececec;background:#fff;position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px)}
-  .brand{font-weight:800;font-size:20px;letter-spacing:.2px;color:#0b63ff}
-  .cta{background:#0b63ff;color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:700;text-decoration:none}
-
-  .hero{max-width:880px;margin:28px auto;padding:0 18px;text-align:center}
-  .hero h1{margin:0 0 10px;font-size:28px;line-height:1.35}
-  .hero p{margin:0 0 22px;color:var(--muted)}
-  .hero .btn{display:inline-block;padding:12px 22px;border-radius:999px;background:#0b63ff;color:#fff;text-decoration:none;font-weight:700}
-
-  .grid{max-width:920px;margin:26px auto;padding:0 18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
-  .card{background:#fff;border:1px solid #eee;border-radius:12px;padding:16px 10px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.04)}
-  .card img{width:36px;height:36px;object-fit:contain;margin-bottom:8px}
-  .card span{font-weight:700;font-size:13px}
-
-  footer{margin-top:36px;background:#f7f7f8;padding:24px 18px;color:#6b7280;font-size:13px;text-align:center;border-top:1px solid #ececec}
+  /* Login UI */
+  .container{max-width:380px;margin:auto;padding:20px}
+  .logo{display:block;margin:auto;margin-bottom:30px;width:36px;height:36px}
+  h1{font-size:24px;font-weight:700;margin-bottom:24px}
+  label{font-size:14px;font-weight:500;margin-bottom:6px;display:block}
+  input[type=email]{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:20px}
+  button.primary{width:100%;padding:12px;background:#a5c8ff;color:#fff;border:none;border-radius:8px;font-weight:600;font-size:15px;cursor:pointer}
+  .divider{display:flex;align-items:center;margin:24px 0}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:#e5e7eb}
+  .divider span{margin:0 10px;font-size:12px;color:#6b7280}
+  .social-btn{display:flex;align-items:center;gap:8px;justify-content:center;width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;font-weight:500;font-size:14px;cursor:pointer;margin-bottom:12px}
+  .social-btn img{width:18px;height:18px}
+  p.cookies{font-size:12px;color:#6b7280;margin-top:20px;line-height:1.5}
+  p.cookies a{color:var(--blue);text-decoration:none}
+  .top-link{position:absolute;top:20px;right:20px;font-size:14px;color:var(--blue);text-decoration:none;font-weight:500}
 </style>
 </head>
 <body>
 
+<!-- Splash -->
 <div class="splash" id="splash">
   <div class="dots">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
 </div>
 
-<div id="app" style="display:none">
-  <header>
-    <div class="brand">coinbase</div>
-    <a class="cta" href="#">Sign up</a>
-  </header>
+<!-- Main Login -->
+<div id="app" style="display:none;position:relative;">
+  <a href="#" class="top-link">Sign up</a>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Coinbase_Logo_%28Blue%29.svg" class="logo" alt="logo">
+    <h1>Sign in to Coinbase</h1>
+    <label>Email</label>
+    <input type="email" placeholder="Your email address">
+    <button class="primary">Continue</button>
 
-  <section class="hero">
-    <h1>مكافآت ترحيبية للمراهنات والكازينو</h1>
-    <p>ابدأ الآن واستفد من عروض الإيداع الأولى والرهانات المجانية</p>
-    <a href="#" class="btn">ابدأ الآن</a>
-  </section>
+    <div class="divider"><span>OR</span></div>
 
-  <section class="grid">
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>Melbet</span></div>
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>MegaPari</span></div>
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>LineBet</span></div>
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>1xBet</span></div>
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>Gooobet</span></div>
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>MyStake</span></div>
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>Stake</span></div>
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>RiscoBet</span></div>
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>888starz</span></div>
-    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>MostBet</span></div>
-  </section>
+    <button class="social-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Person_icon_%28black%29.svg"> Sign in with Passkey</button>
+    <button class="social-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Google_icon.svg"> Sign in with Google</button>
+    <button class="social-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"> Sign in with Apple</button>
 
-  <footer>© 2025. جميع الحقوق محفوظة.</footer>
+    <p class="cookies">
+      We use strictly necessary cookies to enable essential functions, such as security and authentication. For more information, see our <a href="#">Cookie Policy</a> and <a href="#">Privacy Policy</a>.
+    </p>
+  </div>
 </div>
 
 <script>
-  const s=document.getElementById('splash');const app=document.getElementById('app');
-  const showApp=()=>{s.classList.add('hide');setTimeout(()=>{app.style.display='block'},280)}
-  if(document.readyState==='complete'){setTimeout(showApp,900)}else{window.addEventListener('load',()=>setTimeout(showApp,900))}
+  document.addEventListener('DOMContentLoaded',function(){
+    const splash=document.getElementById('splash');
+    const app=document.getElementById('app');
+    setTimeout(function(){
+      splash.style.display='none';
+      app.style.display='block';
+    },1500);
+  });
 </script>
+
 </body>
 </html>
