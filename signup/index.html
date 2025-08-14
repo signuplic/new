@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>تسجيل الدخول</title>
 <style>
-  :root{--blue:#0052ff;--blue2:#3676ff;--ink:#0f172a;--muted:#5b6472;--line:#e6e9ef;--card:#ffffff;--halo:rgba(0,82,255,.14)}
+  :root{--blue:#0052ff;--blue2:#3676ff;--ink:#0f172a;--muted:#5b6472;--line:#e6e9ef;--card:#ffffff}
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{font-family:Inter,system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif;background:#fafbff;color:var(--ink)}
@@ -30,9 +30,8 @@
   .field-wrap{position:relative}
   .icon{position:absolute;inset-inline-end:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#94a3b8;pointer-events:none}
   .arrow{position:absolute;inset-inline-start:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#475569;pointer-events:none}
-  .field{width:100%;height:52px;border:1px solid #d5dbe5;border-radius:14px;background:#fff;color:var(--ink);font-size:15px;padding:0 42px;outline:none;transition:border .2s,box-shadow .2s}
+  .field{width:100%;height:52px;border:1px solid #d5dbe5;border-radius:14px;background:#fff;color:var(--ink);font-size:15px;padding:0 42px;outline:none}
   .field::placeholder{color:#9aa3af}
-  .field:focus{border-color:var(--blue);box-shadow:0 0 0 5px var(--halo)}
   select.field{appearance:none;-webkit-appearance:none}
   .hint{font-size:12px;color:var(--muted);margin-top:8px}
   .btn{width:100%;height:52px;border:0;border-radius:26px;background:linear-gradient(180deg,var(--blue2),var(--blue));color:#fff;font-weight:900;font-size:16px;cursor:pointer;transition:transform .06s,filter .2s}
