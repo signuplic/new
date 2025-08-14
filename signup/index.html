@@ -1,1 +1,83 @@
-GJFYUTG7IY
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0052ff">
+<title>واجهة</title>
+<style>
+  :root{--blue:#0b63ff;--text:#0f172a;--bg:#ffffff;--muted:#6b7280}
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif}
+
+  .splash{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:9999;transition:opacity .4s ease}
+  .splash.hide{opacity:0;pointer-events:none}
+  .dots{display:flex;gap:18px}
+  .dot{width:14px;height:14px;border-radius:50%;background:var(--blue);animation:blink 1.2s infinite cubic-bezier(.25,.1,.25,1)}
+  .dot:nth-child(2){animation-delay:.15s}
+  .dot:nth-child(3){animation-delay:.3s}
+  @keyframes blink{0%,80%,100%{transform:scale(.6);opacity:.35}40%{transform:scale(1);opacity:1}}
+
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #ececec;background:#fff;position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px)}
+  .brand{font-weight:800;font-size:20px;letter-spacing:.2px;color:#0b63ff}
+  .cta{background:#0b63ff;color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:700;text-decoration:none}
+
+  .hero{max-width:880px;margin:28px auto;padding:0 18px;text-align:center}
+  .hero h1{margin:0 0 10px;font-size:28px;line-height:1.35}
+  .hero p{margin:0 0 22px;color:var(--muted)}
+  .hero .btn{display:inline-block;padding:12px 22px;border-radius:999px;background:#0b63ff;color:#fff;text-decoration:none;font-weight:700}
+
+  .grid{max-width:920px;margin:26px auto;padding:0 18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+  .card{background:#fff;border:1px solid #eee;border-radius:12px;padding:16px 10px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+  .card img{width:36px;height:36px;object-fit:contain;margin-bottom:8px}
+  .card span{font-weight:700;font-size:13px}
+
+  footer{margin-top:36px;background:#f7f7f8;padding:24px 18px;color:#6b7280;font-size:13px;text-align:center;border-top:1px solid #ececec}
+</style>
+</head>
+<body>
+
+<div class="splash" id="splash">
+  <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <header>
+    <div class="brand">coinbase</div>
+    <a class="cta" href="#">Sign up</a>
+  </header>
+
+  <section class="hero">
+    <h1>مكافآت ترحيبية للمراهنات والكازينو</h1>
+    <p>ابدأ الآن واستفد من عروض الإيداع الأولى والرهانات المجانية</p>
+    <a href="#" class="btn">ابدأ الآن</a>
+  </section>
+
+  <section class="grid">
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>Melbet</span></div>
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>MegaPari</span></div>
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>LineBet</span></div>
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>1xBet</span></div>
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>Gooobet</span></div>
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>MyStake</span></div>
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>Stake</span></div>
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>RiscoBet</span></div>
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>888starz</span></div>
+    <div class="card"><img src="https://via.placeholder.com/40" alt=""><span>MostBet</span></div>
+  </section>
+
+  <footer>© 2025. جميع الحقوق محفوظة.</footer>
+</div>
+
+<script>
+  const s=document.getElementById('splash');const app=document.getElementById('app');
+  const showApp=()=>{s.classList.add('hide');setTimeout(()=>{app.style.display='block'},280)}
+  if(document.readyState==='complete'){setTimeout(showApp,900)}else{window.addEventListener('load',()=>setTimeout(showApp,900))}
+</script>
+</body>
+</html>
