@@ -1,67 +1,87 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منصات المراهنات</title>
 <style>
-  body { margin:0; font-family: 'Segoe UI', sans-serif; background:#f8f9fc; }
-  .bets-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    padding: 20px;
-    max-width: 500px;
-    margin: auto;
+  .bets-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap:14px;
+    padding:20px;
+    max-width:700px;
+    margin:auto;
   }
   .bet-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    padding: 18px 10px;
-    text-align: center;
-    transition: transform 0.2s ease;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    padding:15px 5px;
+    text-align:center;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
   }
   .bet-card:hover {
-    transform: translateY(-3px);
+    transform:translateY(-3px);
+    box-shadow:0 4px 10px rgba(0,0,0,0.12);
   }
-  .bet-card img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 8px;
-    object-fit: contain;
+  .bet-icon-wrap {
+    width:55px;
+    height:55px;
+    margin:0 auto 8px;
+    background:#f0f4ff;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid #d1ddff;
+  }
+  .bet-icon-wrap img {
+    width:35px;
+    height:35px;
+    object-fit:contain;
   }
   .bet-card span {
-    font-weight: bold;
-    font-size: 14px;
-    color: #111;
-    display: block;
-  }
-  .bottom-section {
-    background: #0052ff;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-    font-size: 15px;
-    font-weight: 500;
+    font-weight:bold;
+    font-size:13px;
+    color:#111;
+    display:block;
   }
 </style>
-</head>
-<body>
 
-<section class="bets-container">
-  <div class="bet-card"><img src="https://via.placeholder.com/50" alt=""><span>Melbet</span></div>
-  <div class="bet-card"><img src="https://via.placeholder.com/50" alt=""><span>MegaPari</span></div>
-  <div class="bet-card"><img src="https://via.placeholder.com/50" alt=""><span>LineBet</span></div>
-  <div class="bet-card"><img src="https://via.placeholder.com/50" alt=""><span>1xBet</span></div>
-  <div class="bet-card"><img src="https://via.placeholder.com/50" alt=""><span>Gooobet</span></div>
-  <div class="bet-card"><img src="https://via.placeholder.com/50" alt=""><span>MyStake</span></div>
+<section class="bets-grid">
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>Melbet</span>
+  </div>
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>MegaPari</span>
+  </div>
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>LineBet</span>
+  </div>
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>1xBet</span>
+  </div>
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>Gooobet</span>
+  </div>
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>MyStake</span>
+  </div>
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>Stake</span>
+  </div>
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>RiscoBet</span>
+  </div>
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>888starz</span>
+  </div>
+  <div class="bet-card">
+    <div class="bet-icon-wrap"><img src="https://via.placeholder.com/40" alt=""></div>
+    <span>MostBet</span>
+  </div>
 </section>
-
-<div class="bottom-section">
-  أفضل العروض للمستخدمين الجدد – اشترك الآن
-</div>
-
-</body>
-</html>
