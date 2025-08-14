@@ -54,6 +54,33 @@
     display:inline-block;
   }
 
+  /* شبكة العملات */
+  .coins-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap:16px;
+    padding:20px;
+    max-width:700px;
+    margin:auto;
+  }
+  .coin-card {
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    padding:20px 10px;
+    text-align:center;
+  }
+  .coin-card img {
+    width:40px;
+    height:40px;
+    margin-bottom:10px;
+  }
+  .coin-card span {
+    font-weight:bold;
+    font-size:14px;
+    color:#111;
+  }
+
   /* قسم المكافأة */
   .bonus-section {
     background:#1d1f21;
@@ -132,6 +159,33 @@
   <h1>مكافآت رائعة للمراهنات الرياضية والكازينو</h1>
   <p>احصل على رهانات مجانية رائعة، دورات مجانية، وأموال حقيقية</p>
   <a href="#" class="cta">ابدأ الآن</a>
+</section>
+
+<section class="coins-grid">
+  <div class="coin-card">
+    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=025" alt="Bitcoin">
+    <span>Bitcoin</span>
+  </div>
+  <div class="coin-card">
+    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=025" alt="Ethereum">
+    <span>Ethereum</span>
+  </div>
+  <div class="coin-card">
+    <img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=025" alt="XRP">
+    <span>XRP</span>
+  </div>
+  <div class="coin-card">
+    <img src="https://cryptologos.cc/logos/tether-usdt-logo.svg?v=025" alt="Tether">
+    <span>Tether</span>
+  </div>
+  <div class="coin-card">
+    <img src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=025" alt="Solana">
+    <span>Solana</span>
+  </div>
+  <div class="coin-card">
+    <img src="https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=025" alt="USDC">
+    <span>USDC</span>
+  </div>
 </section>
 
 <section class="bonus-section">
