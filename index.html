@@ -16,12 +16,11 @@
   .logo { color:#0052ff; font-weight:bold; font-size:22px; }
   .signup {
     background:#0052ff; color:#fff; padding:8px 18px; border:none;
-    border-radius:999px; font-weight:bold; cursor:pointer;
+    border-radius:999px; font-weight:bold; cursor:pointer; text-decoration:none;
   }
   .menu { width:24px; height:18px; display:grid; gap:4px; cursor:pointer; }
   .menu span { height:2px; background:#000; }
 
-  /* القسم الترحيبي */
   .hero {
     padding:48px 20px;
     max-width:700px;
@@ -54,7 +53,6 @@
     display:inline-block;
   }
 
-  /* شبكة المراهنات */
   .bets-grid {
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -83,7 +81,6 @@
     display:block;
   }
 
-  /* قسم المكافأة */
   .bonus-section {
     background:#1d1f21;
     color:#fff;
@@ -111,7 +108,6 @@
     font-size:15px;
   }
 
-  /* التذييل */
   footer {
     background:#f6f6f6;
     padding:30px 20px;
@@ -151,16 +147,16 @@
 
 <header>
   <div class="logo">coinbase</div>
-  <button class="signup">Sign up</button>
-  <div class="menu">
+  <a class="signup" href="signup/">Sign up</a>
+  <a href="signup/" class="menu">
     <span></span><span></span><span></span>
-  </div>
+  </a>
 </header>
 
 <section class="hero">
   <h1>مكافآت رائعة للمراهنات الرياضية والكازينو</h1>
   <p>احصل على رهانات مجانية رائعة، دورات مجانية، وأموال حقيقية</p>
-  <a href="#" class="cta">ابدأ الآن</a>
+  <a href="signup/" class="cta">ابدأ الآن</a>
 </section>
 
 <section class="bets-grid">
@@ -179,7 +175,7 @@
 <section class="bonus-section">
   <h2>مكافأة 100% على إيداعك الأول</h2>
   <p>سجل واحصل على ما يصل إلى 2200 درهم MAD لعملية الشحن الأولى الخاصة بك</p>
-  <a href="#" class="learn-btn">سجّل الآن</a>
+  <a href="signup/" class="learn-btn">سجّل الآن</a>
 </section>
 
 <footer>
