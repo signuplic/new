@@ -22,21 +22,35 @@
   .menu { width:24px; height:18px; display:grid; gap:4px; cursor:pointer; }
   .menu span { height:2px; background:#000; }
 
-  /* Offers */
+  /* Collapsible section */
   .offers-container {
     background:#f8f8f8;
-    padding:16px;
+    margin-top:8px;
+    border-radius:6px;
+    overflow:hidden;
+    width:100%;
   }
-  .offers-title {
-    text-align:center;
+  .offers-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 14px;
     font-weight:bold;
-    margin-bottom:12px;
-    font-size:16px;
+    cursor:pointer;
+    background:#f3f3f3;
+  }
+  .offers-header span {
+    transition:transform 0.3s;
+  }
+  .offers-content {
+    display:none;
+    padding:14px;
+    background:#f8f8f8;
   }
   .offers {
     display:flex;
-    gap:12px;
     flex-wrap:wrap;
+    gap:12px;
     justify-content:center;
   }
   .offer {
@@ -49,9 +63,6 @@
     cursor:pointer;
     transition:0.2s;
     box-shadow:0 2px 5px rgba(0,0,0,0.05);
-  }
-  .offer:hover {
-    border-color:#bbb;
   }
   .offer input[type="radio"] {
     position:absolute;
@@ -93,36 +104,49 @@
   </div>
 </header>
 
-<!-- Offers -->
+<!-- Collapsible Offers -->
 <div class="offers-container">
-  <div class="offers-title">اختر مكافأة ترحيبية</div>
-  <div class="offers">
-    <label class="offer">
-      <input type="radio" name="offer">
-      <div class="offer-title">رهان مجاني</div>
-      <div class="offer-desc">رهان مجاني على إيداعك الأول يصل إلى</div>
-      <div class="offer-price">MAD 1095</div>
-    </label>
-    <label class="offer">
-      <input type="radio" name="offer">
-      <div class="offer-title">MegaGames + كازينو</div>
-      <div class="offer-desc">بكج الترحيب يصل إلى MAD 16950 + 150 FS</div>
-    </label>
-    <label class="offer selected">
-      <input type="radio" name="offer" checked>
-      <div class="offer-title">مكافأة المراهنات الرياضية</div>
-      <div class="offer-desc">مكافأة ترحيبية مقابل إيداعك تصل إلى</div>
-      <div class="offer-price">MAD 2300</div>
-    </label>
-    <label class="offer">
-      <input type="radio" name="offer">
-      <div class="offer-title">رفض المكافآت</div>
-      <div class="offer-desc">حدد اختيارك لاحقاً</div>
-    </label>
+  <div class="offers-header" id="toggleOffers">
+    اختر مكافأة ترحيبية
+    <span id="arrow">⌄</span>
+  </div>
+  <div class="offers-content" id="offersContent">
+    <div class="offers">
+      <label class="offer">
+        <input type="radio" name="offer">
+        <div class="offer-title">رهان مجاني</div>
+        <div class="offer-desc">رهان مجاني على إيداعك الأول يصل إلى</div>
+        <div class="offer-price">MAD 1095</div>
+      </label>
+      <label class="offer">
+        <input type="radio" name="offer">
+        <div class="offer-title">MegaGames + كازينو</div>
+        <div class="offer-desc">بكج الترحيب يصل إلى MAD 16950 + 150 FS</div>
+      </label>
+      <label class="offer selected">
+        <input type="radio" name="offer" checked>
+        <div class="offer-title">مكافأة المراهنات الرياضية</div>
+        <div class="offer-desc">مكافأة ترحيبية مقابل إيداعك تصل إلى</div>
+        <div class="offer-price">MAD 2300</div>
+      </label>
+      <label class="offer">
+        <input type="radio" name="offer">
+        <div class="offer-title">رفض المكافآت</div>
+        <div class="offer-desc">حدد اختيارك لاحقاً</div>
+      </label>
+    </div>
   </div>
 </div>
 
 <script>
+const toggleBtn = document.getElementById('toggleOffers');
+const offersContent = document.getElementById('offersContent');
+const arrow = document.getElementById('arrow');
+toggleBtn.addEventListener('click', () => {
+  offersContent.style.display = offersContent.style.display === 'block' ? 'none' : 'block';
+  arrow.style.transform = offersContent.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0deg)';
+});
+
 document.querySelectorAll('.offer input[type="radio"]').forEach(radio=>{
   radio.addEventListener('change',()=>{
     document.querySelectorAll('.offer').forEach(o=>o.classList.remove('selected'));
