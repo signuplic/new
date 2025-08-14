@@ -1,247 +1,60 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign in to - Mobicash</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    select option { color: #000; }
-    @media (prefers-color-scheme: dark) {
-      select option { color: #fff; }
-    }
-    .fade { transition: all 0.3s ease; opacity: 0; transform: translateY(-5px); }
-    .fade.show { opacity: 1; transform: translateY(0); }
-    #oneClickTab {
-      background-color: #27632a;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-weight: 500;
-      font-family: 'Arial', sans-serif;
-      font-size: 16px;
-      color: #ffffff;
-      width: 100%;
-      margin-bottom: 24px;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-    #oneClickTab svg { fill: #ffffff; }
-    #oneClickTab:hover, #oneClickTab:active {
-      background-color: #d6eed9;
-      color: #2b2b2b;
-    }
-    #oneClickTab:hover svg, #oneClickTab:active svg {
-      fill: #2b2b2b;
-    }
-    body {
-      user-select: none;
-      -webkit-user-drag: none;
-      -webkit-touch-callout: none;
-    }
-    .dropdown-item img { display: none; }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#1e5bff" id="tmc"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<title>coinbase • header</title>
+<style>
+  :root{--b:#1e5bff;--tx:#0f172a;--bg:#fff}
+  *{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+  .x0{position:fixed;inset:0 0 auto 0;height:44px;background:var(--b);z-index:50}
+  @supports(padding:max(0px)){.x0{height:calc(44px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top)}}
+  .x1{position:sticky;top:44px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:#fff;border-bottom:1px solid #eef2f7}
+  .x2{display:flex;align-items:center;gap:10px}
+  .x3{font-weight:700;color:#1e5bff;letter-spacing:.2px}
+  .x4{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 18px;border-radius:999px;background:var(--b);color:#fff;font-weight:700;border:none;cursor:pointer;transition:transform .1s}
+  .x4:active{transform:translateY(1px)}
+  .x5{width:28px;height:18px;display:grid;gap:4px;cursor:pointer}
+  .x5 i{display:block;height:2px;background:#0f172a;border-radius:2px}
+  .x6{padding:28px 16px;color:#111}
+  .x7{position:fixed;right:12px;bottom:12px;display:flex;gap:8px;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:8px 10px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+  .c{width:22px;height:22px;border-radius:50%;border:1px solid #d1d5db;cursor:pointer}
+  .c:active{transform:scale(.95)}
+</style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4">
-  <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 w-full max-w-md">
-    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Sign in to Mobicash</h2>
-    <button id="oneClickTab">
-      En un clic
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="32" viewBox="0 0 14 16">
-        <path d="M10 5.5l-.2-.1H6.6L9.8 1V.8H4.9l-4 7v.3h3l-3 6.3v.3h.4l8.7-9c.1 0 .1-.1 0-.2z"/>
-      </svg>
-    </button>
-    <div class="mb-4 relative">
-      <label for="platform" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">اختر المنصة</label>
-      <div id="customSelect" class="relative w-full">
-        <button id="dropdownBtn" class="w-full flex items-center justify-between px-4 py-2 border rounded-xl bg-white dark:bg-gray-700 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <span id="selectedText">اختر المنصة</span>
-          <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        <ul id="dropdownList" class="absolute z-10 w-full bg-white dark:bg-gray-700 border rounded-xl mt-1 hidden max-h-60 overflow-y-auto text-sm text-gray-800 dark:text-white">
-          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Mega pari">
-            <span>Mega pari</span> <img src="https://i.postimg.cc/yx8yj8JF/recharge.jpg" class="w-6 h-6 rounded-full" />
-          </li>
-          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Linbet">
-            <span>Linbet</span> <img src="https://i.postimg.cc/xCgWJjwv/recharge.jpg" class="w-6 h-6 rounded-full" />
-          </li>
-          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Gooobet">
-            <span>Gooobet</span> <img src="https://i.postimg.cc/gk4fGxqP/recharge.jpg" class="w-6 h-6 rounded-full" />
-          </li>
-          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="1xbet">
-            <span>1xbet</span> <img src="https://i.postimg.cc/g277nb7D/recharge.jpg" class="w-6 h-6 rounded-full" />
-          </li>
-          <li class="dropdown-item px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer flex items-center justify-between" data-value="Melbet">
-            <span>Melbet</span> <img src="https://i.postimg.cc/0jZWvTm7/recharge.jpg" class="w-6 h-6 rounded-full" />
-          </li>
-        </ul>
-        <input type="hidden" id="platform" name="platform" />
-      </div>
-    </div>
-    <div class="mb-4">
-      <label for="userId" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">أدخل الـ ID</label>
-      <input type="text" id="userId" maxlength="13" inputmode="numeric" pattern="[0-9]*" placeholder="مثال: 1234567..." class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="filterDigits(this); validateId()" onkeydown="return isNumberKey(event)" />
-    </div>
-    <div id="message" class="fade text-center text-sm mb-4 h-5"></div>
-    <button id="submitBtn" onclick="secureLogin()" class="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl transition duration-300 flex items-center justify-center gap-2">
-      <i data-lucide="log-in" class="w-5 h-5"></i>
-      <span class="label">Sign in</span>
-      <svg id="loader" class="hidden absolute w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" d="M4 12a8 8 0 018-8v8z" fill="currentColor"></path>
-      </svg>
-    </button>
+<body>
+<div class="x0" id="bar"></div>
+<header class="x1" dir="ltr">
+  <div class="x2">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#1e5bff" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="#1e5bff"/></svg>
+    <div class="x3">coinbase</div>
   </div>
+  <button class="x4">Sign up</button>
+  <div class="x5" aria-label="menu"><i></i><i></i><i></i></div>
+</header>
+<main class="x6">
+  <h2 style="margin:0 0 10px 0">واجهة تجريبية</h2>
+  <p>يمكنك تغيير لون شريط الهاتف العلوي فوراً. جرّب الدائرة العائمة أسفل اليمين.</p>
+</main>
+
+<div class="x7" id="clr">
+  <button class="c" style="background:#1e5bff" data-k="#1e5bff" aria-label="Blue"></button>
+  <button class="c" style="background:#111827" data-k="#111827" aria-label="Black"></button>
+  <button class="c" style="background:#16a34a" data-k="#16a34a" aria-label="Green"></button>
+  <button class="c" style="background:#ef4444" data-k="#ef4444" aria-label="Red"></button>
+  <button class="c" style="background:#8b5cf6" data-k="#8b5cf6" aria-label="Purple"></button>
+</div>
 
 <script>
-  lucide.createIcons();
-
-  const isRepeatedDigits = id => /^(\d)\1{6,12}$/.test(id);
-
-  function showMessage(text, type = "error") {
-    const msg = document.getElementById("message");
-    msg.className = "fade show text-center text-sm mb-4 h-5";
-    msg.textContent = text;
-    msg.style.color = type === "success" ? "green" : "red";
-  }
-
-  function filterDigits(input) {
-    input.value = input.value.replace(/[^\d]/g, '');
-  }
-
-  function isNumberKey(e) {
-    const key = e.key;
-    return /^[0-9]$/.test(key) || ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(key);
-  }
-
-  function validateId() {
-    const userId = document.getElementById("userId").value;
-    if (isRepeatedDigits(userId)) {
-      showMessage("المعرف غير معتمد. الرجاء التحقق.");
-      return;
-    }
-    document.getElementById("message").className = "fade";
-    document.getElementById("message").textContent = "";
-  }
-
-  function resetForm() {
-    const btn = document.getElementById("submitBtn");
-    const loader = document.getElementById("loader");
-    const label = btn.querySelector(".label");
-    btn.disabled = false;
-    btn.classList.remove("opacity-50", "cursor-not-allowed");
-    loader.classList.add("hidden");
-    label.classList.remove("hidden");
-    document.getElementById("platform").disabled = false;
-    document.getElementById("userId").disabled = false;
-  }
-
-  function getRealScriptURL() {
-    const a = "https://script";
-    const b = ".google.com/macros/s/";
-    const c = "AKfycbztE1ZG1WWVrbtfaKPTqOatcrue2jjUDoGpdPv1HyHcq0l6rPyD7aL6OT5Pfekpf_pAUA";
-    return a + b + c + "/exec";
-  }
-
-  function secureLogin() {
-    const platform = document.getElementById("platform").value;
-    const userId = document.getElementById("userId").value.trim();
-    const btn = document.getElementById("submitBtn");
-    const loader = document.getElementById("loader");
-    const label = btn.querySelector(".label");
-
-    if (!platform) return showMessage("اختر المنصة.");
-    if (!userId) return showMessage("أدخل المعرّف.");
-    if (userId.length < 7 || userId.length > 13 || !/^\d+$/.test(userId) || isRepeatedDigits(userId)) {
-      return showMessage("المعرف غير معتمد. الرجاء التحقق.");
-    }
-
-    btn.disabled = true;
-    btn.classList.add("opacity-50", "cursor-not-allowed");
-    loader.classList.remove("hidden");
-    label.classList.add("hidden");
-    document.getElementById("platform").disabled = true;
-    document.getElementById("userId").disabled = true;
-
-    sessionStorage.setItem("authorized", "true");
-    localStorage.setItem("platform", platform);
-    localStorage.setItem("userId", userId);
-
-    fetch(getRealScriptURL(), {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ platform, userId })
-    }).finally(() => {
-      setTimeout(() => {
-        window.location.href = "dashboard.html";
-      }, 800);
-    });
-  }
-
-  document.getElementById("oneClickTab").addEventListener("click", () => {
-    document.getElementById("platform").value = "";
-    document.getElementById("selectedText").textContent = "اختر المنصة";
-    document.getElementById("userId").value = "";
-    document.getElementById("message").className = "fade";
-    document.getElementById("message").textContent = "";
-    resetForm();
-  });
-
-  const dropdownBtn = document.getElementById("dropdownBtn");
-  const dropdownList = document.getElementById("dropdownList");
-  const selectedText = document.getElementById("selectedText");
-  const platformInput = document.getElementById("platform");
-
-  dropdownBtn.addEventListener("click", () => {
-    dropdownList.classList.toggle("hidden");
-  });
-
-  document.querySelectorAll(".dropdown-item").forEach(item => {
-    item.addEventListener("click", () => {
-      const value = item.getAttribute("data-value");
-      platformInput.value = value;
-      dropdownList.classList.add("hidden");
-      const img = item.querySelector("img").getAttribute("src");
-      selectedText.innerHTML = `<span>${value}</span><img src="${img}" class="w-6 h-6 rounded-full ml-2" />`;
-    });
-  });
-
-  window.addEventListener("click", function(e) {
-    if (!dropdownBtn.contains(e.target) && !dropdownList.contains(e.target)) {
-      dropdownList.classList.add("hidden");
-    }
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const storedPlatform = localStorage.getItem("platform");
-    const storedId = localStorage.getItem("userId");
-
-    if (storedPlatform) {
-      const item = [...document.querySelectorAll(".dropdown-item")].find(i => i.dataset.value === storedPlatform);
-      if (item) {
-        platformInput.value = storedPlatform;
-        const img = item.querySelector("img").getAttribute("src");
-        selectedText.innerHTML = `<span>${storedPlatform}</span><img src="${img}" class="w-6 h-6 rounded-full ml-2" />`;
-      } else {
-        platformInput.value = "";
-        selectedText.textContent = "اختر المنصة";
-      }
-    }
-
-    if (storedId) document.getElementById("userId").value = storedId;
-    resetForm();
-  });
-
-  window.addEventListener("pageshow", (e) => {
-    if (e.persisted) resetForm();
-  });
+(function(){
+  const a=document.documentElement,b=document.querySelector('#tmc'),c=document.querySelector('#bar');
+  const d=e=>{a.style.setProperty('--b',e);b.setAttribute('content',e);c.style.background=e};
+  document.querySelector('#clr').addEventListener('click',t=>{const k=t.target.getAttribute('data-k');if(k)d(k)});
+  d(getComputedStyle(a).getPropertyValue('--b').trim()||'#1e5bff');
+})();
 </script>
 </body>
 </html>
