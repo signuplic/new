@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0052ff" id="themeColor">
+<meta name="theme-color" content="#0052ff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Coinbase Style Header</title>
+<title>Coinbase Style + Offers</title>
 <style>
   body { margin:0; font-family:sans-serif; background:#fff; }
   header {
@@ -20,6 +20,52 @@
   }
   .menu { width:24px; height:18px; display:grid; gap:4px; cursor:pointer; }
   .menu span { height:2px; background:#000; }
+
+  .offers-container {
+    background:#f8f8f8;
+    padding:16px;
+    margin-top:8px;
+  }
+  .offers-title {
+    text-align:center;
+    font-weight:bold;
+    margin-bottom:12px;
+  }
+  .offers {
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+  }
+  .offer {
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:12px;
+    flex:0 0 220px;
+    cursor:pointer;
+    transition:0.2s;
+  }
+  .offer:hover {
+    border-color:#0052ff;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  }
+  .offer.selected {
+    border-color:#0052ff;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  }
+  .offer-title {
+    font-weight:bold;
+    margin-bottom:6px;
+  }
+  .offer-desc {
+    font-size:14px;
+    color:#555;
+    margin-bottom:8px;
+  }
+  .offer-price {
+    font-weight:bold;
+    color:#0052ff;
+  }
 </style>
 </head>
 <body>
@@ -31,6 +77,26 @@
     <span></span><span></span><span></span>
   </div>
 </header>
+
+<div class="offers-container">
+  <div class="offers-title">اختر مكافأة ترحيبية</div>
+  <div class="offers">
+    <div class="offer">
+      <div class="offer-title">رهان مجاني</div>
+      <div class="offer-desc">رهان مجاني على إيداعك الأول يصل إلى</div>
+      <div class="offer-price">MAD 1095</div>
+    </div>
+    <div class="offer">
+      <div class="offer-title">MegaGames + كازينو</div>
+      <div class="offer-desc">بكج الترحيب يصل إلى MAD 16950 + 150 FS</div>
+    </div>
+    <div class="offer selected">
+      <div class="offer-title">مكافأة المراهنات الرياضية</div>
+      <div class="offer-desc">مكافأة ترحيبية مقابل إيداعك تصل إلى</div>
+      <div class="offer-price">MAD 2300</div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
