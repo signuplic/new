@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0052ff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Coinbase Style + Offers</title>
+<title>Coinbase Style Landing</title>
 <style>
   body { margin:0; font-family:sans-serif; background:#fff; color:#111; }
   /* Header */
@@ -22,79 +22,37 @@
   .menu { width:24px; height:18px; display:grid; gap:4px; cursor:pointer; }
   .menu span { height:2px; background:#000; }
 
-  /* Collapsible section */
-  .offers-container {
-    background:#f8f8f8;
-    margin:12px;
-    border-radius:8px;
-    overflow:hidden;
-    border:1px solid #e0e0e0;
+  /* Hero Section */
+  .hero {
+    background:#000 url('https://via.placeholder.com/1600x400/000000/ffffff') center/cover no-repeat;
+    color:#fff;
+    text-align:center;
+    padding:50px 20px;
   }
-  .offers-header {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:12px;
+  .hero h1 {
+    font-size:28px;
     font-weight:bold;
-    font-size:14px;
-    background:#f3f3f3;
-    cursor:pointer;
-    position:relative;
+    margin-bottom:10px;
   }
-  .offers-header .arrow {
-    position:absolute;
-    left:12px;
-    font-size:18px;
-    transition:transform 0.3s;
-  }
-  .offers-content {
-    display:none;
-    padding:14px;
-    background:#f8f8f8;
-  }
-  .offers {
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    justify-content:center;
-  }
-  .offer {
-    background:#fff;
-    border:2px solid transparent;
-    border-radius:10px;
-    padding:12px;
-    width:250px;
-    position:relative;
-    cursor:pointer;
-    transition:0.2s;
-    box-shadow:0 2px 5px rgba(0,0,0,0.05);
-  }
-  .offer input[type="radio"] {
-    position:absolute;
-    top:12px;
-    left:12px;
-    width:18px;
-    height:18px;
-    accent-color:#0052ff;
-    cursor:pointer;
-  }
-  .offer.selected {
-    border-color:#0052ff;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
-  }
-  .offer-title {
-    font-weight:bold;
-    margin:8px 0 4px;
+  .hero p {
     font-size:15px;
+    margin-bottom:20px;
   }
-  .offer-desc {
-    font-size:13px;
-    color:#555;
-    margin-bottom:8px;
-  }
-  .offer-price {
+  .hero .cta {
+    display:inline-block;
+    background:#0052ff;
+    color:#fff;
+    padding:12px 24px;
+    font-size:16px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    text-decoration:none;
     font-weight:bold;
-    color:#0052ff;
+    transition:background 0.2s;
+  }
+  .hero .cta:hover {
+    background:#0040c9;
   }
 </style>
 </head>
@@ -109,58 +67,12 @@
   </div>
 </header>
 
-<!-- Collapsible Offers -->
-<div class="offers-container">
-  <div class="offers-header" id="toggleOffers">
-    <span class="arrow" id="arrow">⌄</span>
-    اختر مكافأة ترحيبية
-  </div>
-  <div class="offers-content" id="offersContent">
-    <div class="offers">
-      <label class="offer">
-        <input type="radio" name="offer">
-        <div class="offer-title">رهان مجاني</div>
-        <div class="offer-desc">رهان مجاني على إيداعك الأول يصل إلى</div>
-        <div class="offer-price">MAD 1095</div>
-      </label>
-      <label class="offer">
-        <input type="radio" name="offer">
-        <div class="offer-title">MegaGames + كازينو</div>
-        <div class="offer-desc">بكج الترحيب يصل إلى MAD 16950 + 150 FS</div>
-      </label>
-      <label class="offer">
-        <input type="radio" name="offer">
-        <div class="offer-title">مكافأة المراهنات الرياضية</div>
-        <div class="offer-desc">مكافأة ترحيبية مقابل إيداعك تصل إلى</div>
-        <div class="offer-price">MAD 2300</div>
-      </label>
-      <label class="offer">
-        <input type="radio" name="offer">
-        <div class="offer-title">رفض المكافآت</div>
-        <div class="offer-desc">حدد اختيارك لاحقاً</div>
-      </label>
-    </div>
-  </div>
-</div>
-
-<script>
-const toggleBtn = document.getElementById('toggleOffers');
-const offersContent = document.getElementById('offersContent');
-const arrow = document.getElementById('arrow');
-
-toggleBtn.addEventListener('click', () => {
-  const isOpen = offersContent.style.display === 'block';
-  offersContent.style.display = isOpen ? 'none' : 'block';
-  arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-});
-
-document.querySelectorAll('.offer input[type="radio"]').forEach(radio=>{
-  radio.addEventListener('change',()=>{
-    document.querySelectorAll('.offer').forEach(o=>o.classList.remove('selected'));
-    radio.closest('.offer').classList.add('selected');
-  });
-});
-</script>
+<!-- Hero Section -->
+<section class="hero">
+  <h1>مكافآت رائعة للمراهنات الرياضية والكازينو</h1>
+  <p>احصل على رهانات مجانية رائعة، دورات مجانية، وأموال حقيقية</p>
+  <a href="#" class="cta">ابدأ الآن</a>
+</section>
 
 </body>
 </html>
