@@ -42,7 +42,8 @@
   .up input{display:none}
   .lk{margin-top:10px;font-size:13px;word-break:break-all}
   .lk a{color:#0b62ff;text-decoration:none}
-  .hint{font-size:12px;color:#64748b;margin-top:6px}
+  .alt{display:flex;gap:8px;margin-top:8px}
+  .mini{flex:1;height:36px;border:1px solid var(--l);border-radius:8px;background:#fff;font-size:12px;padding:0 10px}
 </style>
 </head>
 <body>
@@ -77,7 +78,6 @@
           <option>RISCOBET</option>
           <option>888STARZ</option>
         </select>
-        <div class="hint">بالنسبة STAKE و MYSTAKE ارفع صورة QR لقراءة الرابط تلقائيًا</div>
       </div>
 
       <div id="gid" class="gp">
@@ -87,8 +87,17 @@
 
       <div id="gq" class="gp qr">
         <div class="qi"><img id="qimg" alt="QR"></div>
-        <label class="up"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 16V8M8 12h8" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round"/></svg>ارفع صورة QR<input id="qin" type="file" accept="image/*"></label>
-        <div class="qa">سيتم استخراج الرابط من الصورة وإظهاره هنا:</div>
+        <label class="up">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 16V8M8 12h8" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round"/></svg>
+          ارفع صورة QR
+          <input id="qin" type="file" accept="image/*" capture="environment">
+        </label>
+        <div class="alt">
+          <input id="zoom" class="mini" type="number" min="50" max="150" step="10" value="100" placeholder="% تكبير">
+          <input id="crop" class="mini" type="number" min="60" max="100" step="5" value="90" placeholder="% قص مركزي">
+          <input id="rot" class="mini" type="number" min="-45" max="45" step="5" value="0" placeholder="° دوران">
+        </div>
+        <div class="qa">سيتم استخراج الرابط وإظهاره هنا:</div>
         <div id="qlk" class="lk"></div>
       </div>
 
@@ -104,75 +113,127 @@
   const sp=document.getElementById('sp'),app=document.getElementById('app');
   const p=document.getElementById('p'),u=document.getElementById('u'),go=document.getElementById('go');
   const gid=document.getElementById('gid'),gq=document.getElementById('gq'),qin=document.getElementById('qin'),qimg=document.getElementById('qimg'),qlk=document.getElementById('qlk');
+  const zoom=document.getElementById('zoom'),crop=document.getElementById('crop'),rotUI=document.getElementById('rot');
 
   const show=()=>{sp.style.display='none';app.style.display='block'};
   if(document.readyState==='complete'){setTimeout(show,900)}else{addEventListener('load',()=>setTimeout(show,900))}
 
   function validate(){
-    const v=p.value;
-    const qr=(v==='STAKE'||v==='MYSTAKE');
-    if(qr){
-      gid.style.display='none';
-      gq.style.display='block';
-      go.disabled=true;
-    }else{
-      gq.style.display='none';
-      gid.style.display='block';
-      go.disabled=!(v && /^[0-9]{4,15}$/.test(u.value.trim()));
-    }
+    const v=p.value,qr=(v==='STAKE'||v==='MYSTAKE');
+    if(qr){gid.style.display='none';gq.style.display='block';go.disabled=true}
+    else {gq.style.display='none';gid.style.display='block';go.disabled=!(v && /^[0-9]{4,15}$/.test(u.value.trim()))}
   }
   p.addEventListener('change',validate);
   u.addEventListener('input',validate);
 
-  function decodeWithScales(img){
-    return new Promise((resolve)=>{
-      const cvs=document.createElement('canvas');
-      const ctx=cvs.getContext('2d',{willReadFrequently:true});
-      const scales=[1,0.85,0.7,0.55,0.4,0.3];
-      let idx=0,found=false;
-      const tryNext=()=>{
-        if(found||idx>=scales.length){resolve(null);return}
-        const s=scales[idx++];
-        const w=Math.max(180,Math.floor(img.naturalWidth*s));
-        const h=Math.max(180,Math.floor(img.naturalHeight*s));
-        cvs.width=w; cvs.height=h;
-        ctx.imageSmoothingEnabled=false;
-        ctx.drawImage(img,0,0,w,h);
-        try{
-          const data=ctx.getImageData(0,0,w,h);
-          const res=jsQR(data.data,w,h,{inversionAttempts:"attemptBoth"});
-          if(res&&res.data){found=true;resolve(res.data.trim())}else{setTimeout(tryNext,0)}
-        }catch(e){setTimeout(tryNext,0)}
-      };
-      tryNext();
-    });
+  function toCanvas(w,h){const c=('OffscreenCanvas'in window)?new OffscreenCanvas(w,h):document.createElement('canvas');c.width=w;c.height=h;return c}
+  function toCtx(w,h){const c=toCanvas(w,h);return [c,c.getContext('2d',{willReadFrequently:true})]}
+
+  function enhance(ctx,w,h){
+    const img=ctx.getImageData(0,0,w,h),d=img.data;
+    let min=255,max=0;
+    for(let i=0;i<d.length;i+=4){const g=(d[i]*77+d[i+1]*150+d[i+2]*29)>>8;d[i]=d[i+1]=d[i+2]=g;if(g<min)min=g;if(g>max)max=g}
+    const rng=Math.max(1,max-min);
+    for(let i=0;i<d.length;i+=4){let g=((d[i]-min)*255/rng)|0;d[i]=d[i+1]=d[i+2]=g}
+    const kx=[-1,0,1,-2,0,2,-1,0,1],ky=[-1,-2,-1,0,0,0,1,2,1];
+    const out=new Uint8ClampedArray(d.length);
+    for(let y=1;y<h-1;y++){
+      for(let x=1;x<w-1;x++){
+        let sx=0,sy=0,pi=((y-1)*w+(x-1))*4,ki=0;
+        for(let j=0;j<3;j++){
+          for(let i2=0;i2<3;i2++){
+            const v=d[pi+(i2+j*w)*4];
+            sx+=v*kx[ki];sy+=v*ky[ki];ki++;
+          }
+        }
+        const mag=Math.min(255,Math.hypot(sx,sy)|0);
+        const idx=(y*w+x)*4;out[idx]=out[idx+1]=out[idx+2]=mag;out[idx+3]=255;
+      }
+    }
+    for(let i=0;i<d.length;i+=4){d[i]=(d[i]*0.6+out[i]*0.4)|0;d[i+1]=d[i];d[i+2]=d[i]}
+    ctx.putImageData(img,0,0);
+  }
+
+  function binarize(ctx,w,h){
+    const img=ctx.getImageData(0,0,w,h),d=img.data,hist=new Array(256).fill(0);
+    for(let i=0;i<d.length;i+=4)hist[d[i]]++;
+    let total=0,sum=0;for(let t=0;t<256;t++){total+=hist[t];sum+=t*hist[t]}
+    let sumB=0,wB=0,maxVar=0,thr=127;
+    for(let t=0;t<256;t++){wB+=hist[t];if(!wB)continue;const wF=total-wB;if(!wF)break;sumB+=t*hist[t];const mB=sumB/wB,mF=(sum-sumB)/wF;const v=wB*wF*(mB-mF)*(mB-mF);if(v>maxVar){maxVar=v;thr=t}}
+    for(let i=0;i<d.length;i+=4){const v=d[i]<thr?0:255;d[i]=d[i+1]=d[i+2]=v}
+    ctx.putImageData(img,0,0);
+  }
+
+  function cropCenter(ctx,w,h,percent){
+    const k=Math.max(0.5,Math.min(1,percent/100));
+    const cw=(w*k)|0,ch=(h*k)|0,ox=((w-cw)/2)|0,oy=((h-ch)/2)|0;
+    const [c2,x2]=toCtx(cw,ch);
+    x2.drawImage(ctx.canvas,ox,oy,cw,ch,0,0,cw,ch);
+    return x2;
+  }
+
+  function drawRot(ctx,w,h,deg,scale){
+    const rad=deg*Math.PI/180;
+    const tw=Math.max(180,Math.floor(w*scale)),th=Math.max(180,Math.floor(h*scale));
+    const sin=Math.abs(Math.sin(rad)),cos=Math.abs(Math.cos(rad));
+    const rw=(tw*cos+th*sin)|0,rh=(tw*sin+th*cos)|0;
+    const [c2,x2]=toCtx(rw,rh);
+    x2.translate(rw/2,rh/2);x2.rotate(rad);x2.drawImage(ctx.canvas,-tw/2,-th/2,tw,th);
+    return x2;
+    }
+
+  function tryDecode(ctx){
+    const w=ctx.canvas.width,h=ctx.canvas.height;
+    const id=ctx.getImageData(0,0,w,h);const res=jsQR(id.data,w,h,{inversionAttempts:"attemptBoth"});
+    return res&&res.data?res.data.trim():null;
+  }
+
+  async function robustDecode(img,opts){
+    const scales=[opts.zoom/100,0.9,0.75,0.6,0.5,0.4];
+    const crops=[opts.crop,95,90,85,80,70];
+    const rots=[opts.rot,0,15,-15,30,-30,45,-45,60,-60,90];
+    const [c0,x0]=toCtx(img.naturalWidth,img.naturalHeight);
+    x0.imageSmoothingEnabled=false;
+    x0.drawImage(img,0,0,c0.width,c0.height);
+    for(const k of crops){
+      const xc=cropCenter(x0,c0.width,c0.height,k);
+      enhance(xc,xc.canvas.width,xc.canvas.height);
+      binarize(xc,xc.canvas.width,xc.canvas.height);
+      for(const s of scales){
+        for(const r of rots){
+          const xr=drawRot(xc,xc.canvas.width,xc.canvas.height,r,s);
+          const out=tryDecode(xr);
+          if(out) return out;
+        }
+      }
+    }
+    return null;
   }
 
   function showResult(text){
     if(text){
-      const url=/^https?:\/\//i.test(text)?text:('https://'+text);
+      let url=text;
+      if(!/^https?:\/\//i.test(url)) url='https://'+url;
       qlk.innerHTML='<a href="'+url+'" target="_blank" rel="noopener">'+url+'</a>';
       go.disabled=false;
     }else{
-      qlk.textContent='تعذّر التعرف على الكود. حاول صورة أوضح أو قصّ الكود بدون حواف.';
+      qlk.textContent='تعذّر التعرف على QR. قرّب الصورة، قلّل اللمعان، واقصّ الحواف وحاول مجددًا.';
       go.disabled=true;
     }
   }
 
+  async function handleImage(src){
+    qlk.textContent='جارِ التحسين والقراءة...';
+    const im=new Image();im.onload=async()=>{const out=await robustDecode(im,{zoom:+zoom.value||100,crop:+crop.value||90,rot:+rotUI.value||0});showResult(out)};im.onerror=()=>{qlk.textContent='تعذّر تحميل الصورة'};im.src=src;
+  }
+
   qin.addEventListener('change',e=>{
-    const f=e.target.files&&e.target.files[0];
-    if(!f){return}
-    const r=new FileReader();
-    r.onload=o=>{
-      qimg.onload=async ()=>{
-        qlk.textContent='جارِ التحليل...';
-        const out=await decodeWithScales(qimg);
-        showResult(out);
-      };
-      qimg.src=o.target.result;
-    };
-    r.readAsDataURL(f);
+    const f=e.target.files&&e.target.files[0];if(!f)return;
+    const r=new FileReader();r.onload=o=>{qimg.src=o.target.result;handleImage(o.target.result)};r.readAsDataURL(f);
   });
+  zoom.addEventListener('input',()=>{if(qimg.src)handleImage(qimg.src)});
+  crop.addEventListener('input',()=>{if(qimg.src)handleImage(qimg.src)});
+  rotUI.addEventListener('input',()=>{if(qimg.src)handleImage(qimg.src)});
 </script>
 </body>
 </html>
