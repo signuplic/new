@@ -55,7 +55,7 @@
 
   .recommended-section{background:linear-gradient(180deg,#f5f7fb,#eef2f7);padding:16px 12px 28px;border-top:1px solid var(--line)}
   .seg{display:flex;gap:10px;align-items:center;justify-content:flex-start;max-width:600px;margin:0 auto 12px}
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#e9edf4;color:#111;border:1px solid var(--line);font-weight:800;font-size:14px}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#e9edf4;color:#111;border:1px solid var(--line);font-weight:800;font-size:14px;cursor:pointer;user-select:none}
   .pill.active{background:#1a73e8;color:#fff;border-color:transparent}
   .pill .icon{width:18px;height:18px}
   .pill svg{width:100%;height:100%}
@@ -88,6 +88,15 @@
   .delta{font-weight:800;font-size:14px}
   .down{color:#e11d48}
   .up{color:#16a34a}
+
+  .tabs-panes{max-width:620px;margin:0 auto}
+  .pane{display:none}
+  .pane.active{display:block}
+
+  /* القسم الرمادي القديم أسفل */
+  .bonus-gray{background:#f6f6f6;color:#111;padding:40px 20px;text-align:center}
+  .footer-gray{background:#f6f6f6;padding:30px 20px;font-size:14px;color:#444}
+  .footer-gray .bottom{border-top:1px solid #ddd;padding-top:10px;font-size:13px;text-align:center;color:#777}
 </style>
 </head>
 <body>
@@ -117,13 +126,13 @@
 
 <section class="recommended-section">
   <div class="seg">
-    <div class="pill active">
+    <div class="pill active" data-tab="bets">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none"><path d="M3 10l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2v-9z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
       مواقع المراهنات
     </div>
-    <div class="pill">
+    <div class="pill" data-tab="recommended">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </span>
@@ -131,24 +140,40 @@
     </div>
   </div>
 
-  <div class="recommended-wrapper">
-    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt=""></div><div><div class="asset-name">Al Barid</div><div class="asset-sub">طريقة دفع موثوقة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta down">0,00%</div></div></div>
-    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt=""></div><div><div class="asset-name">Attijari</div><div class="asset-sub">سرعة تنفيذ عالية</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta down">0,00%</div></div></div>
-    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt=""></div><div><div class="asset-name">CIH</div><div class="asset-sub">دعم متواصل</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta down">0,00%</div></div></div>
-    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt=""></div><div><div class="asset-name">Cash Plus</div><div class="asset-sub">مراكز واسعة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta down">0,00%</div></div></div>
-    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt=""></div><div><div class="asset-name">Barid Pay</div><div class="asset-sub">تحويل فوري</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta down">0,00%</div></div></div>
-    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt=""></div><div><div class="asset-name">Banque Populaire</div><div class="asset-sub">رسوم منخفضة</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta up">+0,00%</div></div></div>
+  <div class="tabs-panes">
+    <!-- تبويب مواقع المراهنات -->
+    <div class="pane active" id="pane-bets">
+      <div class="recommended-wrapper">
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt=""></div><div><div class="asset-name">Al Barid</div><div class="asset-sub">طريقة دفع موثوقة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta down">0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt=""></div><div><div class="asset-name">Attijari</div><div class="asset-sub">سرعة تنفيذ عالية</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta down">0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt=""></div><div><div class="asset-name">CIH</div><div class="asset-sub">دعم متواصل</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta down">0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt=""></div><div><div class="asset-name">Cash Plus</div><div class="asset-sub">مراكز واسعة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta down">0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt=""></div><div><div class="asset-name">Barid Pay</div><div class="asset-sub">تحويل فوري</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta down">0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt=""></div><div><div class="asset-name">Banque Populaire</div><div class="asset-sub">رسوم منخفضة</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta up">+0,00%</div></div></div>
+      </div>
+    </div>
+
+    <!-- تبويب الطرق الموصى بها (نفس الأيقونات الست) -->
+    <div class="pane" id="pane-recommended">
+      <div class="recommended-wrapper">
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt=""></div><div><div class="asset-name">Al Barid</div><div class="asset-sub">موصى بها</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta up">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt=""></div><div><div class="asset-name">Attijari</div><div class="asset-sub">موصى بها</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta up">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt=""></div><div><div class="asset-name">CIH</div><div class="asset-sub">موصى بها</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta up">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt=""></div><div><div class="asset-name">Cash Plus</div><div class="asset-sub">موصى بها</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta up">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt=""></div><div><div class="asset-name">Barid Pay</div><div class="asset-sub">موصى بها</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta up">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt=""></div><div><div class="asset-name">Banque Populaire</div><div class="asset-sub">موصى بها</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta up">+0,00%</div></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- رجعنا القسم الرمادي القديم -->
-<section style="background:#f6f6f6;color:#111;padding:40px 20px;text-align:center;">
+<section class="bonus-gray">
   <h2 style="font-size:28px;font-weight:700;margin-bottom:12px;">مكافأة 100% على إيداعك الأول</h2>
   <p style="font-size:15px;color:#444;margin-bottom:20px;">سجل واحصل على ما يصل إلى 2200 درهم MAD لعملية الشحن الأولى الخاصة بك</p>
-  <a href="signup/" style="background:#0052ff;color:#fff;padding:12px 28px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15px;display:inline-block;">سجّل الآن</a>
+  <a href="signup/" style="background:#0052ff;color:#fff;padding:12px 28px;border-radius:999px;font-weight:500;font-size:15px;display:inline-block;">سجّل الآن</a>
 </section>
 
-<footer style="background:#f6f6f6;padding:30px 20px;font-size:14px;color:#444;">
+<footer class="footer-gray">
   <div>
     <h3 style="font-size:16px;font-weight:bold;margin-bottom:10px;">عن منصتنا</h3>
     <ul style="list-style:none;padding:0;margin:0 0 20px;">
@@ -164,9 +189,7 @@
       <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">الإبلاغ عن مشكلة</a></li>
     </ul>
   </div>
-  <div style="border-top:1px solid #ddd;padding-top:10px;font-size:13px;text-align:center;color:#777;">
-    © 2025 منصتنا. جميع الحقوق محفوظة.
-  </div>
+  <div class="bottom">© 2025 منصتنا. جميع الحقوق محفوظة.</div>
 </footer>
 
 <script>
@@ -176,6 +199,16 @@
         overlay=document.getElementById('overlay');
   menuBtn.onclick=()=>{sideMenu.classList.add('active');overlay.classList.add('active')}
   closeMenu.onclick=overlay.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active')}
+
+  const pills=document.querySelectorAll('.pill');
+  const panes={bets:document.getElementById('pane-bets'),recommended:document.getElementById('pane-recommended')};
+  pills.forEach(p=>p.addEventListener('click',()=>{
+    pills.forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    const k=p.dataset.tab;
+    Object.values(panes).forEach(el=>el.classList.remove('active'));
+    panes[k].classList.add('active');
+  }));
 </script>
 
 </body>
