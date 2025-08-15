@@ -2,115 +2,141 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0052FF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>تسجيل الدخول</title>
 <style>
-body{margin:0;font-family:sans-serif;background:#fff;color:#111;direction:rtl}
-.loader{display:flex;justify-content:center;align-items:center;height:100vh;background:#fff}
-.dot{width:10px;height:10px;margin:0 5px;background:#0052ff;border-radius:50%;animation:blink 1.4s infinite}
-.dot:nth-child(2){animation-delay:.2s}
-.dot:nth-child(3){animation-delay:.4s}
-@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
-.container{display:none;max-width:420px;margin:40px auto;padding:20px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-h2{text-align:center;margin-bottom:20px;color:#0052ff}
-label{display:block;margin-top:15px;margin-bottom:5px;font-weight:bold}
-input,select,button{width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:15px}
-button{background:#0052ff;color:#fff;border:none;cursor:pointer;margin-top:20px}
-.qr-section{margin-top:15px;display:none}
-.qr-result{margin-top:10px;padding:10px;background:#f5f5f5;border-radius:5px;word-break:break-all;font-size:14px}
+:root{--b:#0052ff;--i:#0f172a;--m:#5b6472;--l:#d5dbe5;--c:#ffffff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif;background:#fff;color:var(--i)}
+.sb{position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--b);z-index:10;pointer-events:none}
+.sp{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:20}
+.dz{display:flex;gap:10px}
+.d{width:10px;height:10px;border-radius:50%;background:var(--b);animation:b 1.05s infinite}
+.d:nth-child(2){animation-delay:.16s}
+.d:nth-child(3){animation-delay:.32s}
+@keyframes b{0%,80%,100%{opacity:.35;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
+.sh{max-width:420px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 16px) 18px 24px}
+.tp{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.mk{width:36px;height:36px}
+.ln{color:var(--b);font-weight:600;text-decoration:none}
+.cd{background:var(--c);border:1px solid var(--l);border-radius:12px;padding:20px}
+.tt{font-size:20px;font-weight:700;margin-bottom:16px}
+.gp{margin-bottom:14px}
+.lb{display:block;font-size:14px;font-weight:600;color:#1f2937;margin-bottom:8px}
+.fd{width:100%;height:48px;border:1px solid var(--l);border-radius:8px;background:#fff;color:var(--i);font-size:15px;padding:0 12px;outline:none}
+.fd::placeholder{color:#9aa3af}
+select.fd{appearance:none;-webkit-appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');background-repeat:no-repeat;background-position:left 12px center;padding-left:36px}
+.bn{width:100%;height:48px;border:0;border-radius:8px;background:var(--b);color:#fff;font-weight:600;font-size:15px;cursor:pointer}
+.bn[disabled]{opacity:.6;cursor:not-allowed}
+.fn{font-size:12px;color:var(--m);line-height:1.6;margin-top:14px;text-align:center}
+.fn a{color:var(--b);text-decoration:none}
+.qr{display:none;border:1px solid var(--l);border-radius:10px;overflow:hidden;background:#fff}
+.qi{position:relative;aspect-ratio:1/1;width:100%;display:block;background:#f6f7fa}
+.qi img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+.qa{font-size:12px;color:#475569;text-align:center;padding:8px 6px;border-top:1px solid var(--l)}
+.up{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:44px;border:1px dashed var(--l);border-radius:10px;background:#fafbff;color:#334155;font-size:13px;cursor:pointer}
+.up input{display:none}
+.lk{margin-top:10px;font-size:13px;word-break:break-all}
+.lk a{color:#0b62ff;text-decoration:none}
+.dbg{display:none}
 </style>
 </head>
 <body>
-
-<div class="loader">
-  <div class="dot"></div>
-  <div class="dot"></div>
-  <div class="dot"></div>
-</div>
-
-<div class="container">
-  <h2>تسجيل الدخول</h2>
-
-  <label for="platform">اختر المنصة</label>
-  <select id="platform">
-    <option value="">-- اختر --</option>
-    <option value="stake">STAKE</option>
-    <option value="mystake">MYSTAKE</option>
-    <option value="melbet">Melbet</option>
-    <option value="megapari">MegaPari</option>
-    <option value="linebet">LineBet</option>
-    <option value="1xbet">1xBet</option>
-    <option value="gooobet">Gooobet</option>
-    <option value="risco">RiscoBet</option>
-    <option value="888starz">888starz</option>
-    <option value="mostbet">MostBet</option>
-  </select>
-
-  <label for="userid">أدخل ID</label>
-  <input type="text" id="userid" placeholder="اكتب ID الخاص بك">
-
-  <div class="qr-section" id="qr-section">
-    <label for="qr-upload">ارفع صورة QR</label>
-    <input type="file" id="qr-upload" accept="image/*">
-    <div class="qr-result" id="qr-result"></div>
+<div class="sb"></div>
+<div class="sp" id="sp"><div class="dz"><div class="d"></div><div class="d"></div><div class="d"></div></div></div>
+<div id="app" style="display:none">
+  <div class="sh">
+    <div class="tp">
+      <svg class="mk" viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="#0052ff"/><path d="M23.7 20.7a6.4 6.4 0 1 1 0-5.4h3.67a9.99 9.99 0 1 0 0 5.4H23.7z" fill="#fff"/></svg>
+      <a class="ln" href="#">Sign up</a>
+    </div>
+    <div class="cd">
+      <div class="tt">تسجيل الدخول</div>
+      <div class="gp">
+        <span class="lb">اختر المنصة</span>
+        <select id="p" class="fd">
+          <option value="" selected disabled>اختر المنصة</option>
+          <option>LINEBET</option>
+          <option>1XBET</option>
+          <option>MELBET</option>
+          <option>MEGAPARI</option>
+          <option>STAKE</option>
+          <option>MYSTAKE</option>
+          <option>GOOOBET</option>
+          <option>RISCOBET</option>
+          <option>888STARZ</option>
+        </select>
+      </div>
+      <div id="gid" class="gp">
+        <span class="lb">أدخل الـ ID</span>
+        <input id="u" class="fd" type="text" inputmode="numeric" pattern="[0-9]{4,15}" maxlength="15" placeholder="مثال: 1234567">
+      </div>
+      <div id="gq" class="gp qr">
+        <div class="qi"><img id="qimg" alt="QR"></div>
+        <label class="up">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 16V8M8 12h8" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round"/></svg>
+          ارفع صورة QR
+          <input id="qin" type="file" accept="image/*" capture="environment">
+        </label>
+        <div class="qa">سيتم استخراج الرابط من الصورة وإظهاره هنا:</div>
+        <div id="qlk" class="lk"></div>
+        <canvas id="dbg" class="dbg"></canvas>
+      </div>
+      <button id="go" class="bn" disabled>متابعة</button>
+      <div class="fn">باستمرارك، فإنك توافق على <a href="#">سياسة الخصوصية</a> و<a href="#">سياسة ملفات الارتباط</a>.</div>
+    </div>
   </div>
-
-  <button>تأكيد</button>
 </div>
-
-<script src="https://unpkg.com/jsqr/dist/jsQR.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 <script>
-setTimeout(()=>{
-  document.querySelector('.loader').style.display='none';
-  document.querySelector('.container').style.display='block';
-},2000);
-
-const platform=document.getElementById('platform');
-const qrSection=document.getElementById('qr-section');
-const qrUpload=document.getElementById('qr-upload');
-const qrResult=document.getElementById('qr-result');
-
-platform.addEventListener('change',()=>{
-  if(platform.value==='stake' || platform.value==='mystake'){
-    qrSection.style.display='block';
-  }else{
-    qrSection.style.display='none';
-    qrResult.textContent='';
-  }
-});
-
-qrUpload.addEventListener('change',e=>{
-  const file=e.target.files[0];
-  if(!file) return;
-  const reader=new FileReader();
-  reader.onload=function(){
-    const img=new Image();
-    img.onload=function(){
-      const canvas=document.createElement('canvas');
-      const ctx=canvas.getContext('2d');
-      const scale=4; 
-      canvas.width=img.width*scale;
-      canvas.height=img.height*scale;
-      ctx.drawImage(img,0,0,canvas.width,canvas.height);
-
-      let imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
-      enhanceImage(imageData.data);
-      const code=jsQR(imageData.data,imageData.width,imageData.height,{inversionAttempts:"attemptBoth"});
-      qrResult.textContent= code ? "الرابط: "+code.data : "لم يتم التعرف على الكود.";
-    };
-    img.src=reader.result;
-  };
-  reader.readAsDataURL(file);
-});
-
-function enhanceImage(data){
-  for(let i=0;i<data.length;i+=4){
-    let avg=(data[i]+data[i+1]+data[i+2])/3;
-    avg=avg>128?255:0;
-    data[i]=data[i+1]=data[i+2]=avg;
-  }
-}
+const sp=document.getElementById('sp'),app=document.getElementById('app');
+const p=document.getElementById('p'),u=document.getElementById('u'),go=document.getElementById('go');
+const gid=document.getElementById('gid'),gq=document.getElementById('gq'),qin=document.getElementById('qin'),qimg=document.getElementById('qimg'),qlk=document.getElementById('qlk');
+const show=()=>{sp.style.display='none';app.style.display='block'};
+if(document.readyState==='complete'){setTimeout(show,900)}else{addEventListener('load',()=>setTimeout(show,900))}
+function validate(){const v=p.value;const qr=(v==='STAKE'||v==='MYSTAKE');if(qr){gid.style.display='none';gq.style.display='block';go.disabled=true}else{gq.style.display='none';gid.style.display='block';go.disabled=!(v&&/^[0-9]{4,15}$/.test(u.value.trim()))}}
+p.addEventListener('change',validate);u.addEventListener('input',validate);
+async function decodeQRFromImage(img){
+const rotations=[0,90,180,270],scales=[1,0.85,0.7,0.55,0.4,0.3,0.22];
+const canv=document.createElement('canvas');const ctx=canv.getContext('2d',{willReadFrequently:true});
+for(const rot of rotations){for(const s of scales){const w=Math.max(180,Math.floor(img.naturalWidth*s)),h=Math.max(180,Math.floor(img.naturalHeight*s));
+if(rot%180===0){canv.width=w;canv.height=h}else{canv.width=h;canv.height=w}
+ctx.save();ctx.clearRect(0,0,canv.width,canv.height);
+if(rot===0){ctx.drawImage(img,0,0,w,h)}else{ctx.translate(canv.width/2,canv.height/2);ctx.rotate(rot*Math.PI/180);ctx.drawImage(img,-w/2,-h/2,w,h)}
+ctx.restore();
+const pre=preprocess(ctx,canv.width,canv.height);
+const data=pre.getImageData(0,0,canv.width,canv.height);
+const res=window.jsQR?jsQR(data.data,canv.width,canv.height,{inversionAttempts:"attemptBoth"}):null;
+if(res&&res.data){return res.data.trim()}}}
+return null;}
+function preprocess(ctx,w,h){
+const img=ctx.getImageData(0,0,w,h),d=img.data;
+let min=255,max=0;
+for(let i=0;i<d.length;i+=4){const g=0.299*d[i]+0.587*d[i+1]+0.114*d[i+2];d[i]=d[i+1]=d[i+2]=g;if(g<min)min=g;if(g>max)max=g}
+const range=Math.max(1,max-min);
+for(let i=0;i<d.length;i+=4){let g=(d[i]-min)/range*255;d[i]=d[i+1]=d[i+2]=g}
+const hist=new Array(256).fill(0);for(let i=0;i<d.length;i+=4){hist[d[i]|0]++}
+const thr=otsu(hist);
+for(let i=0;i<d.length;i+=4){const v=d[i]<thr?0:255;d[i]=d[i+1]=d[i+2]=v}
+ctx.putImageData(img,0,0);return ctx;}
+function otsu(hist){
+const total=hist.reduce((a,b)=>a+b,0);let sum=0;for(let t=0;t<256;t++)sum+=t*hist[t];
+let sumB=0,wB=0,maxVar=0,thr=127;
+for(let t=0;t<256;t++){wB+=hist[t];if(wB===0)continue;const wF=total-wB;if(wF===0)break;sumB+=t*hist[t];
+const mB=sumB/wB,mF=(sum-sumB)/wF,between=wB*wF*(mB-mF)*(mB-mF);if(between>maxVar){maxVar=between;thr=t}}
+return thr;}
+function showResult(text){
+if(text){let url=text.trim();if(!/^https?:\/\//i.test(url))url='https://'+url;qlk.innerHTML='<a href="'+url+'" target="_blank" rel="noopener">'+url+'</a>';go.disabled=false}
+else{qlk.textContent='تعذّر التعرف على QR. التقط صورة أقرب، دون ظلال أو انعكاس، واقصّ الحواف.';go.disabled=true}}
+qin.addEventListener('change',e=>{
+const f=e.target.files&&e.target.files[0];if(!f){return}
+const r=new FileReader();r.onload=o=>{
+qimg.onload=async ()=>{qlk.textContent='جارِ التحليل...';const out=await decodeQRFromImage(qimg);showResult(out)};
+qimg.src=o.target.result};r.readAsDataURL(f)});
 </script>
-
 </body>
 </html>
