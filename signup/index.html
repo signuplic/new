@@ -51,55 +51,21 @@
     text-decoration:none;
     display:inline-block;
   }
-  .bets-wrapper {
-    background:#b7c9b0; /* أخضر فاتح جديد */
-    padding:20px;
-  }
-  .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    justify-content: center;
-    max-width: 700px;
-    margin: auto;
-  }
+  .bets-wrapper { background:#f2f2f2; padding:20px; }
+  .wrapper { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
   .bank-card {
-    background: #b7c9b0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100px;
-    border-radius: 0;
-    transition: transform 0.15s ease;
-  }
-  .bank-card.press {
-    transform: scale(0.92);
+    background:#9db194; box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    cursor:pointer; overflow:hidden; display:flex; flex-direction:column;
+    width:100px; height:100px;
   }
   .top-section {
-    background: #fff;
-    height: 55%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
+    background:#fff; height:55%; display:flex; justify-content:center; align-items:center;
+    padding:5px;
   }
-  .top-section img {
-    max-height: 35px;
-    max-width: 35px;
-    object-fit: contain;
-  }
+  .top-section img { max-width:35px; max-height:35px; object-fit:contain; }
   .bottom-section {
-    background: #2e5f2d; /* أخضر داكن أنيق */
-    color: #fff;
-    height: 45%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    text-align: center;
-    font-weight: bold;
+    background:#3e723a; color:#fff; height:45%; display:flex; align-items:center; justify-content:center;
+    font-size:13px; text-align:center;
   }
   .bonus-section {
     background:#1d1f21;
@@ -180,42 +146,15 @@
 
 <section class="bets-wrapper">
   <div class="wrapper">
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">Melbet</div>
-    </div>
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">MegaPari</div>
-    </div>
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">LineBet</div>
-    </div>
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">1xBet</div>
-    </div>
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">Gooobet</div>
-    </div>
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">MyStake</div>
-    </div>
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">Stake</div>
-    </div>
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">RiscoBet</div>
-    </div>
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">888starz</div>
-    </div>
+    <div class="bank-card"><div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div><div class="bottom-section">Melbet</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div><div class="bottom-section">MegaPari</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div><div class="bottom-section">LineBet</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div><div class="bottom-section">1xBet</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div><div class="bottom-section">Gooobet</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div><div class="bottom-section">MyStake</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div><div class="bottom-section">Stake</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div><div class="bottom-section">RiscoBet</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div><div class="bottom-section">888starz</div></div>
   </div>
 </section>
 
