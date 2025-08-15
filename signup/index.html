@@ -51,12 +51,15 @@
     text-decoration:none;
     display:inline-block;
   }
+  .bets-wrapper {
+    background:#9db194;
+    padding:20px;
+  }
   .wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 12px;
     justify-content: center;
-    padding: 20px;
     max-width: 700px;
     margin: auto;
   }
@@ -68,7 +71,7 @@
     display: flex;
     flex-direction: column;
     height: 100px;
-    border-radius: 8px;
+    border-radius: 0;
     transition: transform 0.15s ease;
   }
   .bank-card.press {
@@ -175,7 +178,7 @@
   <a href="signup/" class="cta">ابدأ الآن</a>
 </section>
 
-<section class="bets-grid">
+<section class="bets-wrapper">
   <div class="wrapper">
     <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
       <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
