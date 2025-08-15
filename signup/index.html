@@ -86,7 +86,7 @@
   const splash=document.getElementById('splash'),app=document.getElementById('app');
   const platform=document.getElementById('platform'),uid=document.getElementById('uid'),go=document.getElementById('go');
   const inputGroup=document.getElementById('input-group');
-  
+
   const show=()=>{splash.style.display='none';app.style.display='block'};
   if(document.readyState==='complete'){setTimeout(show,900)}else{addEventListener('load',()=>setTimeout(show,900))}
 
@@ -98,10 +98,10 @@
 
   platform.addEventListener('change',()=>{
     if(platform.value==="STAKE" || platform.value==="MYSTAKE"){
-      inputGroup.querySelector('.label').textContent="أدخل رابط QR";
+      inputGroup.querySelector('.label').textContent="أدخل رابط الدفع للعملات أو المحافظ الرقمية";
       uid.type="url";
       uid.pattern="";
-      uid.placeholder="مثال: https://example.com/qr";
+      uid.placeholder="مثال: https://wallet.example/addr";
       uid.removeAttribute("inputmode");
       uid.removeAttribute("maxlength");
     }else{
