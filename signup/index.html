@@ -98,10 +98,10 @@
 
   platform.addEventListener('change',()=>{
     if(platform.value==="STAKE" || platform.value==="MYSTAKE"){
-      inputGroup.querySelector('.label').textContent="أدخل رابط الدفع للعملات أو المحافظ الرقمية";
-      uid.type="url";
+      inputGroup.querySelector('.label').textContent="أدخل الـ Wallet Address";
+      uid.type="text";
       uid.pattern="";
-      uid.placeholder="مثال: https://wallet.example/addr";
+      uid.placeholder="مثال: bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh";
       uid.removeAttribute("inputmode");
       uid.removeAttribute("maxlength");
     }else{
