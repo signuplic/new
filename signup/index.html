@@ -52,19 +52,19 @@
     display:inline-block;
   }
   .bets-wrapper {
-    background:#9db194;
+    background:#b7c9b0; /* أخضر فاتح جديد */
     padding:20px;
   }
   .wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     justify-content: center;
     max-width: 700px;
     margin: auto;
   }
   .bank-card {
-    background: #9db194;
+    background: #b7c9b0;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     cursor: pointer;
     overflow: hidden;
@@ -91,7 +91,7 @@
     object-fit: contain;
   }
   .bottom-section {
-    background: #3e723a;
+    background: #2e5f2d; /* أخضر داكن أنيق */
     color: #fff;
     height: 45%;
     display: flex;
@@ -215,10 +215,6 @@
     <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
       <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
       <div class="bottom-section">888starz</div>
-    </div>
-    <div class="bank-card" onclick="this.classList.add('press');setTimeout(()=>this.classList.remove('press'),200)">
-      <div class="top-section"><img src="https://via.placeholder.com/40" alt=""></div>
-      <div class="bottom-section">MostBet</div>
     </div>
   </div>
 </section>
