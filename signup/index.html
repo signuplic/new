@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0052ff">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>صفحة عروض</title>
 <style>
 body{margin:0;font-family:'Segoe UI',Tahoma,sans-serif;background:#fff;color:#111;overflow-x:hidden}
@@ -24,7 +22,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:10p
 .side-menu-close{position:absolute;top:16px;left:16px;font-size:20px;cursor:pointer;color:#fff}
 .overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.3);opacity:0;pointer-events:none;transition:opacity 0.3s ease;z-index:1000}
 .overlay.active{opacity:1;pointer-events:auto}
-.hero{padding:48px 20px;max-width:700px;margin:auto;text-align:center;background:#fff}
+.hero{padding:48px 20px;max-width:700px;margin:auto;text-align:center;background:#f6f6f6}
 .hero h1{font-size:32px;font-weight:700;line-height:1.4;margin-bottom:12px}
 .hero p{font-size:15px;line-height:1.6;color:#444;margin-bottom:28px}
 .cta{background:#0052ff;color:#fff;padding:14px 28px;font-size:16px;border:none;border-radius:999px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
@@ -35,14 +33,10 @@ header{display:flex;align-items:center;justify-content:space-between;padding:10p
 .top-section{background:#fff;height:55%;display:flex;justify-content:center;align-items:center;padding:5px;perspective:600px}
 .top-section img{max-width:90%;max-height:30px;object-fit:contain;transform-style:preserve-3d;transition:transform 0.4s ease}
 .top-section img:hover{animation:goBack 0.5s ease}
-.bottom-section{background:#3e723a;color:#fff;height:45%;display:flex;align-items:center;justify-content:center;font-size:13px;text-align:center}
+.bottom-section{background:#3e723a;color:#fff;height:45%;display:flex;align-items:center;justify-content:center;font-size:13px;text-align:center;padding:0 4px}
 @media(max-width:600px){.bank-card{height:90px}.bottom-section{font-size:12px}.recommended-wrapper{grid-template-columns:repeat(3,1fr);gap:10px}}
 @keyframes goBack{0%{transform:translateZ(0)}50%{transform:translateZ(-80px)}100%{transform:translateZ(0)}}
 .animate-back{animation:goBack 0.5s ease}
-.bonus-inline{background:#8aa981;color:#fff;padding:20px;text-align:center}
-.bonus-inline h2{font-size:22px;font-weight:700;margin-bottom:10px}
-.bonus-inline p{font-size:14px;margin-bottom:15px}
-.bonus-inline .btn{background:#fff;color:#000;padding:10px 20px;border-radius:999px;text-decoration:none;font-weight:bold}
 footer{background:#f6f6f6;padding:30px 20px;font-size:14px;color:#444}
 footer h3{font-size:16px;font-weight:bold;margin-bottom:10px}
 footer ul{list-style:none;padding:0;margin:0 0 20px}
@@ -59,7 +53,7 @@ footer ul li a:hover{color:#0052ff}
 <a class="btn-link" href="signup/">سجّل</a>
 </header>
 <div class="side-menu" id="sideMenu">
-<div class="side-menu-header">القائمة<span class="side-menu-close" id="closeMenu">&times;</span></div>
+<div class="side-menu-header">القائمة <span class="side-menu-close" id="closeMenu">&times;</span></div>
 <ul>
 <li><a href="#">تواصل معنا</a></li>
 <li><a href="#">الدعم الفني</a></li>
@@ -69,13 +63,14 @@ footer ul li a:hover{color:#0052ff}
 </div>
 <div class="overlay" id="overlay"></div>
 <section class="hero">
-<h1>مكافآت رائعة للمراهنات الرياضية والكازينو</h1>
-<p>احصل على رهانات مجانية رائعة، دورات مجانية، وأموال حقيقية</p>
+<h1>مرحبا بك في منصتنا</h1>
+<p>أفضل العروض والخدمات البنكية والرقمية</p>
 <a href="signup/" class="cta">ابدأ الآن</a>
 </section>
-<section class="recommended-section" id="recommended">
+<section class="recommended-section">
 <h3 class="recommended-title">الطرق الموصى بها</h3>
 <div class="recommended-wrapper">
+<div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/3R3nkqTb/bonus.png"></div><div class="bottom-section">مكافآت رائعة للمراهنات<br>والكازينو</div></div>
 <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/tCQqLF96/recharge.png"></div><div class="bottom-section">Al Barid</div></div>
 <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png"></div><div class="bottom-section">Attijari</div></div>
 <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png"></div><div class="bottom-section">CIH</div></div>
@@ -84,11 +79,6 @@ footer ul li a:hover{color:#0052ff}
 <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png"></div><div class="bottom-section">Banque Populaire</div></div>
 </div>
 </section>
-<div class="bonus-inline">
-<h2>مكافآت رائعة للمراهنات</h2>
-<p>سجل واحصل على ما يصل إلى 2200 درهم عند أول عملية شحن</p>
-<a href="signup/" class="btn">سجّل الآن</a>
-</div>
 <footer>
 <div>
 <h3>عن منصتنا</h3>
@@ -112,9 +102,9 @@ const menuBtn=document.getElementById('menuBtn');
 const sideMenu=document.getElementById('sideMenu');
 const closeMenu=document.getElementById('closeMenu');
 const overlay=document.getElementById('overlay');
-menuBtn.onclick=()=>{sideMenu.classList.add('active');overlay.classList.add('active')}
-closeMenu.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active')}
-overlay.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active')}
+menuBtn.onclick=()=>{sideMenu.classList.add('active');overlay.classList.add('active');}
+closeMenu.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active');}
+overlay.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active');}
 </script>
 </body>
 </html>
