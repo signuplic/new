@@ -6,106 +6,88 @@
 <meta name="theme-color" content="#0052ff">
 <title>صفحة عروض</title>
 <style>
-  body { margin:0; font-family:'Segoe UI', Tahoma, sans-serif; background:#fff; color:#111; overflow-x:hidden; }
-
-  header {
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 16px; background:#fff; border-bottom:1px solid #ddd; height:72px; box-sizing:border-box;
-  }
-  .logo { font-size:26px; font-weight:bold; color:#0052ff; }
-  .btn-link {
-    background:#0052ff; color:#fff; padding:10px 18px; border:none; border-radius:999px;
-    font-weight:500; font-size:15px; cursor:pointer; text-decoration:none;
-  }
-  .menu { width:26px; height:18px; display:grid; gap:5px; cursor:pointer; }
-  .menu span { height:2px; background:#000; }
-
-  .side-menu {
-    position:fixed; top:0; right:-260px; width:260px; height:100%; background:#fff;
-    box-shadow:-2px 0 6px rgba(0,0,0,0.1); transition:right 0.3s ease; z-index:1002; display:flex; flex-direction:column;
-  }
-  .side-menu.active { right:0; }
-  .side-menu-header { padding:16px; font-weight:bold; font-size:18px; background:#0052ff; color:#fff; }
-  .side-menu ul { list-style:none; padding:0; margin:0; flex:1; }
-  .side-menu ul li { border-bottom:1px solid #eee; }
-  .side-menu ul li a { display:block; padding:14px 16px; color:#333; text-decoration:none; font-size:15px; }
-  .side-menu ul li a:hover { background:#f2f2f2; }
-  .side-menu-close { position:absolute; top:16px; left:16px; font-size:20px; cursor:pointer; color:#fff; }
-  .overlay {
-    position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.3);
-    opacity:0; pointer-events:none; transition:opacity 0.3s ease; z-index:1000;
-  }
-  .overlay.active { opacity:1; pointer-events:auto; }
-
-  .hero { padding:48px 20px; max-width:700px; margin:auto; text-align:center; background:#fff; }
-  .hero h1 { font-size:32px; font-weight:700; line-height:1.4; margin-bottom:12px; }
-  .hero p { font-size:15px; line-height:1.6; color:#444; margin-bottom:28px; }
-  .cta {
-    background:#0052ff; color:#fff; padding:14px 28px; font-size:16px; border:none; border-radius:999px;
-    font-weight:bold; cursor:pointer; text-decoration:none; display:inline-block;
-  }
-
-  /* الهيكل الرمادي يبقى كما هو */
-  .recommended-section { background:#8aa981; padding:10px 10px 25px; width:100%; box-sizing:border-box; }
-  .recommended-title { font-size:18px; color:#1a1a1a; margin:0 0 10px; text-align:center; }
-  .recommended-wrapper {
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; width:100%; max-width:500px; margin:0 auto;
-  }
-
-  /* ديكور فخم للبطاقات فقط */
   :root{
-    --line:#e6e9ee; --card:#ffffff; --radius:22px;
+    --bg:#ffffff;--ink:#0f172a;--muted:#64748b;--line:#e8ecf2;--brand:#0052ff;
+    --card:#ffffff;--radius:22px;--shadow:0 12px 28px rgba(16,24,40,.08)
   }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+  a{text-decoration:none}
+  img{max-width:100%;display:block}
+
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 16px;background:#fff;border-bottom:1px solid var(--line);
+    height:72px;box-sizing:border-box;position:sticky;top:0;z-index:100
+  }
+  .logo{font-size:26px;font-weight:800;color:var(--brand)}
+  .btn-link{
+    background:var(--brand);color:#fff;padding:10px 18px;border:none;border-radius:999px;
+    font-weight:700;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:0 8px 18px rgba(0,82,255,.18);transition:.18s ease
+  }
+  .btn-link:hover{transform:translateY(-1px)}
+  .menu{width:26px;height:18px;display:grid;gap:5px;cursor:pointer}
+  .menu span{height:2px;background:#1f2937;border-radius:2px}
+
+  .side-menu{
+    position:fixed;top:0;right:-280px;width:280px;height:100%;background:#fff;border-left:1px solid var(--line);
+    box-shadow:-10px 0 30px rgba(0,0,0,.08);transition:right .28s ease;z-index:1002;display:flex;flex-direction:column
+  }
+  .side-menu.active{right:0}
+  .side-menu-header{padding:16px;font-weight:800;font-size:18px;background:var(--brand);color:#fff;position:relative}
+  .side-menu ul{list-style:none;padding:8px;margin:0;flex:1}
+  .side-menu ul li{border-bottom:1px solid var(--line)}
+  .side-menu ul li a{display:block;padding:14px 12px;color:#111;font-size:15px}
+  .side-menu ul li a:hover{background:#f5f7ff}
+  .side-menu-close{position:absolute;top:12px;left:16px;font-size:22px;cursor:pointer;color:#fff}
+
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:saturate(140%) blur(3px);
+    opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:1000}
+  .overlay.active{opacity:1;pointer-events:auto}
+
+  .hero{padding:56px 20px;max-width:760px;margin:auto;text-align:center;background:#fff}
+  .hero h1{font-size:clamp(22px,4.8vw,34px);font-weight:800;line-height:1.35;margin:0 0 12px}
+  .hero p{font-size:clamp(14px,2.6vw,16px);line-height:1.7;color:var(--muted);margin:0 0 24px}
+  .cta{background:var(--brand);color:#fff;padding:14px 28px;font-size:16px;border:none;border-radius:999px;
+    font-weight:800;display:inline-block;box-shadow:0 10px 22px rgba(0,82,255,.18);transition:.18s ease}
+  .cta:hover{transform:translateY(-1px)}
+
+  .recommended-section{background:linear-gradient(180deg,#f5f7fb,#eef2f7);padding:16px 12px 28px;border-top:1px solid var(--line)}
+  .seg{display:flex;gap:10px;align-items:center;justify-content:flex-start;max-width:600px;margin:0 auto 12px}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#e9edf4;color:#111;border:1px solid var(--line);font-weight:800;font-size:14px}
+  .pill.active{background:#1a73e8;color:#fff;border-color:transparent}
+  .pill .icon{width:18px;height:18px}
+  .pill svg{width:100%;height:100%}
+
+  .recommended-wrapper{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:620px;margin:0 auto}
+  @media(min-width:740px){.recommended-wrapper{grid-template-columns:repeat(3,1fr)}}
+
   .bank-card{
     background:var(--card);
     border:1px solid var(--line);
     border-radius:var(--radius);
-    box-shadow:0 12px 28px rgba(16,24,40,.08);
-    cursor:pointer; overflow:hidden; display:flex; flex-direction:column; height:120px; position:relative;
+    box-shadow:var(--shadow);
+    height:128px;
+    padding:14px;
+    display:grid;
+    grid-template-rows:auto 1fr;
     transition:transform .16s ease;
   }
-  .bank-card:hover{ transform:translateY(-2px); }
-  .bank-card::after{
-    content:""; position:absolute; inset:auto 14px -9px 14px; height:16px; filter:blur(12px);
-    background:radial-gradient(60% 100% at 50% 0, rgba(0,0,0,.12), transparent 70%);
+  .bank-card:hover{transform:translateY(-2px)}
+  .top-section{display:flex;align-items:center;gap:12px}
+  .ico-wrap{
+    width:44px;height:44px;border-radius:14px;background:linear-gradient(180deg,#f5f7fb,#eef2f7);
+    border:1px solid var(--line);display:grid;place-items:center;box-shadow:inset 0 1px 0 #fff
   }
-
-  .top-section{
-    background:transparent; height:62%;
-    display:flex; justify-content:center; align-items:center; padding:10px 6px; position:relative;
-  }
-  /* دائرة خلف الأيقونة بدون تغيير الـ HTML */
-  .top-section::before{
-    content:""; width:54px; height:54px; border-radius:16px;
-    background:linear-gradient(180deg,#f6f8fb,#eef2f7); border:1px solid var(--line);
-    box-shadow:inset 0 1px 0 #fff; position:absolute;
-  }
-  .top-section img{
-    max-width:28px; max-height:28px; object-fit:contain; z-index:1; transform-style:preserve-3d; transition:transform .25s ease;
-  }
-  .bank-card:hover .top-section img{ transform:translateZ(10px) scale(1.02); }
-
-  /* الشريط السفلي الأخضر يبقى كما هو مع تحسين خط النص */
-  .bottom-section{
-    background:#3e723a; color:#fff; height:38%;
-    display:flex; align-items:center; justify-content:center;
-    font-size:14px; text-align:center; font-weight:700; letter-spacing:.2px;
-  }
-
-  .bonus-section { background:#1d1f21; color:#fff; padding:40px 20px; text-align:center; }
-  .bonus-section h2 { font-size:28px; font-weight:700; margin-bottom:12px; }
-  .bonus-section p { font-size:15px; color:#ddd; margin-bottom:20px; }
-  .learn-btn {
-    background:#e9eaeb; color:#000; padding:12px 28px; border-radius:999px; text-decoration:none; font-weight:500; display:inline-block; font-size:15px;
-  }
-
-  footer { background:#f6f6f6; padding:30px 20px; font-size:14px; color:#444; }
-  footer h3 { font-size:16px; font-weight:bold; margin-bottom:10px; }
-  footer ul { list-style:none; padding:0; margin:0 0 20px; }
-  footer ul li { margin-bottom:6px; }
-  footer ul li a { text-decoration:none; color:#444; }
-  footer ul li a:hover { color:#0052ff; }
-  .footer-bottom { border-top:1px solid #ddd; padding-top:10px; font-size:13px; text-align:center; color:#777; }
+  .top-section img{width:26px;height:26px;object-fit:contain}
+  .asset-name{font-weight:800;font-size:15px;line-height:1.2}
+  .asset-sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .bottom-section{margin-top:8px;display:flex;align-items:flex-end;justify-content:space-between}
+  .tag{padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:#f8fafc;font-size:12px;color:#111;font-weight:700}
+  .delta{font-weight:800;font-size:14px}
+  .down{color:#e11d48}
+  .up{color:#16a34a}
 </style>
 </head>
 <body>
@@ -134,40 +116,57 @@
 </section>
 
 <section class="recommended-section">
-  <h3 class="recommended-title">الطرق الموصى بها</h3>
+  <div class="seg">
+    <div class="pill active">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 10l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2v-9z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      مواقع المراهنات
+    </div>
+    <div class="pill">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      الطرق الموصى بها
+    </div>
+  </div>
+
   <div class="recommended-wrapper">
-    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt=""></div><div class="bottom-section">Al Barid</div></div>
-    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt=""></div><div class="bottom-section">Attijari</div></div>
-    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt=""></div><div class="bottom-section">CIH</div></div>
-    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt=""></div><div class="bottom-section">Cash Plus</div></div>
-    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt=""></div><div class="bottom-section">Barid Pay</div></div>
-    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt=""></div><div class="bottom-section">Banque Populaire</div></div>
+    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt=""></div><div><div class="asset-name">Al Barid</div><div class="asset-sub">طريقة دفع موثوقة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta down">0,00%</div></div></div>
+    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt=""></div><div><div class="asset-name">Attijari</div><div class="asset-sub">سرعة تنفيذ عالية</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta down">0,00%</div></div></div>
+    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt=""></div><div><div class="asset-name">CIH</div><div class="asset-sub">دعم متواصل</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta down">0,00%</div></div></div>
+    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt=""></div><div><div class="asset-name">Cash Plus</div><div class="asset-sub">مراكز واسعة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta down">0,00%</div></div></div>
+    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt=""></div><div><div class="asset-name">Barid Pay</div><div class="asset-sub">تحويل فوري</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta down">0,00%</div></div></div>
+    <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt=""></div><div><div class="asset-name">Banque Populaire</div><div class="asset-sub">رسوم منخفضة</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta up">+0,00%</div></div></div>
   </div>
 </section>
 
-<section class="bonus-section">
-  <h2>مكافأة 100% على إيداعك الأول</h2>
-  <p>سجل واحصل على ما يصل إلى 2200 درهم MAD لعملية الشحن الأولى الخاصة بك</p>
-  <a href="signup/" class="learn-btn">سجّل الآن</a>
+<!-- رجعنا القسم الرمادي القديم -->
+<section style="background:#f6f6f6;color:#111;padding:40px 20px;text-align:center;">
+  <h2 style="font-size:28px;font-weight:700;margin-bottom:12px;">مكافأة 100% على إيداعك الأول</h2>
+  <p style="font-size:15px;color:#444;margin-bottom:20px;">سجل واحصل على ما يصل إلى 2200 درهم MAD لعملية الشحن الأولى الخاصة بك</p>
+  <a href="signup/" style="background:#0052ff;color:#fff;padding:12px 28px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15px;display:inline-block;">سجّل الآن</a>
 </section>
 
-<footer>
+<footer style="background:#f6f6f6;padding:30px 20px;font-size:14px;color:#444;">
   <div>
-    <h3>عن منصتنا</h3>
-    <ul>
-      <li><a href="#">من نحن</a></li>
-      <li><a href="#">خدماتنا</a></li>
-      <li><a href="#">الشروط والأحكام</a></li>
-      <li><a href="#">سياسة الخصوصية</a></li>
+    <h3 style="font-size:16px;font-weight:bold;margin-bottom:10px;">عن منصتنا</h3>
+    <ul style="list-style:none;padding:0;margin:0 0 20px;">
+      <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">من نحن</a></li>
+      <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">خدماتنا</a></li>
+      <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">الشروط والأحكام</a></li>
+      <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">سياسة الخصوصية</a></li>
     </ul>
-    <h3>الدعم والمساعدة</h3>
-    <ul>
-      <li><a href="#">تواصل معنا</a></li>
-      <li><a href="#">الأسئلة الشائعة</a></li>
-      <li><a href="#">الإبلاغ عن مشكلة</a></li>
+    <h3 style="font-size:16px;font-weight:bold;margin-bottom:10px;">الدعم والمساعدة</h3>
+    <ul style="list-style:none;padding:0;margin:0 0 20px;">
+      <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">تواصل معنا</a></li>
+      <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">الأسئلة الشائعة</a></li>
+      <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">الإبلاغ عن مشكلة</a></li>
     </ul>
   </div>
-  <div class="footer-bottom">© 2025 منصتنا. جميع الحقوق محفوظة.</div>
+  <div style="border-top:1px solid #ddd;padding-top:10px;font-size:13px;text-align:center;color:#777;">
+    © 2025 منصتنا. جميع الحقوق محفوظة.
+  </div>
 </footer>
 
 <script>
@@ -176,8 +175,7 @@
         closeMenu=document.getElementById('closeMenu'),
         overlay=document.getElementById('overlay');
   menuBtn.onclick=()=>{sideMenu.classList.add('active');overlay.classList.add('active')}
-  closeMenu.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active')}
-  overlay.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active')}
+  closeMenu.onclick=overlay.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active')}
 </script>
 
 </body>
