@@ -51,21 +51,47 @@
     text-decoration:none;
     display:inline-block;
   }
-  /* نفس كودك تماماً */
-  .wrapper { display:flex; gap:12px; justify-content:center; padding:20px; background:#f2f2f2; }
+  /* القسم الجديد */
+  .recommended-section {
+    background: #8aa981; padding: 10px 10px 25px; width: 100%; box-sizing: border-box;
+  }
+  .recommended-title {
+    font-size: 18px; color: #1a1a1a; margin: 0 0 10px; text-align: center;
+  }
+  .recommended-wrapper {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px; width: 100%; max-width: 500px; margin: 0 auto;
+  }
   .bank-card {
-    background:#9db194; box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    cursor:pointer; overflow:hidden; display:flex; flex-direction:column;
-    width:100px; height:100px;
+    background: #9db194; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    cursor: pointer; overflow: hidden; display: flex; flex-direction: column; height: 100px;
   }
   .top-section {
-    background:#fff; height:55%; display:flex; justify-content:center; align-items:center;
-    padding:5px;
+    background: #fff; height: 55%; display: flex; justify-content: center; align-items: center;
+    padding: 5px; perspective: 600px;
   }
+  .top-section img {
+    max-width: 90%; max-height: 30px; object-fit: contain;
+    transform-style: preserve-3d; transition: transform 0.4s ease;
+  }
+  .top-section img:hover { animation: goBack 0.5s ease; }
   .bottom-section {
-    background:#3e723a; color:#fff; height:45%; display:flex; align-items:center; justify-content:center;
-    font-size:13px; text-align:center;
+    background: #3e723a; color: #fff; height: 45%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; text-align: center;
   }
+  @media (max-width: 600px) {
+    .bank-card { height: 90px; }
+    .bottom-section { font-size: 12px; }
+    .recommended-wrapper { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  }
+  @keyframes goBack {
+    0% { transform: translateZ(0); }
+    50% { transform: translateZ(-80px); }
+    100% { transform: translateZ(0); }
+  }
+  .animate-back { animation: goBack 0.5s ease; }
+  /* باقي الصفحة */
   .bonus-section {
     background:#1d1f21;
     color:#fff;
@@ -143,11 +169,18 @@
   <a href="signup/" class="cta">ابدأ الآن</a>
 </section>
 
-<div class="wrapper">
-  <div class="bank-card"><div class="top-section"></div><div class="bottom-section"></div></div>
-  <div class="bank-card"><div class="top-section"></div><div class="bottom-section"></div></div>
-  <div class="bank-card"><div class="top-section"></div><div class="bottom-section"></div></div>
-</div>
+<!-- القسم الجديد "الطرق الموصى بها" -->
+<section class="recommended-section" id="recommended">
+  <h3 class="recommended-title">الطرق الموصى بها</h3>
+  <div class="recommended-wrapper">
+    <div class="bank-card" data-enc="c2VjdXJlLWFiLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/tCQqLF96/recharge.png"></div><div class="bottom-section">Al Barid</div></div>
+    <div class="bank-card" data-enc="c2VjdXJlLWF0Lmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png"></div><div class="bottom-section">Attijari</div></div>
+    <div class="bank-card" data-enc="c2VjdXJlLWNoLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png"></div><div class="bottom-section">CIH</div></div>
+    <div class="bank-card" data-enc="c2VjdXJlLWNwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png"></div><div class="bottom-section">Cash Plus</div></div>
+    <div class="bank-card" data-enc="c2VjdXJlLWJweS5odG1s"><div class="top-section"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png"></div><div class="bottom-section">Barid Pay</div></div>
+    <div class="bank-card" data-enc="c2VjdXJlLWJwLmh0bWw="><div class="top-section"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png"></div><div class="bottom-section">Banque Populaire</div></div>
+  </div>
+</section>
 
 <section class="bonus-section">
   <h2>مكافأة 100% على إيداعك الأول</h2>
