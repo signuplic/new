@@ -1,135 +1,211 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mobicash Services</title>
-  <style>
-    html, body { margin: 0; overflow-x: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f2f2f2; }
-    header { background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.08); padding: 10px 16px; }
-    .header-content { display: flex; align-items: center; justify-content: space-between; }
-    .menu-icon { font-size: 24px; cursor: pointer; color: #2c3e50; }
-    .site-title { font-size: 18px; font-weight: bold; color: #1a1a1a; text-align: center; flex-grow: 1; line-height: 1.2; }
-    .profile-section { display: flex; align-items: center; gap: 10px; }
-    .profile-icon { width: 46px; height: 46px; border-radius: 50%; background: #e0e0e0; display: flex; align-items: center; justify-content: center; }
-    .profile-icon svg { width: 28px; height: 28px; }
-    .profile-info { display: flex; flex-direction: column; align-items: flex-end; font-size: 13px; line-height: 1.2; user-select: all; }
-    #userIdDisplay { color: #444; font-weight: 500; }
-    .profile-label { color: #2e7d32; font-weight: bold; margin-right: 2px; }
-    .account-section { padding: 20px 15px 10px; background: #f2f2f2; }
-    .account-header { font-size: 15px; font-weight: 500; color: #888; margin-bottom: 8px; text-align: right; }
-    .account-option { background: #fff; border-radius: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); overflow: hidden; }
-    .option-item { display: flex; align-items: center; padding: 14px; cursor: pointer; position: relative; }
-    .option-item:not(:last-child)::after { content: ""; position: absolute; bottom: 0; right: 64px; left: 0; height: 1px; background: #dcdcdc; }
-    .icon-circle { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 12px; background: #fff; box-shadow: 0 0 8px rgba(0,0,0,0.12); overflow: hidden; transition: transform 0.3s ease; }
-    .icon-circle img { width: 110%; height: 110%; object-fit: contain; filter: drop-shadow(0 0 2px rgba(0,0,0,0.3)); transition: filter 0.3s ease; }
-    .option-item:hover .icon-circle { transform: scale(1.1); box-shadow: 0 0 12px rgba(0,128,0,0.6); }
-    .option-item:hover .icon-circle img { filter: drop-shadow(0 0 5px rgba(0,128,0,0.8)); }
-    .option-text { flex-grow: 1; color: #000; font-size: 15px; font-weight: 500; }
-    .arrow-icon { color: #888; font-size: 16px; }
-    .toast { position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 20px); background: #f44336; color: #fff; padding: 12px 20px; border-radius: 8px; font-size: 14px; opacity: 0; pointer-events: none; z-index: 1000; transition: opacity 0.4s ease, transform 0.4s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-    .toast.show { opacity: 1; transform: translate(-50%, 0); }
-    .recommended-section { background: #8aa981; padding: 10px 10px 25px; margin: 20px -15px 0; width: calc(100% + 30px); box-sizing: border-box; }
-    .recommended-title { font-family: system-ui, Arial, sans-serif; font-size: 18px; color: #1a1a1a; margin: 0 0 10px; text-align: center; }
-    .recommended-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; width: 100%; max-width: 500px; margin: 0 auto; }
-    .bank-card { background: #9db194; box-shadow: 0 2px 6px rgba(0,0,0,0.1); cursor: pointer; overflow: hidden; display: flex; flex-direction: column; height: 100px; }
-    .top-section { background: #fff; height: 55%; display: flex; justify-content: center; align-items: center; padding: 5px; perspective: 600px; }
-    .top-section img { max-width: 90%; max-height: 30px; object-fit: contain; transform-style: preserve-3d; transition: transform 0.4s ease; }
-    .bottom-section { background: #3e723a; color: #fff; height: 45%; display: flex; align-items: center; justify-content: center; font-size: 13px; text-align: center; }
-    @media (max-width: 600px) { .bank-card { height: 90px; } .bottom-section { font-size: 12px; } .recommended-wrapper { grid-template-columns: repeat(3, 1fr); gap: 10px; } }
-    @keyframes goBack { 0% { transform: translateZ(0); } 50% { transform: translateZ(-80px); } 100% { transform: translateZ(0); } }
-    .animate-back { animation: goBack 0.5s ease; }
-    .overlay { position: fixed; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 2000; transition: left 0.4s ease; }
-    .overlay.active { left: 0; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0052ff">
+<title>صفحة عروض</title>
+<style>
+  body { margin:0; font-family:'Segoe UI', Tahoma, sans-serif; background:#fff; color:#111; overflow-x:hidden; }
+
+  /* هيدر كبير احترافي */
+  header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 16px;
+    background:#fff;
+    border-bottom:1px solid #ddd;
+    height:72px;
+    box-sizing:border-box;
+  }
+  .logo {
+    font-size:26px;
+    font-weight:bold;
+    color:#0052ff;
+  }
+  .btn-link {
+    background:#0052ff;
+    color:#fff;
+    padding:10px 18px;
+    border:none;
+    border-radius:999px;
+    font-weight:500;
+    font-size:15px;
+    cursor:pointer;
+    text-decoration:none;
+  }
+  .menu {
+    width:26px;
+    height:18px;
+    display:grid;
+    gap:5px;
+    cursor:pointer;
+  }
+  .menu span { height:2px; background:#000; }
+
+  /* القائمة الجانبية */
+  .side-menu {
+    position:fixed;
+    top:0; right:-260px;
+    width:260px; height:100%;
+    background:#fff;
+    box-shadow:-2px 0 6px rgba(0,0,0,0.1);
+    transition:right 0.3s ease;
+    z-index:1002;
+    display:flex; flex-direction:column;
+  }
+  .side-menu.active { right:0; }
+  .side-menu-header {
+    padding:16px; font-weight:bold; font-size:18px;
+    background:#0052ff; color:#fff;
+  }
+  .side-menu ul { list-style:none; padding:0; margin:0; flex:1; }
+  .side-menu ul li { border-bottom:1px solid #eee; }
+  .side-menu ul li a {
+    display:block; padding:14px 16px; color:#333; text-decoration:none; font-size:15px;
+  }
+  .side-menu ul li a:hover { background:#f2f2f2; }
+  .side-menu-close {
+    position:absolute; top:16px; left:16px; font-size:20px; cursor:pointer; color:#fff;
+  }
+  .overlay {
+    position:fixed; top:0; left:0; right:0; bottom:0;
+    background:rgba(0,0,0,0.3); opacity:0; pointer-events:none;
+    transition:opacity 0.3s ease; z-index:1000;
+  }
+  .overlay.active { opacity:1; pointer-events:auto; }
+
+  .hero {
+    padding:48px 20px; max-width:700px; margin:auto; text-align:center; background:#fff;
+  }
+  .hero h1 { font-size:32px; font-weight:700; line-height:1.4; margin-bottom:12px; }
+  .hero p { font-size:15px; line-height:1.6; color:#444; margin-bottom:28px; }
+  .cta {
+    background:#0052ff; color:#fff; padding:14px 28px; font-size:16px;
+    border:none; border-radius:999px; font-weight:bold; cursor:pointer;
+    text-decoration:none; display:inline-block;
+  }
+
+  /* البطاقات */
+  .recommended-section {
+    background:#8aa981; padding:10px 10px 25px; width:100%; box-sizing:border-box;
+  }
+  .recommended-title { font-size:18px; color:#1a1a1a; margin:0 0 10px; text-align:center; }
+  .recommended-wrapper {
+    display:grid; grid-template-columns:repeat(3, 1fr);
+    gap:12px; width:100%; max-width:500px; margin:0 auto;
+  }
+  .bank-card {
+    background:#9db194; box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    cursor:pointer; overflow:hidden; display:flex; flex-direction:column; height:100px;
+  }
+  .top-section {
+    background:#fff; height:55%; display:flex; justify-content:center; align-items:center;
+    padding:5px; perspective:600px;
+  }
+  .top-section img {
+    max-width:90%; max-height:30px; object-fit:contain;
+    transform-style:preserve-3d; transition:transform 0.4s ease;
+  }
+  .bottom-section {
+    background:#3e723a; color:#fff; height:45%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; text-align:center;
+  }
+
+  .bonus-section {
+    background:#1d1f21; color:#fff; padding:40px 20px; text-align:center;
+  }
+  .bonus-section h2 { font-size:28px; font-weight:700; margin-bottom:12px; }
+  .bonus-section p { font-size:15px; color:#ddd; margin-bottom:20px; }
+  .learn-btn {
+    background:#e9eaeb; color:#000; padding:12px 28px;
+    border-radius:999px; text-decoration:none; font-weight:500; display:inline-block; font-size:15px;
+  }
+
+  footer {
+    background:#f6f6f6; padding:30px 20px; font-size:14px; color:#444;
+  }
+  footer h3 { font-size:16px; font-weight:bold; margin-bottom:10px; }
+  footer ul { list-style:none; padding:0; margin:0 0 20px; }
+  footer ul li { margin-bottom:6px; }
+  footer ul li a { text-decoration:none; color:#444; }
+  footer ul li a:hover { color:#0052ff; }
+  .footer-bottom {
+    border-top:1px solid #ddd; padding-top:10px; font-size:13px; text-align:center; color:#777;
+  }
+</style>
 </head>
 <body>
-<div id="toast" class="toast"></div>
-<div id="overlay" class="overlay"></div>
+
 <header>
-  <div class="header-content">
-    <div class="profile-section">
-      <div class="profile-icon">
-        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="20" r="10" fill="#ffffff"/>
-          <ellipse cx="32" cy="48" rx="18" ry="10" fill="#ffffff"/>
-        </svg>
-      </div>
-      <div class="profile-info">
-        <div id="userIdDisplay">id: </div>
-        <div class="profile-label">الملف الشخصي</div>
-      </div>
-    </div>
-    <div class="site-title">Mobicash<br>Services</div>
-    <div class="menu-icon">&#9776;</div>
-  </div>
+  <div class="menu" id="menuBtn"><span></span><span></span><span></span></div>
+  <div class="logo">coinbase</div>
+  <a class="btn-link" href="signup/">سجّل</a>
 </header>
 
-<!-- الأقسام تبقى كما هي -->
+<div class="side-menu" id="sideMenu">
+  <div class="side-menu-header">القائمة <span class="side-menu-close" id="closeMenu">&times;</span></div>
+  <ul>
+    <li><a href="#">تواصل معنا</a></li>
+    <li><a href="#">الدعم الفني</a></li>
+    <li><a href="#">الإبلاغ عن مشكلة</a></li>
+    <li><a href="#">الأسئلة الشائعة</a></li>
+  </ul>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<section class="hero">
+  <h1>مكافآت رائعة للمراهنات الرياضية والكازينو</h1>
+  <p>احصل على رهانات مجانية رائعة، دورات مجانية، وأموال حقيقية</p>
+  <a href="signup/" class="cta">ابدأ الآن</a>
+</section>
+
+<section class="recommended-section">
+  <h3 class="recommended-title">الطرق الموصى بها</h3>
+  <div class="recommended-wrapper">
+    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/tCQqLF96/recharge.png"></div><div class="bottom-section">Al Barid</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png"></div><div class="bottom-section">Attijari</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png"></div><div class="bottom-section">CIH</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png"></div><div class="bottom-section">Cash Plus</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png"></div><div class="bottom-section">Barid Pay</div></div>
+    <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png"></div><div class="bottom-section">Banque Populaire</div></div>
+  </div>
+</section>
+
+<section class="bonus-section">
+  <h2>مكافأة 100% على إيداعك الأول</h2>
+  <p>سجل واحصل على ما يصل إلى 2200 درهم MAD لعملية الشحن الأولى الخاصة بك</p>
+  <a href="signup/" class="learn-btn">سجّل الآن</a>
+</section>
+
+<footer>
+  <div>
+    <h3>عن منصتنا</h3>
+    <ul>
+      <li><a href="#">من نحن</a></li>
+      <li><a href="#">خدماتنا</a></li>
+      <li><a href="#">الشروط والأحكام</a></li>
+      <li><a href="#">سياسة الخصوصية</a></li>
+    </ul>
+    <h3>الدعم والمساعدة</h3>
+    <ul>
+      <li><a href="#">تواصل معنا</a></li>
+      <li><a href="#">الأسئلة الشائعة</a></li>
+      <li><a href="#">الإبلاغ عن مشكلة</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">© 2025 منصتنا. جميع الحقوق محفوظة.</div>
+</footer>
 
 <script>
-  const userId = localStorage.getItem("userId") || "غير مسجل";
-  document.getElementById("userIdDisplay").textContent = "id: " + userId;
-
-  const toast = document.getElementById('toast');
-  function showToast(msg){
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
-  }
-
-  document.getElementById('withdraw-option').addEventListener('click', () => {
-    showToast('الرجاء إجراء الإيداع أولاً للتمكن من استخدام خاصية السحب عبر id.');
-  });
-
-  document.getElementById('deposit-option').addEventListener('click', () => {
-    document.getElementById('recommended').scrollIntoView({ behavior: 'smooth' });
-  });
-
-  document.querySelectorAll('.bank-card').forEach(card => {
-    const logo = card.querySelector('.top-section img');
-    const encoded = card.dataset.enc;
-    const overlay = document.getElementById('overlay');
-
-    const go = () => {
-      try {
-        logo.classList.add('animate-back');
-        overlay.classList.add('active');
-        const url = atob(encoded);
-        setTimeout(() => location.href = url, 600);
-      } catch(e) {
-        console.warn("تم منع عملية مشبوهة.");
-      }
-    };
-
-    card.addEventListener('click', go);
-
-    card.addEventListener('touchstart', (e) => {
-      const touch = e.touches[0];
-      card.dataset.touchX = touch.clientX;
-      card.dataset.touchY = touch.clientY;
-    }, { passive: true });
-
-    card.addEventListener('touchend', (e) => {
-      const touch = e.changedTouches[0];
-      const deltaX = Math.abs(touch.clientX - card.dataset.touchX);
-      const deltaY = Math.abs(touch.clientY - card.dataset.touchY);
-      if (deltaX < 10 && deltaY < 10) go();
-    });
-  });
-
-  window.addEventListener("pageshow", function() {
-    const overlay = document.getElementById('overlay');
-    if (overlay) overlay.classList.remove('active');
-    document.querySelectorAll('.top-section img').forEach(img => {
-      img.classList.remove('animate-back');
-    });
-  });
-
-  if (navigator.webdriver || /bot|crawl|spider|crawling/i.test(navigator.userAgent)) {
-    document.body.innerHTML = "";
-    alert("تم حظر الوصول.");
-  }
+  const menuBtn=document.getElementById('menuBtn'),
+        sideMenu=document.getElementById('sideMenu'),
+        closeMenu=document.getElementById('closeMenu'),
+        overlay=document.getElementById('overlay');
+  menuBtn.onclick=()=>{sideMenu.classList.add('active');overlay.classList.add('active');}
+  closeMenu.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active');}
+  overlay.onclick=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active');}
 </script>
+
 </body>
 </html>
