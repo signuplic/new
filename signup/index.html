@@ -12,16 +12,13 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{font-family:Inter,system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif;background:#fff;color:var(--ink)}
-
   .sysbar{position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top, 0px);background:#0052ff;z-index:10;pointer-events:none}
-
   .splash{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:20}
   .dots{display:flex;gap:10px}
   .dot{width:10px;height:10px;border-radius:50%;background:#0052ff;animation:blink 1.05s infinite}
   .dot:nth-child(2){animation-delay:.16s}
   .dot:nth-child(3){animation-delay:.32s}
   @keyframes blink{0%,80%,100%{opacity:.35;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
-
   .shell{max-width:400px;margin:0 auto;padding:calc(env(safe-area-inset-top, 0px) + 16px) 18px 24px}
   .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
   .mark{width:36px;height:36px}
@@ -66,13 +63,14 @@
           <option>MELBET</option>
           <option>MEGAPARI</option>
           <option>STAKE</option>
+          <option>MYSTAKE</option>
           <option>GOOOBET</option>
           <option>RISCOBET</option>
           <option>888STARZ</option>
         </select>
       </div>
 
-      <div class="group">
+      <div class="group" id="input-group">
         <span class="label">أدخل الـ ID</span>
         <input id="uid" class="field" type="text" inputmode="numeric" pattern="[0-9]{4,15}" maxlength="15" placeholder="مثال: 1234567">
       </div>
@@ -87,10 +85,37 @@
 <script>
   const splash=document.getElementById('splash'),app=document.getElementById('app');
   const platform=document.getElementById('platform'),uid=document.getElementById('uid'),go=document.getElementById('go');
+  const inputGroup=document.getElementById('input-group');
+  
   const show=()=>{splash.style.display='none';app.style.display='block'};
   if(document.readyState==='complete'){setTimeout(show,900)}else{addEventListener('load',()=>setTimeout(show,900))}
-  function valid(){const okP=platform.value&&platform.value!=='';const okI=/^[0-9]{4,15}$/.test(uid.value.trim());go.disabled=!(okP&&okI)}
-  platform.addEventListener('change',valid);uid.addEventListener('input',valid);
+
+  function valid(){
+    const okP=platform.value && platform.value!=='';
+    const okI=uid.value.trim().length>0;
+    go.disabled=!(okP && okI);
+  }
+
+  platform.addEventListener('change',()=>{
+    if(platform.value==="STAKE" || platform.value==="MYSTAKE"){
+      inputGroup.querySelector('.label').textContent="أدخل رابط QR";
+      uid.type="url";
+      uid.pattern="";
+      uid.placeholder="مثال: https://example.com/qr";
+      uid.removeAttribute("inputmode");
+      uid.removeAttribute("maxlength");
+    }else{
+      inputGroup.querySelector('.label').textContent="أدخل الـ ID";
+      uid.type="text";
+      uid.pattern="[0-9]{4,15}";
+      uid.placeholder="مثال: 1234567";
+      uid.setAttribute("inputmode","numeric");
+      uid.setAttribute("maxlength","15");
+    }
+    valid();
+  });
+
+  uid.addEventListener('input',valid);
 </script>
 
 </body>
