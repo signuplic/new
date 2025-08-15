@@ -79,9 +79,9 @@
     width:44px;height:44px;border-radius:14px;background:linear-gradient(180deg,#f5f7fb,#eef2f7);
     border:1px solid var(--line);display:grid;place-items:center;overflow:hidden
   }
-  .top-section img{width:26px;height:26px;object-fit:cover}
+  .top-section img{width:26px;height:26px;object-fit:contain}
   .asset-name{font-weight:800;font-size:15px;line-height:1.2}
-  .asset-sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .asset-sub{font-size:12px;color:#64748b;margin-top:2px}
   .bottom-section{margin-top:8px;display:flex;align-items:flex-end;justify-content:space-between}
   .tag{padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:#f8fafc;font-size:12px;color:#111;font-weight:700}
   .delta{font-weight:800;font-size:14px;color:#16a34a}
@@ -133,13 +133,15 @@
   </div>
 
   <div class="tabs-panes">
-    <!-- تبويب مواقع المراهنات: نسب بونص مختلفة + بدون أحرف فوق الصور -->
+    <!-- تبويب مواقع المراهنات (مع شعارات وصور فعلية ونِسَب بونص مختلفة) -->
     <div class="pane active" id="pane-bets">
       <div class="recommended-wrapper">
         <!-- Mega Pari -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="https://i.postimg.cc/xdy6d0h9/charge.jpg" alt="Mega Pari"></div>
+            <div class="ico-wrap">
+              <img src="https://tse2.mm.bing.net/th/id/OIP.FCspm_oPBkPJ-cU2PojWMgAAAA?pid=Api" alt="Mega Pari">
+            </div>
             <div><div class="asset-name">Mega Pari</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+100%</div></div>
@@ -147,7 +149,9 @@
         <!-- GooBet -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="https://i.postimg.cc/J4CVthdk/recharge.jpg" alt="GooBet"></div>
+            <div class="ico-wrap">
+              <img src="https://tse1.mm.bing.net/th/id/OIP.pwFJ8Hn9flF9oT6a3cA8VwAAAA?pid=Api" alt="GooBet">
+            </div>
             <div><div class="asset-name">GooBet</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+75%</div></div>
@@ -155,7 +159,9 @@
         <!-- MyStake -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="" alt="MyStake" onerror="this.style.display='none'"></div>
+            <div class="ico-wrap">
+              <img src="https://tse4.mm.bing.net/th/id/OIP.VlmkU5mobBKqD6SMZwrhvAHaEK?pid=Api" alt="MyStake">
+            </div>
             <div><div class="asset-name">MyStake</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+120%</div></div>
@@ -163,7 +169,9 @@
         <!-- Stake -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="" alt="Stake" onerror="this.style.display='none'"></div>
+            <div class="ico-wrap">
+              <img src="https://tse2.mm.bing.net/th/id/OIP.BAzgC0zstfhlTK8oi823rAHaHa?pid=Api" alt="Stake">
+            </div>
             <div><div class="asset-name">Stake</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+200%</div></div>
@@ -171,7 +179,9 @@
         <!-- 888Starz -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="" alt="888Starz" onerror="this.style.display='none'"></div>
+            <div class="ico-wrap">
+              <img src="https://tse3.mm.bing.net/th/id/OIP.5l7Kp7p5hKv5f9Y9Zk9fVQHaEK?pid=Api" alt="888Starz">
+            </div>
             <div><div class="asset-name">888Starz</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+150%</div></div>
@@ -179,7 +189,9 @@
         <!-- RiskoBet -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="https://i.postimg.cc/sXjs74gV/8de62e0d-faf0-4657-aa87-962278a7542e.jpg" alt="RiskoBet"></div>
+            <div class="ico-wrap">
+              <img src="https://i.postimg.cc/sXjs74gV/8de62e0d-faf0-4657-aa87-962278a7542e.jpg" alt="RiskoBet">
+            </div>
             <div><div class="asset-name">RiskoBet</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+90%</div></div>
@@ -187,7 +199,9 @@
         <!-- 1xBet -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="https://i.postimg.cc/7ZT29mnc/recharge.png" alt="1xBet"></div>
+            <div class="ico-wrap">
+              <img src="https://i.postimg.cc/7ZT29mnc/recharge.png" alt="1xBet">
+            </div>
             <div><div class="asset-name">1xBet</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+100%</div></div>
@@ -195,7 +209,9 @@
         <!-- LINEBET -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="" alt="LINEBET" onerror="this.style.display='none'"></div>
+            <div class="ico-wrap">
+              <img src="https://tse3.mm.bing.net/th/id/OIP.LfV1rKPSx0oC9VwA1NIhTgHaEK?pid=Api" alt="LINEBET">
+            </div>
             <div><div class="asset-name">LINEBET</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+110%</div></div>
@@ -203,7 +219,9 @@
         <!-- Betwinner -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="" alt="Betwinner" onerror="this.style.display='none'"></div>
+            <div class="ico-wrap">
+              <img src="https://tse3.mm.bing.net/th/id/OIP.xb5K3L0dV0f2xvGfM3k6VwHaEK?pid=Api" alt="Betwinner">
+            </div>
             <div><div class="asset-name">Betwinner</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+130%</div></div>
@@ -211,7 +229,9 @@
         <!-- MelBet -->
         <div class="bank-card">
           <div class="top-section">
-            <div class="ico-wrap"><img src="https://i.postimg.cc/1t3bhntk/recharge.jpg" alt="MelBet"></div>
+            <div class="ico-wrap">
+              <img src="https://i.postimg.cc/1t3bhntk/recharge.jpg" alt="MelBet">
+            </div>
             <div><div class="asset-name">MelBet</div><div class="asset-sub">بونص ترحيبي</div></div>
           </div>
           <div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+140%</div></div>
