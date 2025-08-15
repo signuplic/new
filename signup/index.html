@@ -3,86 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تسجيل الدخول</title>
+<title>Mobicash Login</title>
 <style>
-  body{margin:0;font-family:sans-serif;background:#f5f5f5;color:#111;direction:rtl}
-  header{background:#0052ff;color:#fff;padding:14px;text-align:center;font-weight:bold}
-  .container{max-width:400px;margin:30px auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-  label{display:block;margin-bottom:6px;font-weight:bold}
-  select,input,button{width:100%;padding:10px;margin-bottom:14px;border:1px solid #ccc;border-radius:8px;font-size:15px}
-  button{background:#0052ff;color:#fff;border:none;cursor:pointer}
-  .qr-box{border:1px solid #ddd;padding:15px;border-radius:10px;background:#f9f9f9}
-  .qr-options{display:flex;gap:10px;margin-top:10px}
-  .qr-options button{flex:1;background:#e9eaeb;color:#111;border:none;border-radius:8px;cursor:pointer;padding:10px}
+  body{font-family:sans-serif;background:#f6f8fa;margin:0;padding:20px}
+  .container{max-width:360px;margin:auto;background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);padding:20px}
+  h2{text-align:center;margin-bottom:20px}
+  label{display:block;margin-bottom:6px;font-size:14px;color:#333}
+  select,input{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:14px}
+  .field{margin-bottom:16px}
+  .btn{background:#0052ff;color:#fff;border:none;padding:10px 15px;border-radius:8px;cursor:pointer;width:100%;font-size:15px}
 </style>
 </head>
 <body>
 
-<header>منصة الدخول</header>
-
 <div class="container">
-  <label for="platform">اختر المنصة</label>
-  <select id="platform">
-    <option value="">-- اختر --</option>
-    <option value="stake">STAKE</option>
-    <option value="mystake">MYSTAKE</option>
-    <option value="1xbet">1XBET</option>
-    <option value="linebet">LINEBET</option>
-    <option value="melbet">MELBET</option>
-  </select>
-
-  <div id="id-section">
-    <label for="userid">أدخل الـ ID</label>
-    <input type="text" id="userid" placeholder="اكتب الـ ID هنا">
+  <h2>تسجيل الدخول</h2>
+  <div class="field">
+    <label>اختر المنصة</label>
+    <select id="platform">
+      <option value="">-- اختر --</option>
+      <option value="stake">STAKE</option>
+      <option value="mystake">MYSTAKE</option>
+      <option value="linebet">LineBet</option>
+      <option value="1xbet">1xBet</option>
+      <option value="melbet">MelBet</option>
+    </select>
   </div>
-
-  <div id="qr-section" style="display:none;">
-    <label for="qrLink">رابط الكود</label>
-    <input type="text" id="qrLink" placeholder="هنا يظهر أو اكتب الرابط">
-    <div class="qr-box">
-      <div class="qr-options">
-        <button id="uploadBtn">📁 تحميل صورة</button>
-        <button id="linkBtn">🔗 إدخال رابط</button>
-      </div>
-      <input type="file" id="fileInput" accept="image/*" style="display:none;">
-    </div>
+  <div class="field">
+    <label id="idLabel">أدخل ID المنصة</label>
+    <input type="text" id="idInput" placeholder="ID">
   </div>
-
-  <button id="submitBtn">تأكيد</button>
+  <button class="btn">متابعة</button>
 </div>
 
 <script>
-  const platform=document.getElementById('platform');
-  const idSection=document.getElementById('id-section');
-  const qrSection=document.getElementById('qr-section');
-  const fileInput=document.getElementById('fileInput');
-  const qrLink=document.getElementById('qrLink');
-  const uploadBtn=document.getElementById('uploadBtn');
-  const linkBtn=document.getElementById('linkBtn');
+  const platform = document.getElementById('platform');
+  const idLabel = document.getElementById('idLabel');
+  const idInput = document.getElementById('idInput');
 
   platform.addEventListener('change',()=>{
-    if(platform.value==="stake" || platform.value==="mystake"){
-      idSection.style.display="none";
-      qrSection.style.display="block";
-    }else{
-      idSection.style.display="block";
-      qrSection.style.display="none";
+    if(platform.value === 'stake' || platform.value === 'mystake'){
+      idLabel.textContent = "رابط QR Code فقط";
+      idInput.placeholder = "https://...";
+      idInput.type = "url";
+    } else {
+      idLabel.textContent = "أدخل ID المنصة";
+      idInput.placeholder = "ID";
+      idInput.type = "text";
     }
-  });
-
-  uploadBtn.addEventListener('click',()=>{
-    fileInput.click();
-  });
-
-  fileInput.addEventListener('change',()=>{
-    if(fileInput.files.length>0){
-      qrLink.value=fileInput.files[0].name; // فقط اسم الملف
-    }
-  });
-
-  linkBtn.addEventListener('click',()=>{
-    const userLink=prompt("أدخل رابط الصورة:");
-    if(userLink) qrLink.value=userLink;
   });
 </script>
 
