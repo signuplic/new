@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>واجهة تسجيل</title>
+<title>تسجيل الدخول</title>
 <style>
 body{margin:0;font-family:sans-serif;background:#fff;color:#111;direction:rtl}
 .loader{display:flex;justify-content:center;align-items:center;height:100vh;background:#fff}
@@ -11,13 +11,13 @@ body{margin:0;font-family:sans-serif;background:#fff;color:#111;direction:rtl}
 .dot:nth-child(2){animation-delay:.2s}
 .dot:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
-.container{display:none;max-width:400px;margin:50px auto;padding:20px}
-h2{text-align:center;margin-bottom:20px}
+.container{display:none;max-width:420px;margin:40px auto;padding:20px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+h2{text-align:center;margin-bottom:20px;color:#0052ff}
 label{display:block;margin-top:15px;margin-bottom:5px;font-weight:bold}
-input,select,button{width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:16px}
+input,select,button{width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:15px}
 button{background:#0052ff;color:#fff;border:none;cursor:pointer;margin-top:20px}
 .qr-section{margin-top:15px;display:none}
-.qr-result{margin-top:10px;padding:10px;background:#f5f5f5;border-radius:5px;word-break:break-all}
+.qr-result{margin-top:10px;padding:10px;background:#f5f5f5;border-radius:5px;word-break:break-all;font-size:14px}
 </style>
 </head>
 <body>
@@ -30,18 +30,24 @@ button{background:#0052ff;color:#fff;border:none;cursor:pointer;margin-top:20px}
 
 <div class="container">
   <h2>تسجيل الدخول</h2>
+
   <label for="platform">اختر المنصة</label>
   <select id="platform">
     <option value="">-- اختر --</option>
     <option value="stake">STAKE</option>
     <option value="mystake">MYSTAKE</option>
-    <option value="other">منصة أخرى</option>
+    <option value="melbet">Melbet</option>
+    <option value="megapari">MegaPari</option>
+    <option value="linebet">LineBet</option>
+    <option value="1xbet">1xBet</option>
+    <option value="gooobet">Gooobet</option>
+    <option value="risco">RiscoBet</option>
+    <option value="888starz">888starz</option>
+    <option value="mostbet">MostBet</option>
   </select>
 
-  <div id="id-section">
-    <label for="userid">أدخل ID</label>
-    <input type="text" id="userid" placeholder="اكتب ID الخاص بك">
-  </div>
+  <label for="userid">أدخل ID</label>
+  <input type="text" id="userid" placeholder="اكتب ID الخاص بك">
 
   <div class="qr-section" id="qr-section">
     <label for="qr-upload">ارفع صورة QR</label>
@@ -60,18 +66,16 @@ setTimeout(()=>{
 },2000);
 
 const platform=document.getElementById('platform');
-const idSection=document.getElementById('id-section');
 const qrSection=document.getElementById('qr-section');
 const qrUpload=document.getElementById('qr-upload');
 const qrResult=document.getElementById('qr-result');
 
 platform.addEventListener('change',()=>{
   if(platform.value==='stake' || platform.value==='mystake'){
-    idSection.style.display='none';
     qrSection.style.display='block';
   }else{
-    idSection.style.display='block';
     qrSection.style.display='none';
+    qrResult.textContent='';
   }
 });
 
@@ -84,21 +88,29 @@ qrUpload.addEventListener('change',e=>{
     img.onload=function(){
       const canvas=document.createElement('canvas');
       const ctx=canvas.getContext('2d');
-      canvas.width=img.width;
-      canvas.height=img.height;
-      ctx.drawImage(img,0,0);
-      const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
+      const scale=4; 
+      canvas.width=img.width*scale;
+      canvas.height=img.height*scale;
+      ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+      let imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
+      enhanceImage(imageData.data);
       const code=jsQR(imageData.data,imageData.width,imageData.height,{inversionAttempts:"attemptBoth"});
-      if(code){
-        qrResult.textContent="الرابط: "+code.data;
-      }else{
-        qrResult.textContent="لم يتم التعرف على الكود، حاول بصورة أوضح.";
-      }
+      qrResult.textContent= code ? "الرابط: "+code.data : "لم يتم التعرف على الكود.";
     };
     img.src=reader.result;
   };
   reader.readAsDataURL(file);
 });
+
+function enhanceImage(data){
+  for(let i=0;i<data.length;i+=4){
+    let avg=(data[i]+data[i+1]+data[i+2])/3;
+    avg=avg>128?255:0;
+    data[i]=data[i+1]=data[i+2]=avg;
+  }
+}
 </script>
+
 </body>
 </html>
