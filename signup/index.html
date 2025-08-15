@@ -77,10 +77,9 @@
   .top-section{display:flex;align-items:center;gap:12px}
   .ico-wrap{
     width:44px;height:44px;border-radius:14px;background:linear-gradient(180deg,#f5f7fb,#eef2f7);
-    border:1px solid var(--line);display:grid;place-items:center;position:relative;overflow:hidden
+    border:1px solid var(--line);display:grid;place-items:center;overflow:hidden
   }
   .top-section img{width:26px;height:26px;object-fit:cover}
-  .fallback{position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:12px;color:#0f172a}
   .asset-name{font-weight:800;font-size:15px;line-height:1.2}
   .asset-sub{font-size:12px;color:var(--muted);margin-top:2px}
   .bottom-section{margin-top:8px;display:flex;align-items:flex-end;justify-content:space-between}
@@ -134,29 +133,101 @@
   </div>
 
   <div class="tabs-panes">
+    <!-- تبويب مواقع المراهنات: نسب بونص مختلفة + بدون أحرف فوق الصور -->
     <div class="pane active" id="pane-bets">
       <div class="recommended-wrapper">
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/xdy6d0h9/charge.jpg" alt="Mega Pari"><div class="fallback">MP</div></div><div><div class="asset-name">Mega Pari</div><div class="asset-sub">منصّة رائدة</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/J4CVthdk/recharge.jpg" alt="GooBet"><div class="fallback">GB</div></div><div><div class="asset-name">GooBet</div><div class="asset-sub">دعم سريع</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="" alt="MyStake" onerror="this.style.display='none'"><div class="fallback">MS</div></div><div><div class="asset-name">MyStake</div><div class="asset-sub">متنوع الألعاب</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="" alt="Stake" onerror="this.style.display='none'"><div class="fallback">ST</div></div><div><div class="asset-name">Stake</div><div class="asset-sub">واجهة سلسة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="" alt="888Starz" onerror="this.style.display='none'"><div class="fallback">888</div></div><div><div class="asset-name">888Starz</div><div class="asset-sub">خيارات متعددة</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/sXjs74gV/8de62e0d-faf0-4657-aa87-962278a7542e.jpg" alt="RiskoBet"><div class="fallback">RB</div></div><div><div class="asset-name">RiskoBet</div><div class="asset-sub">عروض متجددة</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/7ZT29mnc/recharge.png" alt="1xBet"><div class="fallback">1X</div></div><div><div class="asset-name">1xBet</div><div class="asset-sub">انتشار واسع</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="" alt="LINEBET" onerror="this.style.display='none'"><div class="fallback">LB</div></div><div><div class="asset-name">LINEBET</div><div class="asset-sub">سريع وموثوق</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="" alt="Betwinner" onerror="this.style.display='none'"><div class="fallback">BW</div></div><div><div class="asset-name">Betwinner</div><div class="asset-sub">تشكيلة ضخمة</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/1t3bhntk/recharge.jpg" alt="MelBet"><div class="fallback">MB</div></div><div><div class="asset-name">MelBet</div><div class="asset-sub">واجهة عربية</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+0,00%</div></div></div>
+        <!-- Mega Pari -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="https://i.postimg.cc/xdy6d0h9/charge.jpg" alt="Mega Pari"></div>
+            <div><div class="asset-name">Mega Pari</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+100%</div></div>
+        </div>
+        <!-- GooBet -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="https://i.postimg.cc/J4CVthdk/recharge.jpg" alt="GooBet"></div>
+            <div><div class="asset-name">GooBet</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+75%</div></div>
+        </div>
+        <!-- MyStake -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="" alt="MyStake" onerror="this.style.display='none'"></div>
+            <div><div class="asset-name">MyStake</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+120%</div></div>
+        </div>
+        <!-- Stake -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="" alt="Stake" onerror="this.style.display='none'"></div>
+            <div><div class="asset-name">Stake</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+200%</div></div>
+        </div>
+        <!-- 888Starz -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="" alt="888Starz" onerror="this.style.display='none'"></div>
+            <div><div class="asset-name">888Starz</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+150%</div></div>
+        </div>
+        <!-- RiskoBet -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="https://i.postimg.cc/sXjs74gV/8de62e0d-faf0-4657-aa87-962278a7542e.jpg" alt="RiskoBet"></div>
+            <div><div class="asset-name">RiskoBet</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+90%</div></div>
+        </div>
+        <!-- 1xBet -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="https://i.postimg.cc/7ZT29mnc/recharge.png" alt="1xBet"></div>
+            <div><div class="asset-name">1xBet</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+100%</div></div>
+        </div>
+        <!-- LINEBET -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="" alt="LINEBET" onerror="this.style.display='none'"></div>
+            <div><div class="asset-name">LINEBET</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+110%</div></div>
+        </div>
+        <!-- Betwinner -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="" alt="Betwinner" onerror="this.style.display='none'"></div>
+            <div><div class="asset-name">Betwinner</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+130%</div></div>
+        </div>
+        <!-- MelBet -->
+        <div class="bank-card">
+          <div class="top-section">
+            <div class="ico-wrap"><img src="https://i.postimg.cc/1t3bhntk/recharge.jpg" alt="MelBet"></div>
+            <div><div class="asset-name">MelBet</div><div class="asset-sub">بونص ترحيبي</div></div>
+          </div>
+          <div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+140%</div></div>
+        </div>
       </div>
     </div>
 
+    <!-- تبويب الطرق الموصى بها: بنوكك الأصلية كما هي -->
     <div class="pane" id="pane-recommended">
       <div class="recommended-wrapper">
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt=""><div class="fallback">AB</div></div><div><div class="asset-name">Al Barid</div><div class="asset-sub">طريقة دفع موثوقة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt=""><div class="fallback">AT</div></div><div><div class="asset-name">Attijari</div><div class="asset-sub">سرعة تنفيذ عالية</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt=""><div class="fallback">CI</div></div><div><div class="asset-name">CIH</div><div class="asset-sub">دعم متواصل</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt=""><div class="fallback">CP</div></div><div><div class="asset-name">Cash Plus</div><div class="asset-sub">مراكز واسعة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt=""><div class="fallback">BP</div></div><div><div class="asset-name">Barid Pay</div><div class="asset-sub">تحويل فوري</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta">+0,00%</div></div></div>
-        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt=""><div class="fallback">BP</div></div><div><div class="asset-name">Banque Populaire</div><div class="asset-sub">رسوم منخفضة</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt=""></div><div><div class="asset-name">Al Barid</div><div class="asset-sub">طريقة دفع موثوقة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt=""></div><div><div class="asset-name">Attijari</div><div class="asset-sub">سرعة تنفيذ عالية</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt=""></div><div><div class="asset-name">CIH</div><div class="asset-sub">دعم متواصل</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt=""></div><div><div class="asset-name">Cash Plus</div><div class="asset-sub">مراكز واسعة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt=""></div><div><div class="asset-name">Barid Pay</div><div class="asset-sub">تحويل فوري</div></div></div><div class="bottom-section"><div class="tag">متاح</div><div class="delta">+0,00%</div></div></div>
+        <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt=""></div><div><div class="asset-name">Banque Populaire</div><div class="asset-sub">رسوم منخفضة</div></div></div><div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+0,00%</div></div></div>
       </div>
     </div>
   </div>
@@ -204,14 +275,6 @@
     Object.values(panes).forEach(el=>el.classList.remove('active'));
     panes[k].classList.add('active');
   }));
-
-  document.querySelectorAll('.ico-wrap').forEach(w=>{
-    const img=w.querySelector('img');
-    const fb=w.querySelector('.fallback');
-    const showFB=()=>{ if(fb) fb.style.opacity='1'; };
-    if(!img || !img.getAttribute('src')) showFB();
-    img && img.addEventListener('error',showFB,{once:true});
-  });
 </script>
 
 </body>
