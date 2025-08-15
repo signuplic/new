@@ -7,11 +7,11 @@
 <title>صفحة عروض</title>
 <style>
   :root{
-    --bg:#ffffff;--ink:#0f172a;--muted:#5b6472;--line:#e6e9ee;--brand:#0052ff;--brand-ink:#ffffff;
-    --surface:#f7f8fa;--radius:18px;--shadow:0 10px 30px rgba(0,0,0,.08)
+    --bg:#ffffff;--ink:#0f172a;--muted:#64748b;--line:#e8ecf2;--brand:#0052ff;
+    --card:#ffffff;--radius:22px;--shadow:0 12px 28px rgba(16,24,40,.08)
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:'Segoe UI',Tahoma,sans-serif;background:#fff;color:var(--ink);overflow-x:hidden}
+  body{margin:0;font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
   a{text-decoration:none}
   img{max-width:100%;display:block}
 
@@ -20,27 +20,27 @@
     padding:0 16px;background:#fff;border-bottom:1px solid var(--line);
     height:72px;box-sizing:border-box;position:sticky;top:0;z-index:100
   }
-  .logo{font-size:26px;font-weight:bold;color:var(--brand)}
+  .logo{font-size:26px;font-weight:800;color:var(--brand)}
   .btn-link{
-    background:var(--brand);color:var(--brand-ink);padding:10px 18px;border:none;border-radius:999px;
-    font-weight:600;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    box-shadow:0 6px 16px rgba(0,82,255,.18);transition:.18s ease
+    background:var(--brand);color:#fff;padding:10px 18px;border:none;border-radius:999px;
+    font-weight:700;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:0 8px 18px rgba(0,82,255,.18);transition:.18s ease
   }
   .btn-link:hover{transform:translateY(-1px)}
   .menu{width:26px;height:18px;display:grid;gap:5px;cursor:pointer}
-  .menu span{height:2px;background:#1a1a1a;border-radius:2px}
+  .menu span{height:2px;background:#1f2937;border-radius:2px}
 
   .side-menu{
     position:fixed;top:0;right:-280px;width:280px;height:100%;background:#fff;border-left:1px solid var(--line);
     box-shadow:-10px 0 30px rgba(0,0,0,.08);transition:right .28s ease;z-index:1002;display:flex;flex-direction:column
   }
   .side-menu.active{right:0}
-  .side-menu-header{padding:16px;font-weight:700;font-size:18px;background:var(--brand);color:#fff;position:relative}
+  .side-menu-header{padding:16px;font-weight:800;font-size:18px;background:var(--brand);color:#fff;position:relative}
   .side-menu ul{list-style:none;padding:8px;margin:0;flex:1}
   .side-menu ul li{border-bottom:1px solid var(--line)}
-  .side-menu ul li a{display:block;padding:14px 12px;color:#222;font-size:15px}
+  .side-menu ul li a{display:block;padding:14px 12px;color:#111;font-size:15px}
   .side-menu ul li a:hover{background:#f5f7ff}
-  .side-menu-close{position:absolute;top:12px;left:16px;font-size:22px;cursor:pointer;color:#fff;line-height:1}
+  .side-menu-close{position:absolute;top:12px;left:16px;font-size:22px;cursor:pointer;color:#fff}
 
   .overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:saturate(140%) blur(3px);
     opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:1000}
@@ -50,53 +50,59 @@
   .hero h1{font-size:clamp(22px,4.8vw,34px);font-weight:800;line-height:1.35;margin:0 0 12px}
   .hero p{font-size:clamp(14px,2.6vw,16px);line-height:1.7;color:var(--muted);margin:0 0 24px}
   .cta{background:var(--brand);color:#fff;padding:14px 28px;font-size:16px;border:none;border-radius:999px;
-    font-weight:700;display:inline-block;box-shadow:0 8px 20px rgba(0,82,255,.18);transition:.18s ease}
+    font-weight:800;display:inline-block;box-shadow:0 10px 22px rgba(0,82,255,.18);transition:.18s ease}
   .cta:hover{transform:translateY(-1px)}
 
-  /* القسم مع الأيقونتين + بطاقات نظيفة */
+  /* شريط الأيقونتين */
   .recommended-section{background:linear-gradient(180deg,#f5f7fb,#eef2f7);padding:16px 12px 28px;border-top:1px solid var(--line)}
-  .seg{
-    display:flex;gap:10px;align-items:center;justify-content:flex-start;max-width:560px;margin:0 auto 12px
-  }
-  .seg .pill{
-    display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;
-    background:#e9edf4;color:#111;border:1px solid var(--line);font-weight:700;font-size:14px
-  }
-  .seg .pill.active{background:#1a73e8;color:#fff;border-color:transparent}
-  .seg .icon{width:18px;height:18px;display:inline-block}
-  .seg .icon svg{width:100%;height:100%}
+  .seg{display:flex;gap:10px;align-items:center;justify-content:flex-start;max-width:600px;margin:0 auto 12px}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#e9edf4;color:#111;border:1px solid var(--line);font-weight:800;font-size:14px}
+  .pill.active{background:#1a73e8;color:#fff;border-color:transparent}
+  .pill .icon{width:18px;height:18px}
+  .pill svg{width:100%;height:100%}
 
-  .recommended-wrapper{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:560px;margin:0 auto
-  }
-  @media(max-width:700px){.recommended-wrapper{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:460px){.recommended-wrapper{grid-template-columns:1fr}}
+  /* الشبكة */
+  .recommended-wrapper{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:620px;margin:0 auto}
+  @media(min-width:740px){.recommended-wrapper{grid-template-columns:repeat(3,1fr)}}
 
+  /* بطاقة أيقونية فخمة (ستايل Coinbase) */
   .bank-card{
-    background:#fff;border:1px solid var(--line);border-radius:22px;
-    box-shadow:0 6px 24px rgba(30,40,60,.06);height:116px;display:flex;flex-direction:column;justify-content:center;
-    padding:14px;transition:transform .16s ease
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    height:128px;
+    padding:14px;
+    display:grid;
+    grid-template-rows:auto 1fr;
+    transition:transform .16s ease, box-shadow .16s ease;
   }
   .bank-card:hover{transform:translateY(-2px)}
-  .top-section{display:flex;align-items:center;justify-content:center;margin-bottom:10px;height:auto;padding:0;background:transparent}
-  .top-section img{max-width:56px;max-height:56px;object-fit:contain}
-  .bottom-section{
-    text-align:center;font-size:14px;color:#1f2937;background:transparent;height:auto;padding:0;font-weight:700
+  .top-section{
+    display:flex;align-items:center;gap:12px;background:transparent;height:auto;padding:0
   }
+  /* دائرة الأيقونة */
+  .ico-wrap{
+    width:44px;height:44px;border-radius:14px;background:linear-gradient(180deg,#f5f7fb,#eef2f7);
+    border:1px solid var(--line);display:grid;place-items:center;box-shadow:inset 0 1px 0 #fff
+  }
+  .top-section img{width:26px;height:26px;object-fit:contain}
 
-  .bonus-section{background:#0f1114;color:#fff;padding:48px 20px;text-align:center}
-  .bonus-section h2{font-size:clamp(20px,4vw,30px);font-weight:800;margin:0 0 10px}
-  .bonus-section p{font-size:15px;color:#d6d7d9;margin:0 0 18px}
-  .learn-btn{background:#eef0f3;color:#0f172a;padding:12px 28px;border-radius:999px;font-weight:600;display:inline-block;font-size:15px;transition:.18s ease}
-  .learn-btn:hover{transform:translateY(-1px)}
+  /* الاسم والسطر الثانوي */
+  .asset-name{font-weight:800;font-size:15px;line-height:1.2}
+  .asset-sub{font-size:12px;color:var(--muted);margin-top:2px}
 
-  footer{background:#fff;border-top:1px solid var(--line);padding:28px 20px;font-size:14px;color:#444}
-  footer h3{font-size:16px;font-weight:800;margin:0 0 10px}
-  footer ul{list-style:none;padding:0;margin:0 0 18px}
-  footer ul li{margin:0 0 6px}
-  footer ul li a{color:#222}
-  footer ul li a:hover{color:var(--brand)}
-  .footer-bottom{border-top:1px solid var(--line);padding-top:10px;font-size:13px;text-align:center;color:#6b7280}
+  .bottom-section{
+    margin-top:8px;background:transparent;height:auto;padding:0;
+    display:flex;align-items:flex-end;justify-content:space-between
+  }
+  .tag{
+    padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:#f8fafc;
+    font-size:12px;color:#111;font-weight:700
+  }
+  .delta{font-weight:800;font-size:14px}
+  .down{color:#e11d48}
+  .up{color:#16a34a}
 </style>
 </head>
 <body>
@@ -141,29 +147,94 @@
   </div>
 
   <div class="recommended-wrapper">
+    <!-- البطاقة 1 -->
     <div class="bank-card">
-      <div class="top-section"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt=""></div>
-      <div class="bottom-section">Al Barid</div>
+      <div class="top-section">
+        <div class="ico-wrap"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt=""></div>
+        <div>
+          <div class="asset-name">Al Barid</div>
+          <div class="asset-sub">طريقة دفع موثوقة</div>
+        </div>
+      </div>
+      <div class="bottom-section">
+        <div class="tag">جاهزة</div>
+        <div class="delta down">0,00%</div>
+      </div>
     </div>
+
+    <!-- البطاقة 2 -->
     <div class="bank-card">
-      <div class="top-section"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt=""></div>
-      <div class="bottom-section">Attijari</div>
+      <div class="top-section">
+        <div class="ico-wrap"><img src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt=""></div>
+        <div>
+          <div class="asset-name">Attijari</div>
+          <div class="asset-sub">سرعة تنفيذ عالية</div>
+        </div>
+      </div>
+      <div class="bottom-section">
+        <div class="tag">موصى بها</div>
+        <div class="delta down">0,00%</div>
+      </div>
     </div>
+
+    <!-- البطاقة 3 -->
     <div class="bank-card">
-      <div class="top-section"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt=""></div>
-      <div class="bottom-section">CIH</div>
+      <div class="top-section">
+        <div class="ico-wrap"><img src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt=""></div>
+        <div>
+          <div class="asset-name">CIH</div>
+          <div class="asset-sub">دعم متواصل</div>
+        </div>
+      </div>
+      <div class="bottom-section">
+        <div class="tag">متاح</div>
+        <div class="delta down">0,00%</div>
+      </div>
     </div>
+
+    <!-- البطاقة 4 -->
     <div class="bank-card">
-      <div class="top-section"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt=""></div>
-      <div class="bottom-section">Cash Plus</div>
+      <div class="top-section">
+        <div class="ico-wrap"><img src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt=""></div>
+        <div>
+          <div class="asset-name">Cash Plus</div>
+          <div class="asset-sub">مراكز واسعة</div>
+        </div>
+      </div>
+      <div class="bottom-section">
+        <div class="tag">جاهزة</div>
+        <div class="delta down">0,00%</div>
+      </div>
     </div>
+
+    <!-- البطاقة 5 -->
     <div class="bank-card">
-      <div class="top-section"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt=""></div>
-      <div class="bottom-section">Barid Pay</div>
+      <div class="top-section">
+        <div class="ico-wrap"><img src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt=""></div>
+        <div>
+          <div class="asset-name">Barid Pay</div>
+          <div class="asset-sub">تحويل فوري</div>
+        </div>
+      </div>
+      <div class="bottom-section">
+        <div class="tag">متاح</div>
+        <div class="delta down">0,00%</div>
+      </div>
     </div>
+
+    <!-- البطاقة 6 -->
     <div class="bank-card">
-      <div class="top-section"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt=""></div>
-      <div class="bottom-section">Banque Populaire</div>
+      <div class="top-section">
+        <div class="ico-wrap"><img src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt=""></div>
+        <div>
+          <div class="asset-name">Banque Populaire</div>
+          <div class="asset-sub">رسوم منخفضة</div>
+        </div>
+      </div>
+      <div class="bottom-section">
+        <div class="tag">موصى بها</div>
+        <div class="delta up">+0,00%</div>
+      </div>
     </div>
   </div>
 </section>
