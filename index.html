@@ -9,15 +9,13 @@
   :root{
     --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e7edf4; --brand:#0052ff;
     --card:#ffffff; --radius:22px; --shadow:0 12px 28px rgba(16,24,40,.08);
-    --icon: 64px; --gap: 14px; --ring:#eff3f8;
-    --container: min(100%, 1200px);
+    --icon:64px; --gap:14px; --ring:#eff3f8; --container:min(100%,1200px);
   }
   *,*::before,*::after{box-sizing:border-box}
   html,body{height:100%}
   body{margin:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;moz-osx-font-smoothing:grayscale;overflow-x:hidden}
   img{max-width:100%;display:block}
   h1,h2,h3,p{margin:0}
-
   .container{width:var(--container);margin-inline:auto;padding-inline:12px}
 
   header{
@@ -35,8 +33,10 @@
   .menu{width:26px;height:18px;display:grid;gap:5px;cursor:pointer}
   .menu span{height:2px;background:#1f2937;border-radius:2px}
 
-  .side-menu{position:fixed;top:0;right:-280px;width:280px;height:100%;background:#fff;border-left:1px solid var(--line);
-    box-shadow:-10px 0 30px rgba(0,0,0,.08);transition:right .28s ease;z-index:1002;display:flex;flex-direction:column}
+  .side-menu{
+    position:fixed;top:0;right:-280px;width:280px;height:100%;background:#fff;border-left:1px solid var(--line);
+    box-shadow:-10px 0 30px rgba(0,0,0,.08);transition:right .28s ease;z-index:1002;display:flex;flex-direction:column;max-width:400px;
+  }
   .side-menu.active{right:0}
   .side-menu-header{padding:16px;font-weight:800;font-size:18px;background:var(--brand);color:#fff;position:relative}
   .side-menu ul{list-style:none;padding:8px;margin:0;flex:1}
@@ -44,9 +44,15 @@
   .side-menu a{display:block;padding:14px 12px;color:#111;font-size:15px;text-decoration:none}
   .side-menu a:hover{background:#f5f7ff}
   .side-menu-close{position:absolute;top:12px;left:16px;font-size:22px;cursor:pointer;color:#fff}
+
   .overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:saturate(140%) blur(3px);
     opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:1000}
   .overlay.active{opacity:1;pointer-events:auto}
+
+  @media(max-width:600px){
+    .side-menu{width:100%;right:-100%}
+    .side-menu.active{right:0}
+  }
 
   .hero{padding:56px 0;background:#fff}
   .hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
@@ -62,7 +68,6 @@
   .pill.active{background:#1a73e8;color:#fff;border-color:transparent}
   .pill .icon{width:18px;height:18px}
   .pill svg{width:100%;height:100%}
-
   .tabs-panes{margin:0 auto}
   .pane{display:none}
   .pane.active{display:block}
@@ -82,17 +87,15 @@
     inline-size:var(--icon); block-size:var(--icon);
     aspect-ratio:1/1; border-radius:50%; background:#fff; border:1px solid var(--ring);
     display:grid; place-items:center; overflow:hidden;
-    box-shadow:0 4px 14px rgba(15,23,42,.06), inset 0 1px 0 #fff;
-    flex:0 0 auto;
+    box-shadow:0 4px 14px rgba(15,23,42,.06), inset 0 1px 0 #fff; flex:0 0 auto;
   }
-  .ico-wrap img{width:72%; height:72%; object-fit:contain; display:block}
+  .ico-wrap img{width:72%;height:72%;object-fit:contain;display:block}
   .asset-name{font-weight:800;font-size:15px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
   .asset-sub{font-size:12px;color:var(--muted);margin-top:2px}
   .bottom-section{margin-top:10px;display:flex;align-items:center;justify-content:space-between}
   .tag{padding:6px 10px;border-radius:12px;border:1px solid var(--line);background:#f8fafc;font-size:12px;color:#111;font-weight:700}
   .delta{font-weight:800;font-size:14px;color:#16a34a}
-
-  .brand-gooobet{font-weight:900; letter-spacing:.2px; text-transform:lowercase}
+  .brand-gooobet{font-weight:900;letter-spacing:.2px;text-transform:lowercase}
 
   .bonus-gray{background:#f6f6f6;color:#111;padding:40px 0;text-align:center;margin-top:8px}
   .footer-gray{background:#f6f6f6;padding:30px 0;font-size:14px;color:#444}
