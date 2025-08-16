@@ -18,7 +18,6 @@
   h1,h2,h3,p{margin:0}
   .container{width:var(--container);margin-inline:auto;padding-inline:12px}
 
-  /* Header */
   header{
     position:sticky; top:0; z-index:100; background:#fff;
     display:flex; align-items:center; justify-content:space-between;
@@ -28,26 +27,17 @@
   .btn-link{
     background:var(--brand); color:#fff; padding:10px 18px; border:none; border-radius:999px;
     font-weight:700; font-size:15px; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
-    box-shadow:0 8px 18px rgba(0,82,255,.18); transition:.18s ease; text-decoration:none
+    box-shadow:0 8px 18px rgba(0,82,255,.18); transition:.18s ease; text-decoration:none;
   }
   .btn-link:hover{transform:translateY(-1px)}
   .menu{width:26px;height:18px;display:grid;gap:5px;cursor:pointer}
   .menu span{height:2px;background:#1f2937;border-radius:2px}
 
-  /* Side menu (drawer) - إصلاح الموبايل */
   .side-menu{
-    position:fixed; inset-block:0; inset-inline-end:0;
-    width:320px; max-width:90vw; height:100%;
-    background:#fff; border-inline-start:1px solid var(--line);
-    box-shadow:-10px 0 30px rgba(0,0,0,.08);
-    transform:translateX(100%); transition:transform .28s ease;
-    z-index:1002; display:flex; flex-direction:column
+    position:fixed;top:0;right:-280px;width:280px;height:100%;background:#fff;border-left:1px solid var(--line);
+    box-shadow:-10px 0 30px rgba(0,0,0,.08);transition:right .28s ease;z-index:1002;display:flex;flex-direction:column;max-width:400px;
   }
-  .side-menu.active{transform:translateX(0)}
-  /* على الهاتف تغطي العرض كامل بلا أي شريط أبيض */
-  @media(max-width:600px){
-    .side-menu{width:100vw;max-width:100vw;border-inline-start:none}
-  }
+  .side-menu.active{right:0}
   .side-menu-header{padding:16px;font-weight:800;font-size:18px;background:var(--brand);color:#fff;position:relative}
   .side-menu ul{list-style:none;padding:8px;margin:0;flex:1}
   .side-menu li{border-bottom:1px solid var(--line)}
@@ -55,25 +45,23 @@
   .side-menu a:hover{background:#f5f7ff}
   .side-menu-close{position:absolute;top:12px;left:16px;font-size:22px;cursor:pointer;color:#fff}
 
-  /* Overlay */
-  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);
-    backdrop-filter:saturate(140%) blur(3px);
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:saturate(140%) blur(3px);
     opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:1000}
   .overlay.active{opacity:1;pointer-events:auto}
 
-  /* قفل تمرير الصفحة عند فتح القائمة */
-  .no-scroll{overflow:hidden}
+  @media(max-width:600px){
+    .side-menu{width:100%;right:-100%}
+    .side-menu.active{right:0}
+  }
 
-  /* Hero */
   .hero{padding:56px 0;background:#fff}
   .hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
-  .hero h1{font-size:clamp(22px,4.4vw,34px);font-weight:800;line-height:1.35;margin-bottom:12px}
+  .hero h1{font-size:clamp(22px,4.4vw,34px);font-weight:800;line-height:1.35;margin-bottom:12px;word-break:break-word}
   .hero p{font-size:clamp(14px,2.2vw,16px);line-height:1.7;color:var(--muted);margin-bottom:24px;max-width:720px}
   .cta{background:var(--brand);color:#fff;padding:14px 28px;font-size:16px;border:none;border-radius:999px;
     font-weight:800;display:inline-block;box-shadow:0 10px 22px rgba(0,82,255,.18);transition:.18s ease}
   .cta:hover{transform:translateY(-1px)}
 
-  /* Tabs */
   .recommended-section{background:linear-gradient(180deg,#f7f9fc,#eef2f7);padding:16px 0 28px;border-top:1px solid var(--line)}
   .seg{display:flex;gap:10px;align-items:center;justify-content:flex-start;margin:0 auto 12px}
   .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#e9edf4;color:#111;border:1px solid var(--line);font-weight:800;font-size:14px;cursor:pointer;user-select:none;white-space:nowrap}
@@ -84,12 +72,10 @@
   .pane{display:none}
   .pane.active{display:block}
 
-  /* Grid */
   .recommended-wrapper{display:grid; gap:var(--gap); grid-template-columns:repeat(2,1fr)}
   @media(min-width:768px){.recommended-wrapper{grid-template-columns:repeat(3,1fr)}}
   @media(min-width:1024px){.recommended-wrapper{grid-template-columns:repeat(4,1fr)}}
 
-  /* Card */
   .bank-card{
     background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
     box-shadow:var(--shadow);padding:14px;display:grid;grid-template-rows:auto 1fr;min-height:144px;
@@ -97,18 +83,20 @@
   }
   .bank-card:hover{transform:translateY(-2px)}
   .top-section{display:flex;align-items:center;gap:12px}
-  .ico-wrap{inline-size:var(--icon); block-size:var(--icon); aspect-ratio:1/1; border-radius:50%; background:#fff; border:1px solid var(--ring);
-    display:grid; place-items:center; overflow:hidden; box-shadow:0 4px 14px rgba(15,23,42,.06), inset 0 1px 0 #fff; flex:0 0 auto}
-  .ico-wrap img{width:72%; height:72%; object-fit:contain; display:block}
+  .ico-wrap{
+    inline-size:var(--icon); block-size:var(--icon);
+    aspect-ratio:1/1; border-radius:50%; background:#fff; border:1px solid var(--ring);
+    display:grid; place-items:center; overflow:hidden;
+    box-shadow:0 4px 14px rgba(15,23,42,.06), inset 0 1px 0 #fff; flex:0 0 auto;
+  }
+  .ico-wrap img{width:72%;height:72%;object-fit:contain;display:block}
   .asset-name{font-weight:800;font-size:15px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
   .asset-sub{font-size:12px;color:var(--muted);margin-top:2px}
   .bottom-section{margin-top:10px;display:flex;align-items:center;justify-content:space-between}
   .tag{padding:6px 10px;border-radius:12px;border:1px solid var(--line);background:#f8fafc;font-size:12px;color:#111;font-weight:700}
   .delta{font-weight:800;font-size:14px;color:#16a34a}
+  .brand-gooobet{font-weight:900;letter-spacing:.2px;text-transform:lowercase}
 
-  .brand-gooobet{font-weight:900; letter-spacing:.2px; text-transform:lowercase}
-
-  /* Footer-like sections */
   .bonus-gray{background:#f6f6f6;color:#111;padding:40px 0;text-align:center;margin-top:8px}
   .footer-gray{background:#f6f6f6;padding:30px 0;font-size:14px;color:#444}
   .footer-gray .bottom{border-top:1px solid var(--line);padding-top:10px;font-size:13px;text-align:center;color:#777}
@@ -122,7 +110,6 @@
   <a class="btn-link" href="signup/">سجّل</a>
 </header>
 
-<!-- Side Menu -->
 <div class="side-menu" id="sideMenu">
   <div class="side-menu-header">القائمة <span class="side-menu-close" id="closeMenu">&times;</span></div>
   <ul>
@@ -134,7 +121,6 @@
 </div>
 <div class="overlay" id="overlay"></div>
 
-<!-- Hero -->
 <section class="hero">
   <div class="container hero-inner">
     <h1>مكافآت رائعة للمراهنات الرياضية والكازينو</h1>
@@ -143,7 +129,6 @@
   </div>
 </section>
 
-<!-- Recommended Area -->
 <section class="recommended-section">
   <div class="container">
     <div class="seg">
@@ -162,39 +147,165 @@
     </div>
 
     <div class="tabs-panes">
-      <!-- تبويب مواقع المراهنات -->
       <div class="pane active" id="pane-bets">
         <div class="recommended-wrapper">
-          <!-- جميع المنصات بالصور الجديدة -->
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/KvBnttYW/rounded.webp" alt="Mega Pari" onerror="this.style.display='none'></figure><div><div class="asset-name">Mega Pari</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+100%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/NMCywjjm/S3.png" alt="gooobet" onerror="this.style.display='none"></figure><div><div class="asset-name brand-gooobet">gooobet</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+75%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/NMCywjjm/unnamed.png" alt="Stake" onerror="this.style.display='none"></figure><div><div class="asset-name">Stake</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+200%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/nrMDsQP3/mystake-logo-UR9-Al-Gtc-Eocd-Us-UKd-YSPZIv20wal-AIy-UGQEio-IRx-720x720.webp" alt="MyStake" onerror="this.style.display='none"></figure><div><div class="asset-name">MyStake</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">متاح</span><span class="delta">+120%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/x8HbyS9m/8de62e0d-faf0-4657-aa87-962278a7542e.jpg" alt="RiskoBet" onerror="this.style.display='none"></figure><div><div class="asset-name">RiskoBet</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">متاح</span><span class="delta">+90%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/T3TWmSFy/unnamed-1.png" alt="888Starz" onerror="this.style.display='none"></figure><div><div class="asset-name">888Starz</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+150%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/MK6WYSZ8/S2.webp" alt="LINEBET" onerror="this.style.display='none"></figure><div><div class="asset-name">LINEBET</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">متاح</span><span class="delta">+110%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/JzHSN6XL/unnamed-2.png" alt="Betwinner" onerror="this.style.display='none"></figure><div><div class="asset-name">Betwinner</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">متاح</span><span class="delta">+130%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/hj2CWTms/images.png" alt="1xBet" onerror="this.style.display='none"></figure><div><div class="asset-name">1xBet</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+100%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/wTywZtj5/6880a572d9dce31c5497dc12-1753261476665.jpg" alt="MelBet" onerror="this.style.display='none"></figure><div><div class="asset-name">MelBet</div><div class="asset-sub">بونص ترحيبي</div></div></div><div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+140%</span></div></article>
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/KvBnttYW/rounded.webp" alt="Mega Pari" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name">Mega Pari</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+100%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/NMCywjjm/S3.png" alt="gooobet" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name brand-gooobet">gooobet</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+75%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/NMCywjjm/unnamed.png" alt="Stake" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name">Stake</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+200%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/nrMDsQP3/mystake-logo-UR9-Al-Gtc-Eocd-Us-UKd-YSPZIv20wal-AIy-UGQEio-IRx-720x720.webp" alt="MyStake" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name">MyStake</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">متاح</span><span class="delta">+120%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/x8HbyS9m/8de62e0d-faf0-4657-aa87-962278a7542e.jpg" alt="RiskoBet" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name">RiskoBet</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">متاح</span><span class="delta">+90%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/T3TWmSFy/unnamed-1.png" alt="888Starz" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name">888Starz</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+150%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/MK6WYSZ8/S2.webp" alt="LINEBET" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name">LINEBET</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">متاح</span><span class="delta">+110%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/JzHSN6XL/unnamed-2.png" alt="Betwinner" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name">Betwinner</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">متاح</span><span class="delta">+130%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/hj2CWTms/images.png" alt="1xBet" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name">1xBet</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+100%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap">
+                <img loading="lazy" src="https://i.postimg.cc/wTywZtj5/6880a572d9dce31c5497dc12-1753261476665.jpg" alt="MelBet" onerror="this.style.display='none'">
+              </figure>
+              <div><div class="asset-name">MelBet</div><div class="asset-sub">بونص ترحيبي</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+140%</span></div>
+          </article>
         </div>
       </div>
 
-      <!-- تبويب الطرق الموصى بها (البنوك) -->
       <div class="pane" id="pane-recommended">
         <div class="recommended-wrapper">
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/tCQqLF96/recharge.png" alt="Al Barid" onerror="this.style.display='none'"></figure><div><div class="asset-name">Al Barid</div><div class="asset-sub">طريقة دفع موثوقة</div></div></div><div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+0,00%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt="Attijari" onerror="this.style.display='none'"></figure><div><div class="asset-name">Attijari</div><div class="asset-sub">سرعة تنفيذ عالية</div></div></div><div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+0,00%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt="CIH" onerror="this.style.display='none'"></figure><div><div class="asset-name">CIH</div><div class="asset-sub">دعم متواصل</div></div></div><div class="bottom-section"><span class="tag">متاح</span><span class="delta">+0,00%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt="Cash Plus" onerror="this.style.display='none'"></figure><div><div class="asset-name">Cash Plus</div><div class="asset-sub">مراكز واسعة</div></div></div><div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+0,00%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt="Barid Pay" onerror="this.style.display='none'"></figure><div><div class="asset-name">Barid Pay</div><div class="asset-sub">تحويل فوري</div></div></div><div class="bottom-section"><span class="tag">متاح</span><span class="delta">+0,00%</span></div></article>
-          <article class="bank-card"><div class="top-section"><figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt="Banque Populaire" onerror="this.style.display='none'"></figure><div><div class="asset-name">Banque Populaire</div><div class="asset-sub">رسوم منخفضة</div></div></div><div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+0,00%</span></div></article>
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/tCQqLF96/recharge.png" alt="Al Barid" onerror="this.style.display='none'"></figure>
+              <div><div class="asset-name">Al Barid</div><div class="asset-sub">طريقة دفع موثوقة</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+0,00%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/0QKv4y3Z/recharge.png" alt="Attijari" onerror="this.style.display='none'"></figure>
+              <div><div class="asset-name">Attijari</div><div class="asset-sub">سرعة تنفيذ عالية</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+0,00%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/6pHN5ZxY/recharge.png" alt="CIH" onerror="this.style.display='none'"></figure>
+              <div><div class="asset-name">CIH</div><div class="asset-sub">دعم متواصل</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">متاح</span><span class="delta">+0,00%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/vZ2pdd5K/recharge.png" alt="Cash Plus" onerror="this.style.display='none'"></figure>
+              <div><div class="asset-name">Cash Plus</div><div class="asset-sub">مراكز واسعة</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">جاهزة</span><span class="delta">+0,00%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/wjrbGQp8/recharge.png" alt="Barid Pay" onerror="this.style.display='none'"></figure>
+              <div><div class="asset-name">Barid Pay</div><div class="asset-sub">تحويل فوري</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">متاح</span><span class="delta">+0,00%</span></div>
+          </article>
+
+          <article class="bank-card">
+            <div class="top-section">
+              <figure class="ico-wrap"><img loading="lazy" src="https://i.postimg.cc/8cwZBhHY/recharge.png" alt="Banque Populaire" onerror="this.style.display='none'"></figure>
+              <div><div class="asset-name">Banque Populaire</div><div class="asset-sub">رسوم منخفضة</div></div>
+            </div>
+            <div class="bottom-section"><span class="tag">موصى بها</span><span class="delta">+0,00%</span></div>
+          </article>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- القسم الرمادي -->
 <section class="bonus-gray">
   <div class="container" style="text-align:center">
     <h2 style="font-size:28px;font-weight:700;margin-bottom:12px;">مكافأة 100% على إيداعك الأول</h2>
@@ -223,18 +334,14 @@
 </footer>
 
 <script>
-  // Elements
   const menuBtn=document.getElementById('menuBtn'),
         sideMenu=document.getElementById('sideMenu'),
         closeMenu=document.getElementById('closeMenu'),
         overlay=document.getElementById('overlay');
+  menuBtn.onclick=()=>{sideMenu.classList.add('active');overlay.classList.add('active')}
+  const closeAll=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active')}
+  closeMenu.onclick=closeAll; overlay.onclick=closeAll;
 
-  // Open/close
-  const openMenu=()=>{sideMenu.classList.add('active');overlay.classList.add('active');document.body.classList.add('no-scroll')}
-  const closeAll=()=>{sideMenu.classList.remove('active');overlay.classList.remove('active');document.body.classList.remove('no-scroll')}
-  menuBtn.onclick=openMenu; closeMenu.onclick=closeAll; overlay.onclick=closeAll;
-
-  // Tabs
   const pills=document.querySelectorAll('.pill');
   const panes={bets:document.getElementById('pane-bets'),recommended:document.getElementById('pane-recommended')};
   pills.forEach(p=>p.addEventListener('click',()=>{
