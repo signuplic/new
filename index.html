@@ -78,15 +78,15 @@
   .bank-card:hover{transform:translateY(-2px)}
   .top-section{display:flex;align-items:center;gap:12px}
 
-  /* إطار الشعار موحّد + ضبط احترافي للصور في القسمين */
+  /* أيقونة دائرية ممتلئة + الصورة تغطي بالكامل */
   .ico-wrap{
-    width:56px;height:56px;border-radius:16px;background:linear-gradient(180deg,#f8fafc,#eef2f7);
+    width:56px;height:56px;border-radius:50%;
+    background:linear-gradient(180deg,#f8fafc,#eef2f7);
     border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;
     box-shadow:inset 0 1px 0 #fff;
   }
   .ico-wrap img{
-    width:74%;height:74%;object-fit:contain; /* لا تمديد ولا قص */
-    image-rendering:auto;display:block;
+    width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;
   }
 
   .asset-name{font-weight:800;font-size:15px;line-height:1.2}
@@ -96,9 +96,7 @@
   .delta{font-weight:800;font-size:14px;color:#16a34a}
 
   /* تحسين خاص لاسم gooobet */
-  .brand-gooobet{
-    font-weight:900; letter-spacing:.2px; text-transform:lowercase;
-  }
+  .brand-gooobet{font-weight:900;letter-spacing:.2px;text-transform:lowercase}
 
   /* القسم الرمادي القديم أسفل */
   .bonus-gray{background:#f6f6f6;color:#111;padding:40px 20px;text-align:center}
@@ -148,10 +146,8 @@
   </div>
 
   <div class="tabs-panes">
-    <!-- تبويب مواقع المراهنات (شعارات + نسب بونص) -->
     <div class="pane active" id="pane-bets">
       <div class="recommended-wrapper">
-        <!-- Mega Pari -->
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -161,7 +157,7 @@
           </div>
           <div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+100%</div></div>
         </div>
-        <!-- gooobet (اسم مضبوط وأنيق) -->
+
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -171,7 +167,7 @@
           </div>
           <div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+75%</div></div>
         </div>
-        <!-- MyStake -->
+
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -181,7 +177,7 @@
           </div>
           <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+120%</div></div>
         </div>
-        <!-- Stake -->
+
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -191,7 +187,7 @@
           </div>
           <div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+200%</div></div>
         </div>
-        <!-- 888Starz -->
+
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -201,7 +197,7 @@
           </div>
           <div class="bottom-section"><div class="tag">موصى بها</div><div class="delta">+150%</div></div>
         </div>
-        <!-- RiskoBet -->
+
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -211,7 +207,7 @@
           </div>
           <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+90%</div></div>
         </div>
-        <!-- 1xBet -->
+
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -221,7 +217,7 @@
           </div>
           <div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+100%</div></div>
         </div>
-        <!-- LINEBET -->
+
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -231,7 +227,7 @@
           </div>
           <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+110%</div></div>
         </div>
-        <!-- Betwinner -->
+
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -241,7 +237,7 @@
           </div>
           <div class="bottom-section"><div class="tag">متاح</div><div class="delta">+130%</div></div>
         </div>
-        <!-- MelBet -->
+
         <div class="bank-card">
           <div class="top-section">
             <div class="ico-wrap">
@@ -254,7 +250,6 @@
       </div>
     </div>
 
-    <!-- تبويب الطرق الموصى بها: البنوك (صور مضبوطة بنفس الإطار الاحترافي) -->
     <div class="pane" id="pane-recommended">
       <div class="recommended-wrapper">
         <div class="bank-card"><div class="top-section"><div class="ico-wrap"><img src="https://i.postimg.cc/tCQqLF96/recharge.png" alt="Al Barid"></div><div><div class="asset-name">Al Barid</div><div class="asset-sub">طريقة دفع موثوقة</div></div></div><div class="bottom-section"><div class="tag">جاهزة</div><div class="delta">+0,00%</div></div></div>
@@ -286,8 +281,7 @@
     <h3 style="font-size:16px;font-weight:bold;margin-bottom:10px;">الدعم والمساعدة</h3>
     <ul style="list-style:none;padding:0;margin:0 0 20px;">
       <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">تواصل معنا</a></li>
-      <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">الأ
-سئلة الشائعة</a></li>
+      <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">الأسئلة الشائعة</a></li>
       <li style="margin-bottom:6px;"><a href="#" style="text-decoration:none;color:#444;">الإبلاغ عن مشكلة</a></li>
     </ul>
   </div>
